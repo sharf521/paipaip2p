@@ -1,6 +1,5 @@
 <?php
 
-
 # 基础抬头 其中第三项释放的信息在浏览器debug时可见.
 header('Content-language: zh');  
 header('Content-type: text/html; charset=utf-8');
