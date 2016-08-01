@@ -1,0 +1,114 @@
+{include file="header.html"}
+
+<script>
+var user_id = '{$_G.user_id}';
+{literal}
+function check_form(){
+	if (user_id==""){
+		alert('你还没有登录，请先登录');
+		return true;
+	}
+	 var frm = document.forms['form1'];
+	 var title = frm.elements['title'].value;
+	 var applicant_name = frm.elements['applicant_name'].value;
+	 var applicant_phone = frm.elements['applicant_phone'].value;
+	 var valicode = frm.elements['valicode'].value;
+	 var errorMsg = '';
+	  if (title.length == 0 ) {
+		errorMsg += '标题必须填写' + '\n';
+	  }
+	  if (applicant_name.length == 0 ) {
+		errorMsg += '申请人姓名必须填写' + '\n';
+	  }
+	  if (applicant_phone.length == 0 ) {
+		errorMsg += '申请人电话必须填写' + '\n';
+	  }
+	  if (valicode.length == 0 ) {
+		errorMsg += '验证码必须填写' + '\n';
+	  }
+	  if (errorMsg.length > 0){
+		alert(errorMsg); return false;
+	  } else{  
+		return true;
+	  }
+}
+
+</script>
+{/literal}
+	
+	<div class="container">
+	
+		<div class="service_box">
+			<div class="service_left">
+				<div class="service_title">创业投资</div>
+				<div class="service_ul">
+					{loop module="article" function="GetSiteList" var="var" epage="20"  pid="76"  keywords="request" status=1 }
+					<div onClick="showsubmenu( 1, 8)"><a href="/{$var.nid}/index.html">{$var.name}</a></div>
+					{/loop}
+				</div>
+				
+			
+			</div>
+			
+	<div><script defer>onInit();</script></div>		
+			<!-- 申请创业-->
+			<div class="service_right">
+				<div class="service_dh">
+					当前位置：<a 
+id="ctl00_content_NavigationLink1_main" href="/" style=" color:#333; text-decoration:none;">首页</a> &gt; <a href="/pioneer/index.html" style=" color:#333; text-decoration:none;">创业投资</a> &gt; <a href="/{$_G.site_result.nid}/index.html" style=" color:#333;  text-decoration:none;">{$_G.site_result.name} </a>
+				</div>
+					
+				<div class="service_dhtitle">{$_G.site_result.name}</div>
+				<div class="cytz_bbox">
+					<div style="float:left; font-size:12px; color:#666; padding:10px 0px 5px 10px"><b>流程图</b></div>
+					<div class="cyrz_pic"><img src="{$tempdir}/img/cytz.jpg" /></div>
+					<form name="form1" method="post" action="/index.php?user&q=code/pioneer/add" onsubmit="return check_form();" enctype="multipart/form-data" >
+					<div class="cytz_font">
+						<span>企业计划标题：</span>
+						<input type="text" name="title"  class="cytz_input" value="{ $result.title}" size="80" /> 			
+					</div>
+					
+					<div class="cytz_font">
+						<span>您的姓名：</span>
+						<input type="text" name="applicant_name"  class="cytz_input" value="{ $result.name}" size="80" />			
+					</div>
+					
+					
+					<div class="cytz_font">
+						<span>您的联系电话：</span>
+						<input type="text" name="applicant_phone"  class="cytz_input" value="{ $result.tel}" size="80" />			
+					</div>
+					
+					
+					<div class="cytz_font">
+						<span>验证码：</span>
+					<input name="valicode" type="text" size="11" maxlength="4"  tabindex="3" class="cytz_input cytz_width" /><img src="/plugins/index.php?q=imgcode" alt="点击刷新" onClick="this.src='/plugins/index.php?q=imgcode&t=' + Math.random();"  style="cursor:pointer" />		
+					</div>
+					
+					<div class="cytz_font">
+						<span style="margin-left:18px; display:inline; width:300px;">请将文档发送至：{$_G.system.con_email_email}</span>
+									
+					</div>
+					
+					<div class="cytz_font">
+						<span style="margin-left:5px; display:inline; width:300px;">
+						<input type="submit" class="cytz_tijiao"  name="submit" value="确认提交" />
+						<input type="reset" class="cytz_tijiao"  name="reset" value="重置表单" />
+						</span>
+									
+					</div>
+				</form>	
+	
+				
+				</div>
+			
+
+			
+			</div>
+
+		</div>
+
+	</div>
+
+	
+	{include file="footer.html"}

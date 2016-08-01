@@ -1,0 +1,51 @@
+{include file="header.html"}
+	
+	<div class="container">
+	
+		<div class="service_box">
+			<div class="service_left">
+				<div class="service_title">创业投资</div>
+				<div class="service_ul">
+					{loop module="article" function="GetSiteList" var="var" epage="20"  pid="76"  keywords="request" status=1 }
+					<div onClick="showsubmenu( 1, 8)"><a href="/{$var.nid}/index.html">{$var.name}</a></div>
+					{/loop}
+				</div>
+				
+			
+			</div>
+			
+			<!-- 大学生创业-->
+			<script defer>onInit();</script>
+			<div class="service_right" >
+				<div class="service_dh">
+					当前位置：<a 
+id="ctl00_content_NavigationLink1_main" href="/" style=" color:#333; text-decoration:none;">首页</a> &gt; <a href="/pioneer/index.html" style=" color:#333; text-decoration:none;">创业投资</a> &gt; <a href="/{$_G.site_result.nid}/index.html" style=" color:#333;  text-decoration:none;">{$_G.site_result.name} </a>
+				</div>
+					
+				<div class="service_dhtitle">{$_G.site_result.name}</div>
+				<div class="cytz_bbox">
+					<div class="dxusy">
+					{$_G.site_result.content}	
+					</div>
+				</div>
+			
+
+			
+			</div>
+			
+			
+			
+			
+			
+			
+			
+
+		
+		</div>
+	
+	
+	
+	
+	</div>
+	
+	{include file="footer.html"}

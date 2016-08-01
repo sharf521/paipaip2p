@@ -1,0 +1,24 @@
+[18-Oct-2011 10:18:59] PHP Warning:  fopen(F:\hzxxx\sxxx\core/../) [<a href='function.fopen'>function.fopen</a>]: failed to open stream: No such file or directory in F:\hzxxx\sxxx\plugins\html\imgurl.inc.php on line 28
+[18-Oct-2011 10:18:59] PHP Warning:  fread(): supplied argument is not a valid stream resource in F:\hzxxx\sxxx\plugins\html\imgurl.inc.php on line 31
+[18-Oct-2011 10:18:59] PHP Warning:  Cannot modify header information - headers already sent by (output started at F:\hzxxx\sxxx\plugins\html\imgurl.inc.php:28) in F:\hzxxx\sxxx\plugins\html\imgurl.inc.php on line 32
+[02-Nov-2011 19:37:25] PHP Warning:  fopen(F:\hzxxx\sxxx\core/../) [<a href='function.fopen'>function.fopen</a>]: failed to open stream: No such file or directory in F:\hzxxx\sxxx\plugins\html\imgurl.inc.php on line 28
+[02-Nov-2011 19:37:25] PHP Warning:  fread(): supplied argument is not a valid stream resource in F:\hzxxx\sxxx\plugins\html\imgurl.inc.php on line 31
+[02-Nov-2011 19:37:25] PHP Warning:  Cannot modify header information - headers already sent by (output started at F:\hzxxx\sxxx\plugins\html\imgurl.inc.php:28) in F:\hzxxx\sxxx\plugins\html\imgurl.inc.php on line 32
+[02-Nov-2011 19:37:36] PHP Warning:  fopen(F:\hzxxx\sxxx\core/../) [<a href='function.fopen'>function.fopen</a>]: failed to open stream: Permission denied in F:\hzxxx\sxxx\plugins\html\imgurl.inc.php on line 28
+[02-Nov-2011 19:37:36] PHP Warning:  fread(): supplied argument is not a valid stream resource in F:\hzxxx\sxxx\plugins\html\imgurl.inc.php on line 31
+[02-Nov-2011 19:37:36] PHP Warning:  Cannot modify header information - headers already sent by (output started at F:\hzxxx\sxxx\plugins\html\imgurl.inc.php:28) in F:\hzxxx\sxxx\plugins\html\imgurl.inc.php on line 32
+[02-Nov-2011 19:37:40] PHP Warning:  fopen(F:\hzxxx\sxxx\core/../) [<a href='function.fopen'>function.fopen</a>]: failed to open stream: Permission denied in F:\hzxxx\sxxx\plugins\html\imgurl.inc.php on line 28
+[02-Nov-2011 19:37:40] PHP Warning:  fread(): supplied argument is not a valid stream resource in F:\hzxxx\sxxx\plugins\html\imgurl.inc.php on line 31
+[02-Nov-2011 19:37:40] PHP Warning:  Cannot modify header information - headers already sent by (output started at F:\hzxxx\sxxx\plugins\html\imgurl.inc.php:28) in F:\hzxxx\sxxx\plugins\html\imgurl.inc.php on line 32
+[11-Nov-2011 22:18:26] PHP Warning:  fopen(F:\hzxxx\sxxx\core/../) [<a href='function.fopen'>function.fopen</a>]: failed to open stream: Permission denied in F:\hzxxx\sxxx\plugins\html\imgurl.inc.php on line 28
+[11-Nov-2011 22:18:26] PHP Warning:  fread(): supplied argument is not a valid stream resource in F:\hzxxx\sxxx\plugins\html\imgurl.inc.php on line 31
+[11-Nov-2011 22:18:26] PHP Warning:  Cannot modify header information - headers already sent by (output started at F:\hzxxx\sxxx\plugins\html\imgurl.inc.php:28) in F:\hzxxx\sxxx\plugins\html\imgurl.inc.php on line 32
+[11-Nov-2011 22:19:43] PHP Warning:  fopen(F:\hzxxx\sxxx\core/../) [<a href='function.fopen'>function.fopen</a>]: failed to open stream: Permission denied in F:\hzxxx\sxxx\plugins\html\imgurl.inc.php on line 28
+[11-Nov-2011 22:19:43] PHP Warning:  fread(): supplied argument is not a valid stream resource in F:\hzxxx\sxxx\plugins\html\imgurl.inc.php on line 31
+[11-Nov-2011 22:19:43] PHP Warning:  Cannot modify header information - headers already sent by (output started at F:\hzxxx\sxxx\plugins\html\imgurl.inc.php:28) in F:\hzxxx\sxxx\plugins\html\imgurl.inc.php on line 32
+[11-Nov-2011 22:20:48] PHP Warning:  fopen(F:\hzxxx\sxxx\core/../) [<a href='function.fopen'>function.fopen</a>]: failed to open stream: No such file or directory in F:\hzxxx\sxxx\plugins\html\imgurl.inc.php on line 28
+[11-Nov-2011 22:20:48] PHP Warning:  fread(): supplied argument is not a valid stream resource in F:\hzxxx\sxxx\plugins\html\imgurl.inc.php on line 31
+[11-Nov-2011 22:20:48] PHP Warning:  Cannot modify header information - headers already sent by (output started at F:\hzxxx\sxxx\plugins\html\imgurl.inc.php:28) in F:\hzxxx\sxxx\plugins\html\imgurl.inc.php on line 32
+[11-Nov-2011 22:37:10] PHP Warning:  fopen(F:\hzxxx\sxxx\core/../) [<a href='function.fopen'>function.fopen</a>]: failed to open stream: Permission denied in F:\hzxxx\sxxx\plugins\html\imgurl.inc.php on line 28
+[11-Nov-2011 22:37:10] PHP Warning:  fread(): supplied argument is not a valid stream resource in F:\hzxxx\sxxx\plugins\html\imgurl.inc.php on line 31
+[11-Nov-2011 22:37:10] PHP Warning:  Cannot modify header information - headers already sent by (output started at F:\hzxxx\sxxx\plugins\html\imgurl.inc.php:28) in F:\hzxxx\sxxx\plugins\html\imgurl.inc.php on line 32

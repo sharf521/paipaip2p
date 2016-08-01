@@ -1,0 +1,135 @@
+{include file="header.html"}
+	
+	
+	
+	<div class="container">
+	
+		<div class="borr_title">我要借款</div>
+		<ul class="borr_stepbox">
+			<li class="checkit"><a href="/?user&q=action/reg"><h3>1</h3><span>注册会员</span></a></li>
+			<li ><a href="/index.php?user&q=code/userinfo"><h3>2</h3><span>填写资料</span></a></li>
+			<li><a href="/index.php?user&q=code/user/realname"><h3>3</h3><span>实名认证</span></a></li>
+			<li><a href="/vip/index.html"><h3>4</h3><span>VIP认证</span></a></li>
+			<li ><a href="/index.php?user&q=code/attestation/one"><h3>5</h3><span>上传资料</span></a></li>
+			<li><a href="/index.php?user&q=code/user/video_status"><h3>6</h3><span>视频认证</span></a></li>
+			<li><a href="/index.php?user&q=code/borrow/limitapp"><h3>7</h3><span>申请额度</span></a></li>
+			<li ><a href="/borrow/index.html"><h3>8</h3><span>发布借款</span></a></li>
+	
+		</ul>
+		
+{article module="borrow" function="get_available_biao_type" user_id=0 var="biaotype_list" allow_biaotype="$_G.site_biaotype"}
+{/article}
+{article module="borrow" function="get_biao_type_url_list" user_id=0 var="biao_type_url_list" }
+{/article}
+		<div class="borr_fabox">
+			<ul class="borr_faul">
+				{if in_array("credit", $biaotype_list) }
+				<li>
+					<img src="{$tempdir}/img/xin.jpg">
+					<span>网站给予的信用额度内<br />发布借款<br />
+					<a href="{$biao_type_url_list.credit.type_desc_url}">详细介绍 ></a></span>
+					<a href="/publish/index.html?type=credit" class="btn-action" style="color:#ffffff;">
+					发布信用标</a>
+				</li>
+				{/if}
+				
+				{if in_array("zhouzhuan", $biaotype_list) }
+				<li>
+					<img src="{$tempdir}/img/zhuan.jpg" />
+					<span>网站给予的信用额度内<br />发布借款（借款不可提现）<br />
+					<a href="{$biao_type_url_list.zhouzhuan.type_desc_url}">详细介绍 ></a></span>
+					<a href="/publish/index.html?type=zhouzhuan" class="btn-action" style="color:#ffffff;">
+					发布站内周转标</a>
+				</li>
+				{/if}
+				
+				{if in_array("restructuring", $biaotype_list) }
+				<li>
+					<img src="{$tempdir}/img/chong.jpg" />
+					<span>网站给予的重组额度内<br />发布借款<br />
+					<a href="{$biao_type_url_list.restructuring.type_desc_url}">详细介绍 ></a></span>
+					<a href="/publish/index.html?type=restructuring" class="btn-action" style="color:#ffffff; ">发布债务重组标</a>
+				</li>
+				{/if}
+				
+				{if in_array("vouch", $biaotype_list) }
+				<li>
+					<img src="{$tempdir}/img/dan.jpg" />
+					<span>网站给予的担保额度内<br />发布借款<br />
+					<a href="{$biao_type_url_list.vouch.type_desc_url}">详细介绍 ></a></span>
+					<a href="/publish/index.html?type=vouch" class="btn-action" style="color:#ffffff;">发布担保标</a>
+				</li>
+				{/if}
+				
+				{if in_array("jin", $biaotype_list) }
+				<li>
+					<img src="{$tempdir}/img/jing.jpg" />
+					<span>会员用网站留存的净值<br />金额发布借款<br />
+					<a href="{$biao_type_url_list.jin.type_desc_url}">详细介绍 ></a></span>
+					<a href="/publish/index.html?type=jin" class="btn-action" style="color:#ffffff;">发布净值标</a>
+				</li>
+				{/if}
+				
+				{if in_array("miao", $biaotype_list) }
+				<li>
+					<img src="{$tempdir}/img/miao.jpg" />
+					<span> 借款成功系统自动还款<br />娱乐反馈标<br />
+					<a href="{$biao_type_url_list.miao.type_desc_url}">详细介绍 ></a></span>
+					<a href="/publish/index.html?type=miao" class="btn-action" style="color:#ffffff;">发布秒还标</a>
+				</li>
+				{/if}
+				
+				{if in_array("fast", $biaotype_list) }
+				<li>
+					<img src="{$tempdir}/img/di.jpg" />
+					<span>小微企业现场审核抵押<br />发布借款<br />
+					<a href="{$biao_type_url_list.fast.type_desc_url}">详细介绍 ></a></span>
+					<a href="/publish/index.html?type=fast" class="btn-action" style="color:#ffffff;">发布抵押标</a>
+				</li>
+				{/if}
+				{if in_array("pledge", $biaotype_list) }
+				<li>
+					<img src="{$tempdir}/img/zhi.jpg" />
+					<span>小微企业现场审核质押<br />发布借款<br />
+					<a href="{$biao_type_url_list.pledge.type_desc_url}">详细介绍 ></a></span>
+					<a href="/publish/index.html?type=pledge" class="btn-action" style="color:#ffffff;">发布质押标</a>
+				</li>
+				{/if}
+				
+				{if in_array("circulation", $biaotype_list) }
+				<li>
+					<img src="{$tempdir}/img/liu.jpg" />
+					<span> 债权流转担保贷<br />
+				 <a href="/publish/index.html?st=1&type=circulation">发布抵押流转</a>
+                 <a href="/publish/index.html?st=2&type=circulation">发布质押流转</a>
+
+					<a href="{$biao_type_url_list.circulation.type_desc_url}">详细介绍 ></a></span>
+					<a href="/publish/index.html?type=circulation" class="btn-action" style="color:#ffffff;">流转担保贷</a>
+				</li>
+				{/if}
+				
+				{if in_array("love", $biaotype_list) }
+				<li>
+					<img src="{$tempdir}/img/ai.jpg" />
+					<span>爱心慈善借款<br />发布借款<br />
+					<a href="{$biao_type_url_list.love.type_desc_url}">详细介绍 ></a></span>
+					<a href="/publish/index.html?type=love" class="btn-action" style="color:#ffffff;">发布爱心标</a>
+				</li>
+				{/if}
+	
+			
+			</ul>
+		
+
+		</div>
+		
+	
+	
+	</div>
+
+
+
+
+
+	
+{include file="footer.html"}

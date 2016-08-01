@@ -1,0 +1,162 @@
+{include file='header.html'}
+
+<!--子栏目 开始-->
+{literal}
+<?
+$this->magic_vars['_G']['uurl'] = url_format($this->magic_vars['_G']['nowurl'],"order");
+$this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],"epage");
+?>
+{/literal}
+<!--子栏目 结束-->
+
+{if $magic.request.type==late}
+
+<div class="container">
+		
+		<div class="list_menu">
+			<div class="list_kk"><a href="#tb" data-toggle="tab">逾期的借款标</a></div>
+		</div>
+
+		
+		<div style=" float:left; width:1000px; border:1px solid #ccc; margin:0 auto;">
+		{list module="borrow" function="GetLatelist" var="loop"  late_day="1"}
+		<ul class="list_blist">
+			{foreach from="$loop.list" item="var" }
+			<li>
+				<div class="list_tx"><img src="{$var.user_id|avatar:'middle'|imgurl_format}"/></div>
+				<div class="list_con">
+					<span><a href="/u/{$var.user_id}" title="{$var.realname}">{$var.realname}</a></span>
+					<span>欠款总额：<b style="color:#FF0000">￥{$var.late_account}</b></span>
+					<span>逾期笔数：<b style="color:#FF0000">{$var.late_num}笔</b></span>
+    				<span> 所在地：{$var.area|area}</span>
+					<span>性别：{if $var.sex==1 }男{else}女{/if}</span>
+					<span>Email：{$var.email}</span>
+					<span>网站代还笔数：{$var.late_webnum|default:0}</span>
+					<span >QQ：{$var.qq}</span>
+					<span>身份证:{$var.card_id }</span>
+					<span>电话：{$var.phone}</span>
+					<span>最长逾期天数:{$var.late_numdays}天</span>		
+				</div>
+			</li>
+			{/foreach}
+		</ul>
+		<div class="pagecount">
+			{$loop.showpage}			
+		</div>		
+		{/list}
+		</div>
+</div>
+{else}	
+	<div class="container">
+		<div class="zq_banner">
+			<div class="zq_dl">
+				<img src="{$tempdir}/images/zqimg1.png" />
+				<p>债权人当自己资金急需周转时可以将及时灵活的回收资金。</p>
+			</div>
+			<div class="zq_dl">
+				<img src="{$tempdir}/images/zqimg2.png" />
+				<p>购买者可以在合适的时候将增加资金收益。</p>
+			
+			</div>
+			<div class="zq_dl">
+				<img src="{$tempdir}/images/zqimg3.png" />
+				<p>债权人不再为逾期资金占用而发愁，使资金更加高效。</p>
+			
+			</div>
+		
+		
+		
+		</div>
+		<form action="" method="get">
+		<div class="list_xxse" style="margin-top:10px">
+			<div class="list_title"><a>详细搜索</a></div>
+			<ul class="list_searbox">
+				<li>是否逾期：
+					<select name="late_repay" >
+					<option value="2" {if $magic.request.late_repay=='2'}selected{/if} >不限</option>
+					<option value="0" {if $magic.request.late_repay=='0'}selected{/if} >未逾期</option>
+					<option value="1" {if $magic.request.late_repay=='1'}selected{/if} >有逾期</option>
+					</select> 
+				</li>	
+				
+				
+				<li>债权所属标种：
+					{linkages nid="select_biao_type" value="$magic.request.biao_type" name="biao_type" type="value" }
+				</li>	
+				<li style="display:none">保障比例：
+					<select name="origin_creditor_level" >
+					<option value="2" {if $magic.request.origin_creditor_level=='2'}selected{/if} >不限</option>
+					<option value="0" {if $magic.request.origin_creditor_level=='0'}selected{/if} >普通用户保障</option>
+					<option value="1" {if $magic.request.origin_creditor_level=='1'}selected{/if} >VIP级别保障</option>
+					</select>
+				</li>
+				
+				<li>
+					<input type="submit" class="sousbtn" id="search_btn" value="搜索" />
+				</li>
+
+			</ul>
+
+		</div>
+	 	</form>
+		
+		<div class="zq_box">
+			<div class="zq_left">
+				<div class="zq_bg">
+					<div class="list_kk"><a>债权拍卖列表</a></div>
+					<div class="list_sx">
+						<!--<input type="checkbox" name="yes" class="list_chcss" />只显示有奖励-->
+					</div>			
+				
+				</div>
+				
+				{list module="borrow" function="GetAlienatelist" var="loop"   site_id="0"  keywords="request" type="request"  use="request" account1="request" account2 = "request" limittime="request" award="request" province="request" city="request" epage="request" order="$magic.request.order" areaid="$_G.areaid" province="$_G.province" city="$_G.city"  origin_creditor_level ="$magic.request.origin_creditor_level" late_repay ="$magic.request.late_repay" biao_type ="$magic.request.biao_type"}
+				
+				<ul class="zp_blist">
+	 			{foreach from="$loop.list" item="var" }
+					<li>
+					<div class="list_tx"><img src="{$var.creditor_id|avatar:'middle'|imgurl_format}"/></div>
+					<div class="zqlist_con">
+						<span><a href="/invest/a{$var.borrow_id}.html">{$var.borrow_name|truncate:12:"..."}&nbsp;&nbsp;</a></span>
+						<span>债权价值：￥{$var.amount}元</span>
+						<span style="display:none">保障级别：{if $var.origin_creditor_level==1}VIP级别保障{else}普通用户保障{/if}</span>
+						<span>转让总价：￥{$var.price}元</span>
+						
+						<span><div class="zplist_jdt" ><div style="width:{$var.scale}%" class="list_zqjd"></div></div><div class="list_bno">{$var.scale}%</div></span>
+						<span>每份单价：￥{$var.unit}元</span>
+						<span>可购份数：{$var.valid_unit_num}</span>
+					</div>
+					
+					<div class="zqhkbtn"><a href="/index.php?user&q=code/borrow/alienate_buy&borrow_right_id={$var.borrow_right_id}&right_alienate_id={$var.id}"><img src="{$tempdir}/img/ljgm.jpg" /></a>
+					</div>
+					
+		
+					</li>
+				 {/foreach}	
+				
+				</ul>
+				
+				<div class="pagecount">
+				{$loop.showpage}
+				</div>	
+			
+			 {/list}
+			
+			</div>
+			
+			<div class="zq_right">
+			
+				<div class="zq_font"><a href="/gonggao/index.html" >常见问题</a></div>
+				{site site_id="11" } 
+				{loop module="article" function="Getlist" limit="5" site_var="var" var="item" status=1 areaid="$_G.areaid"}
+				<div class="zp_ques"><a href="/{$item.site_nid}/a{$item.id}.html">{$item.name|truncate:13}</a></div>
+				{/loop} 
+				{/site}
+				
+			</div>
+		</div>
+	</div>
+{/if}
+
+	
+	{include file='footer.html'}

@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{$_G.sitetitle}</title>
+<link href="{$tempdir}/css/style.css" rel="stylesheet" />
+<link href="{$tempdir}/css/coin-slider-styles.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="/themes/js/jquery.js"></script>
+<script type="text/javascript" src="/themes/js/jquery.cookies.min.js"></script>
+<script type="text/javascript" src="/themes/js/jquery-ui.min.js" ></script>
+<script type="text/javascript" src="/themes/js/jquery.flashSlider-1.0.js"></script>
+<script type="text/javascript" src="/themes/js/main.js"></script>
+<script src="/themes/js/tab.js"></script>	
+
+</head>
+
+<body>
+
+
+	<div class="topbox">
+		<div class="topbg">
+			<div class="topcon">
+				<div class="welcomebox">
+				
+				{if $_G.user_id>0}
+				 当前登录账户：<a href="/?user">{$_G.user_result.username}</a> <a href="/?user">[个人中心]</a> <a href="/?user&q=action/logout">[退出]</a>
+				 {else}
+				    <font style="color:#0099FF">欢迎来到{$_G.sitename}！</font>
+					<a href="/index.action?user&q=action/login">登录</a>　|　<a href="/index.action?user&q=action/reg">注册</a>
+				{/if}
+					
+					
+				</div>
+				<!--<div class="headright">
+					<a href="#"><font style="color:#CC0000">设为首页</font></a> | 
+					<a href="#"><font style="color:#0099FF">加入收藏</font></a>
+				</div>-->
+			
+			
+			</div>
+		
+		
+		</div>
+		
+		
+		<div class="banbox">
+			<div class="logopic">
+			<a href="/"><img src="/{$_G.sitelogo}" alt="" height="58" width="160"></a>
+			</div>
+			<div class="topbanner">
+			{loop module="scrollpic" function="GetList" areaid="$_G.areaid" var="var"  limit="1" type_id="3"}
+	         <a href="{$var.url}"><img src="/{$var.pic}" alt="" height="58" width="560" ></a>
+	        {/loop}
+			</div>
+			<div class="topphone">
+			{loop module="scrollpic" function="GetList" areaid="$_G.areaid" var="var"  limit="1" type_id="4"}
+            <a href="{$var.url}"><img src="/{$var.pic}" alt="" height="58" width="194"></a>
+            {/loop}
+			
+			</div>
+		
+		
+		</div>
+		
+		 {article module="borrow" function="get_available_biao_type" user_id=0 var="biaotype_list" allow_biaotype="$_G.site_biaotype"}
+	{/article}
+		
+	<div class="menubox">
+	
+			<DIV class=nav id=nav_con>
+				<UL id=nav>
+				<li {if $_G.site_result.nid=="" || $_G.site_presult.nid=="index" } class="active sub_nav1" {else} class="sub_nav1" {/if}><a href="/"> 首页</a></li>
+				<li {if $_G.site_presult.nid=="invest" || $_G.site_result.nid=="invest" || $_G.site_presult.nid=="rhtz"} class="active sub_nav2"  {else}  class="sub_nav2"  {/if}><a href="/invest/index.html" class="max">我要理财</a></li>
+				<li  {if ($_G.site_presult.nid=="borrow"  || $_G.site_result.nid=="borrow" ||  $_G.site_result.nid=="gongju") &&  $_G.site_result.nid!="help" } class="active sub_nav3"  {else}  class="sub_nav3"  {/if}><a href="/borrow/index.html" class="max">我要借款</a></li>
+				<li {if $_G.site_presult.nid=="pioneer"  || $_G.site_result.nid=="pioneer"} class="active sub_nav4"  {else}  class="sub_nav4"  {/if}><a href="/pioneer/index.html">创业投资</a></li>
+				<li {if $_G.site_presult.nid=="loveinvest"  || $_G.site_result.nid=="loveinvest"} class="active sub_nav5"  {else}  class="sub_nav5"  {/if}><a href="/loveinvest/index.html">爱心公益</a></li>
+				<li {if $_G.site_presult.nid=="rightinvest"  || $_G.site_result.nid=="rightinvest"} class="active sub_nav6"  {else}  class="sub_nav6"  {/if}><a href="/rightinvest/index.html">债权拍卖</a></li>
+				<li {if $_G.site_presult.nid=="aboutus"  || $_G.site_result.nid=="aboutus" || $_G.site_result.nid=="metibaodao"}  class="active sub_nav7"  {else}  class="sub_nav7"  {/if}><a href="/aboutus/index.html">服务中心</a></li>
+				<li  {if $_G.site_presult.nid=="user"  || $_G.site_result.nid=="user"} class="active sub_nav8"  {else}  class="sub_nav8"  {/if}><a href="/index.action?user">我的账号</a></li>
+				{if $_G.e_uc_user_id != ""}
+		        <li class="sub_nav9"><a href="http://{$_G.mall_url}{$_G.system.con_mall_login_url}{$_G.e_uc_user_id}">我的商城</a></li>
+				{else}
+		        <li class="sub_nav9"><a href="http://{$_G.mall_url}">我的商城</a></li>
+				{/if}
+				<li class="sub_nav10"><a href="#">诚信社区</a></li>
+				</UL>
+			<DIV class=sub_box id=sub_box>
+				<P class="sub_nav1" style="DISPLAY: block; ">
+				<a  href="/metibaodao/index.html" >媒体报道</a> 
+				<a  href="/gonggao/index.html" >最新公告</a>
+				<a  href="/aboutus/index.html" >关于我们</a>
+				<a  href="/feiyong/index.html" >资费说明</a>
+				<a  href="/gongju/index.html" >安全保障</a>
+				<a  href="/managesystem/index.html" >管理体系</a>
+                <a  href="/cooperation/index.html" >合作共赢</a>
+                <a href="/falv/index.html" >政策法规</a>
+				</P>
+				<P class="sub_nav2">
+				<a  href="/new/index.html">如何投标</a>
+				<a  href="/invest/index.html" >招标中的借款标</a>
+				<a  href="/invest/index.html?type=reviews" >复审中的借款标</a>
+				<a  href="/invest/index.html?type=success" >完成的借款标</a>
+				<a  href="/invest/index.html?type=late" >逾期的借款标</a>
+				</P>
+				<P class="sub_nav3">
+				 <a class="longa" href="/borrow/index.html" >如何发布贷款</a>
+				 {if in_array("credit", $biaotype_list) }
+				  <a class="longa" href="/publish/index.html?type=credit" >发布信用标</a>
+				  {/if} 
+				  {if in_array("fast", $biaotype_list) }
+				  <a class="longa" href="/publish/index.html?type=fast" >发布抵押标</a>
+				  {/if} 
+				  {if in_array("pledge", $biaotype_list) }
+				  <a class="longa" href="/publish/index.html?type=pledge" >发布质押标</a>
+				  {/if} 
+				  {if in_array("circulation", $biaotype_list) }
+				  <a class="longa"  href="/publish/index.html?type=circulation" >发布流转标</a>
+				  {/if}   
+				  {if in_array("restructuring", $biaotype_list) }
+				  <a class="longa" href="/publish/index.html?type=restructuring" >发布重组标</a>
+				  {/if} 
+				  {if in_array("miao", $biaotype_list) }
+				   <td ><a class="longa" href="/publish/index.html?type=miao" >发布秒还标</a> </td> 
+				  {/if} 
+				  {if in_array("zhouzhuan", $biaotype_list) }
+				  <a class="longa"  href="/publish/index.html?type=zhouzhuan" >发布周转标</a>
+				  {/if} 
+				  {if in_array("jin", $biaotype_list) }
+				  <a class="longa"  href="/publish/index.html?type=jin" >发布净值标</a>
+				  {/if} 
+				  {if in_array("vouch", $biaotype_list) }
+				  <a  href="/publish/index.html?type=vouch" >发布担保标</a>
+				  {/if} 
+				  {if in_array("love", $biaotype_list) }
+				  <a  href="/publish/index.html?type=love" >发布爱心标</a>
+				  {/if}                   
+				</P>
+				<P class="sub_nav4"></P>
+				<P class="sub_nav5"></P>
+				<P class="sub_nav6"></P>
+				<P class="sub_nav7">
+				<a  href="/new/index.html">新手上路</a>
+                <a  href="/question/index.html">常见问题</a>
+                <a  href="/get_rule/index.html">网站规则</a>
+                <a  href="/linekefu/index.html">在线客服</a>
+                <a  href="/tools/index.html" >工具箱</a>
+                <a  href="/download/index.html" >下载中心</a>
+				</P>
+				<P class="sub_nav8">
+				<a  href="/index.action?user" >我的账号</a>
+                <a  href="/index.action?user&q=code/user/reginvite" >邀请好友</a>
+                <a  href="/vip/index.html" >vip申请</a>
+                <a href="/index.action?user&q=code/account/recharge_new" >账户充值</a>
+                <a  href="/index.action?user&q=code/borrow/repaymentplan" >我要还款</a>
+				</P>
+				<P class="sub_nav9">
+				{if $_G.e_uc_user_id != ""}
+				<a  href="http://{$_G.mall_url}{$_G.system.con_mall_login_url}{$_G.e_uc_user_id}" >供销商城</a>
+              	<a  href="http://{$_G.jf_mall_url}{$_G.system.con_mall_login_url}{$_G.e_uc_user_id}" >积分商城</a>
+				{else}
+				<a  href="http://{$_G.mall_url}" >供销商城</a>
+              	<a  href="http://{$_G.jf_mall_url}" >积分商城</a>
+				{/if}
+				</P>
+				<P class="sub_nav10"></P>
+				
+		  </DIV>
+		  </DIV>
+			
+			
+			
+			
+		</div>
+			
+			
+		
+	
+	
+</div>	

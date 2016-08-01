@@ -1,0 +1,24 @@
+RewriteEngine on
+RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
+RewriteRule .* - [F]
+
+
+RewriteRule (.*)/index.html$ index.php?$1
+RewriteRule (.*)/index(\d+).html$ index.php?$1&page=$2
+RewriteRule (.*)/a(\d+)\.html$ index.php?$1/$2
+RewriteRule ^u/(\d+)/(.*)$ index.php?u&$1&$2
+RewriteRule ^u/(\d+)/(.*)/$ index.php?u&$1&$2
+RewriteRule ^u/(\d+)$ index.php?u&$1
+RewriteRule ^u/(\d+)/$ index.php?u&$1
+RewriteRule (.*)/index.html\?(.*) index.php?$1&$2
+RewriteRule (.*)/index(\d+).html\?(.*) index.php?$1&page=$2&$2
+Rewriterule index.action(.*) index.php$2
+
+#-----301
+
+     #   RewriteCond %{HTTP_HOST} ^(zjrrd.com)$ [NC]
+     #   RewriteRule ^(.*)$  http://pj001.ycdai.com$1 [R=301,L]
+	 
+	 
+	 
+	 

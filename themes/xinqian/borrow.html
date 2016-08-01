@@ -1,0 +1,102 @@
+{include file="header.html"}
+<div class="container">
+{article module="borrow" function="get_available_biao_type" user_id=0 var="biaotype_list" allow_biaotype="$_G.site_biaotype"}
+{/article}
+{article module="borrow" function="get_biao_type_url_list" user_id=0 var="biao_type_url_list" }
+{/article}
+    <div class="wy-jk">
+        <div class="Biao-ti">
+         <span>标种介绍</span>
+        </div>
+        {if in_array("jin", $biaotype_list) }
+        <div class="biao-zhong-ming">
+              <div class="div001" id="baio-zm01"><span>净值标</span></div>
+              <div class="jie-shao">
+              <p>净值借款标显示标记"净"，允许发布的最大金额为净资产，净资产负数、 0 、 500 元以下金额不能发标。他是黄牛标的初始形态，净值借款标的借款管理费为：每个月0.5%。</p>
+              </div>
+              <div class="div002"><a href="{$biao_type_url_list.jin.type_desc_url}">详细介绍 》</a></div>
+              <div class="div003"><a href="/publish/index.html?type=jin">立即申请</a></div>
+        </div>
+        {/if}
+        {if in_array("credit", $biaotype_list) }
+        <div class="biao-zhong-ming">
+              <div class="div001" id="baio-zm02"><span>信用标</span></div>
+              <div class="jie-shao">
+              <p>信用借款标显示"信"字标记，是一种免抵押、免担保、纯信用，最高授信为10万的小额个人信用贷款标，主要面向公务员、医生或教师等机关企事业单位的在编人员。</p>
+              </div>
+              <div class="div002"><a href="{$biao_type_url_list.credit.type_desc_url}">详细介绍 》</a></div>
+              <div class="div003"><a href="/publish/index.html?type=credit">立即申请</a></div>
+        </div>
+        {/if}
+        {if in_array("zhouzhuan", $biaotype_list) }
+        <div class="biao-zhong-ming">
+              <div class="div001" id="baio-zm03"><span>周转标</span></div>
+              <div class="jie-shao">
+              <p>非提现标是信用标的一种，是网站根据借款人账户信用额度，在额度内发布借款标但借款不能提现，主要面向需要站内周转资金的网站用户。</p>
+              </div>
+              <div class="div002"><a href="{$biao_type_url_list.zhouzhuan.type_desc_url}">详细介绍 》</a></div>
+              <div class="div003"><a href="/publish/index.html?type=zhouzhuan">立即申请</a></div>
+        </div>
+        {/if}
+        {if in_array("love", $biaotype_list) }
+        <div class="biao-zhong-ming">
+              <div class="div001" id="baio-zm04"><span>爱心标</span></div>
+              <div class="jie-shao">
+              <p>合作的公益平台发标，发标后显示"爱"标记；投资人不以盈利为主要目的进行投标，帮助弱势群体。</p>
+              </div>
+              <div class="div002"><a href="{$biao_type_url_list.love.type_desc_url}">详细介绍 》</a></div>
+              <div class="div003"><a href="/publish/index.html?type=love">立即申请</a></div>
+        </div>
+        {/if}
+        {if in_array("miao", $biaotype_list) }
+        <div class="biao-zhong-ming">
+              <div class="div001" id="baio-zm05"><span>秒还标</span></div>
+              <div class="jie-shao">
+              <p>秒还标显示标记"秒"，借款者发布秒还标，利息将被冻结，投标满后，系统自动审核通过。考虑到秒还标，全部是系统自动处理，请网站会员谨慎发布秒还标。</p>
+              </div>
+              <div class="div002"><a href="{$biao_type_url_list.miao.type_desc_url}">详细介绍 》</a></div>
+              <div class="div003"><a href="/publish/index.html?type=miao">立即申请</a></div>
+        </div>
+        {/if}
+        {if in_array("pledge", $biaotype_list) }
+        <div class="biao-zhong-ming">
+              <div class="div001" id="baio-zm06"><span>质押标</span></div>
+              <div class="jie-shao">
+              <p>质押标显示标记"质"，是网站经过线下严格核查借款人资产负债，借款人与网站线下签署质押担保协议，借款人以其移交由网站所保管的财产作为对债权的担保，发布的标种，确保风险控制在合理范围内。</p>
+              </div>
+              <div class="div002"><a href="{$biao_type_url_list.pledge.type_desc_url}">详细介绍 》</a></div>
+              <div class="div003"><a href="/publish/index.html?type=pledge">立即申请</a></div>
+        </div>
+        {/if}
+        {if in_array("fast", $biaotype_list) }
+        <div class="biao-zhong-ming">
+              <div class="div001" id="baio-zm07"><span>抵押标</span></div>
+              <div class="jie-shao">
+              <p>抵押标显示标记"快"，是网站经过线下严格核查借款人资产负债，借款人与网站线下签署抵押担保协议，借款人以其抵押财产作为对债权的担保，借款人发布抵押标，确保风险控制在合理范围内。</p>
+              </div>
+              <div class="div002"><a href="{$biao_type_url_list.fast.type_desc_url}">详细介绍 》</a></div>
+              <div class="div003"><a href="/publish/index.html?type=fast">立即申请</a></div>
+        </div>
+        {/if}
+        {if in_array("circulation", $biaotype_list) }
+        <div class="biao-zhong-ming">
+              <div class="div001" id="baio-zm01"><span>流转标</span></div>
+              <div class="jie-shao">
+              <p>发标人以线下债权为担保发布流转担保贷，按份出售，投资人认购债权后即时生效，无需满标，投资人拥有所购买债权的一切权利，发标人到期回购后，可重新发售债权，再次流转。</p>
+              </div>
+              <div class="div002"><a href="{$biao_type_url_list.circulation.type_desc_url}">详细介绍 》</a></div>
+              <div class="div003"><a href="/publish/index.html?st=1&type=circulation">立即申请</a></div>
+        </div>
+        {/if}
+    </div>
+    <div class="j-k-buzhou">
+         <div class="Biao-ti">
+           <span>借款步骤</span>
+         </div>
+         <img src="{$tpldir}/img/img/bu-zhou_10.png" />
+    </div>   
+{literal}
+<script language="javascript">borr_stepbox();</script>
+{/literal}
+</div>
+{include file="footer.html"}

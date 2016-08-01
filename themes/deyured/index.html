@@ -1,0 +1,376 @@
+{include file="header.html"}
+
+	
+	
+	
+	<div class="container" >
+	
+		<div class="leftbigbox">
+            <div id="kinMaxShow">
+                {loop module="scrollpic" function="GetList" areaid="$_G.areaid" var="var"  limit="all" type_id="1"}
+                    <div><a href="{$var.url}"><img src="{$var.pic}" alt=""></a> <p class="title">{$var.summary}</p></div>
+                {/loop}
+            </div>
+            {literal}
+            <style type="text/css">
+                 /* 设置焦点图父级宽度 */    
+                #show{width:710px; margin:0 auto;}
+                #kinMaxShow{display:none; border:1px solid #ccc}
+                 /* 设置焦点图标题位置、样式等。标题位置、样式完全可以自定义哦 */    	
+                #kinMaxShow p.title{ position:absolute; left:0; bottom:0; text-indent:10px; line-height:30px;font-family:Verdana; color:#FFF; display:none;width:100%; height:30px; font-family:14px;filter:progid:DXImageTransform.Microsoft.gradient(startcolorstr=#aa000000,endcolorstr=#aa000000);background:rgba(0,0,0,0.5);}
+            </style>
+            <script language="javascript" src="/themes/js/jquery.kinMaxShow-1.1.src.js"></script>        
+            <script type="text/javascript">
+            $(function(){
+                
+                $("#kinMaxShow").kinMaxShow({
+                //设置焦点图高度(单位:像素) 必须设置 否则使用默认值 500    
+                    height:205,
+					intervalTime:3,					
+                //设置焦点图 按钮效果
+                    button:{
+                    //设置焦点图切换方式为mouseover 鼠标经过按钮切换图片, 默认为 click， 可选 click[鼠标点击切换]或mouseover[鼠标滑过切换]        
+                        switchEvent:'click',
+                    //设置显示 索引数字  true 显示， 默认为 false 不显示            
+                        showIndex:true,
+                        //按钮常规下 样式设置 ，css写法，类似jQuery的 $('xxx').css({key:value,……})中css写法。            
+                        //【友情提示：可以设置透明度哦 不用区分浏览器 统一为 opacity，CSS3属性也支持哦 如：设置按钮圆角、投影等，只不过IE8及以下不支持】            
+                        normal:{width:'18px',height:'18px',lineHeight:'18px',right:'5px',bottom:'5px',fontSize:'12px',opacity:0.8,background:"#666666",border:"1px solid #999999",color:"#CCCCCC",marginRight:'6px'},
+                        //当前焦点图按钮样式 设置，写法同上            
+                        focus:{background:"#3335ce",border:"1px solid #3335ce",color:"#ffffff"}
+                        }			
+                });
+            });
+            </script>
+            {/literal}
+			<div class="jklbbox" style="">
+		
+				<div class="jktitle">进行中的借款</div>
+				<div class="jkright"><a href="/invest/index.html">更多</a></div>
+				<ul class="jklul">
+				 {loop module="borrow" function="GetListIndex"  var="var"  site_id="0"  keywords="request" type="tendering"  use="request" account1="request" account2 = "request" limittime="request" award="request" province="request" city="request" epage="request" order="$magic.request.order"   areaid="$_G.areaid" province="$_G.province" city="$_G.city" limit="6" }	
+					<li>
+						<div class="txlog"><a href="invest/a{$var.id}.html"><img src="{$var.user_id|avatar:'middle'|imgurl_format}" class="pic"/></a></div>	
+						<div class="jkcontent">
+							<label>
+							<a href="/invest/a{$var.id}.html">{$var.name}</a>
+                                        <a href="{$var.biao_type_desc_url}" target="_blank"><img src="{$tpldir}/images/{$var.biao_type}.gif" border="0" rel="tooltip" class="float_left" data-original-title="{$var.biao_type_desc}"/></a>
+										{if $var.isday==1}<a href="/get_rule/a259.html" target="_blank" rel="tooltip" data-original-title="天标是按天借款标"><img src="{$tpldir}/images/day.jpg"   border="0" class="float_left"/></a>{/if}
+										{if $var.flag==1} <img src="{$tpldir}/images/tuijian.gif" align="absmiddle"  border="0"/>{/if}
+										{if $var.ishappy==1}<a href="{$_G.system.con_happy_url}" target="_blank"> <img src="{$tpldir}/images/happy.gif" align="absmiddle"  border="0" data-original-title="开心模式下流标也有利息" class="float_left"/></a>{/if}
+										{if $var.award==1 || $var.award==2 }
+										<a href=""><img src="{$tpldir}/images/jiangli.gif"  border="0"   rel="tooltip" data-original-title="投资该借款标除利息外有额外的奖励" class="float_left"/></a>{/if}
+                                        					
+								{if $var.insurance ==1}
+                                	<a href="/gongju/a291.html" target="_blank"><img src="{$tpldir}/images/baozhang.gif"  border="0"   rel="tooltip" data-original-title="借款人己支付16%的本金保障" class="float_left"/></a>
+                                {elseif $var.insurance==2}
+                               		<a href="/gongju/a291.html" target="_blank"><img src="{$tpldir}/images/baozhang.gif"  border="0"   rel="tooltip" data-original-title="借款人己支付31%的本金保障" class="float_left"/></a>
+                                {/if}
+								
+								  
+										{if $var.pwd != ""}<a href=""><img src="{$tpldir}/images/lock.gif"  border="0"   rel="tooltip" data-original-title="定向标是投标的时候需要定向密码的借款标" class="float_left" /></a>{/if}	
+								
+							</label>
+							
+							<div class="ulbox">
+								<span style="width:163px">借款金额：￥<strong style="color:#FF3300">{$var.account_format}元</strong></span>
+								<span>年利率：<strong style="color:#FF3300">{$var.apr}%</strong></span>
+								<span style="width:123px;">借款期限：{if $var.isday==1 } 
+                                		<strong>{$var.time_limit_day}</strong>天
+                                		{else}
+                                		<strong>{$var.time_limit}</strong>个月 
+                                		{/if}</span>
+								<span style="width:163px">信用等级：<img class="rank" src="{$_G.system.con_credit_picurl}{ $var.credit_pic}" title="{$var.credit_jifen}分"  /></span>
+								<span>
+									<div class="ratiao">
+										<div class="tiaobg" style="width:{$var.scale|default:0}%"></div>					
+									</div>
+									<div style="float:left; color:#FF3300; height:10px; line-height:15px; margin-left:5px; display:inline">{$var.scale}%</div>
+								</span>
+								<span style="width:123px"><!--已完成1笔投标-->
+								{if $var.isday==1 } 
+                                到期全额还款
+                                {elseif $var.is_mb==1}
+                                系统自动还款
+                                {else}
+                                {$var.style|linkage:"borrow_style"}
+                                {/if}
+								</span>
+								
+			
+							</div>
+									
+						
+						</div>
+						
+						<div class="buybox">
+						{if $var.status==3}
+						{if $var.repayment_account == $var.repayment_yesaccount  }
+						<a href="/invest/a{$var.id}.html">已还款</a>
+						{else}
+						<a href="/invest/a{$var.id}.html">还款中</a>
+						{/if}
+						{elseif $var.status==5}
+						用户取消
+						{elseif $var.status==4}
+						复审未通过
+						{else}
+						{if $var.biao_type=='circulation'}
+						<a href="/invest/a{$var.id}.html">立即购买</a>
+						{elseif $var.biao_type=='vouch' || $var.biao_type=='restructuring'}
+						{if $var.vouch_scale <100}
+						<a href="/invest/a{$var.id}.html">立即投标</a>
+						{else}
+						{if $var.account>$var.account_yes}
+						<a href="/invest/a{$var.id}.html">立即投标</a>
+						{else}
+						<a href="/invest/a{$var.id}.html">等待复审</a>
+						{/if}
+						{/if}
+						{else}
+						{if $var.account>$var.account_yes}
+						<a href="/invest/a{$var.id}.html">立即投标</a>
+						{else}
+						<a href="/invest/a{$var.id}.html">等待复审</a>
+						{/if}
+						{/if}
+						{/if}			
+						
+						</div>
+					
+					
+					</li>
+				
+			{/loop}
+				
+				</ul>
+				
+			
+			</div>
+			<!--贷款-->
+			<ul class="allbiao">
+				{loop module="borrow" function="GetBorrowStatistics" var="bs"   areaid="$_G.areaid"}
+					<li>
+						<a href="invest/index.html?use={$bs.id}&type=success"><img src="{$tempdir}/images/borrow_use{$bs.value}.jpg" alt=""><p>{$bs.name}</p></a>
+						<div class="jdtiao"><div class="jftbg" style=" width:{$bs.borrow_scale}%"></div></div>
+						<div  class="jdtshu">{$bs.borrow_scale}%</div>
+					</li>
+				{/loop}
+					
+			</ul>
+		
+	
+		
+		</div>
+		
+
+		<div class="rightbigbox">
+		
+			<div class="lobigbox">
+					
+					<div style="height:33px; background:#f0eeef; border-bottom:1px solid #ccc">
+						<div class="logintle">用户登录</div>
+						<a class="blueresa" href="?user&q=action/reg">免费注册</a>
+					</div>
+			{if $_G.user_id==""}
+			<form action="/index.php?user&q=action/login" method="post" id="login_sub">
+					<div class="infobox"><span>用户名：</span><input id="keywords" name="keywords" type="text" class="inputcss" value="" tabindex="1"></div>
+					<div class="infobox"><span>密码：</span><input id="password" name="password" type="password" value="" tabindex="2" class="inputcss"></div>
+					<div class="infobox"><span>验证码：</span><input name="valicode" type="text" class="inputcss yanz"  tabindex="3"/><img src="/plugins/index.php?q=imgcode" alt="点击刷新" onClick="this.src='/plugins/index.php?q=imgcode&t=' + Math.random();" align="absmiddle" style="cursor:pointer; width:50px" /></div>
+					
+					<div class="infobox" style="display:none"><span>动态口令</span><input type="text" id="uchoncode" name="uchoncode"  tabIndex=4 class="inputcss ydklcss">（可选）</div>
+			
+					
+					<div class="infobox"><input type="submit" value="" class="ljloginbtn" />&nbsp;<a style="color:#cc0000; text-decoration:underline" href="/index.php?user&q=action/getpwd">忘记密码?</a></div>
+			{else}
+			
+					<div class="infobox"><span style="width:210px; font-weight:bold; font-size:14px; text-align:center; color:#666">欢迎您登陆{$_G.sitename}！</span></div>
+					<div class="infobox"><span style="width:210px; text-indent:17px;  color:#666; text-align:left">当前账户：{$_G.user_result.username}</span></div>
+					<div class="infobox" style="margin-top:0px; width:200px; margin-left:25px; display:inline"> <a  href="/index.php?user"><font color="#ff0000">[我的账号]</font></a>
+                    <a  href="/index.php?user&q=action/logout"><font color="#666666">[退出]</font></a></div>
+					
+					<div class="infobox" style="margin-top:10px; width:200px;"> 
+					<a href="/index.php?user&q=code/account/recharge_new"  class="in-log-btn">充值</a>
+                    <a href="/index.php?user&q=code/account/cash_new" class="in-log-btn">提现</a></div>
+			</form>
+			{/if}
+			
+			
+				</div>	
+					
+					
+					<div class="lobigbox" style="margin-top:10px;">
+					<div style="height:33px; background:#f0eeef; border-bottom:1px solid #ccc">
+						<div class="wapgroup"><b>网站公告</b><a href="/gonggao/index.html">更多</a></div>
+						
+					</div>
+					<ul class="gglist">
+					{site site_id="22" } 
+						{loop module="article" function="GetList" limit="5" site_var="var" var="item" status=1 areaid="$_G.areaid"}
+						<li><a href="{$item.site_nid}/a{$item.id}.html">{$item.name}</a></li>
+						
+						{/loop} 
+					{/site}	
+					</ul>
+			
+			
+			</div>
+			
+			
+			
+			
+			
+			<div class="lobigbox" style="margin-top:10px;">
+				<div style="height:33px; background:#f0eeef; border-bottom:1px solid #ccc">
+					<div class="kstitle"><b>快速借款</b><a href="/borrow/index.html">更多</a></div>
+				</div>
+				<div style="margin-top:10px; margin-left:10px; display:inline; float:left">
+				<a href="borrow/index.html"><img src="{$tempdir}/img/qiye.jpg" /></a>
+				<div class="fhxline"></div>
+				<a href="borrow/index.html"><img src="{$tempdir}/img/zhuf.jpg" /></a>
+				<div class="fhxline"></div>
+				<a href="borrow/index.html"><img src="{$tempdir}/img/xf.jpg" /></a>
+				<div class="fhxline"></div>
+				<a href="borrow/index.html"><img src="{$tempdir}/img/car.jpg" /></a>
+				</div>
+			
+			</div>
+			
+			
+			
+			<div class="ksjkbox">
+				<div style="height:33px; background:#f0eeef; border-bottom:1px solid #ccc">
+            		<div class="kstitle"><b>最新投标</b><a href="/invest/index.html?type=success"></a></div>
+          		</div>
+				
+				
+                <div class="sharp color1">
+       	 		
+                <div class="wrp-cgdk">
+                <div class="inner-cgdk">
+                	<ul class="success">
+
+
+{loop module="borrow" function="getTenderListIndex" num="5" var="var"}
+	<li>
+		<img src="{$var.user_id|avatar:'small'|imgurl_format}" height="50"/><p><font style="color:#333333">{$var.username}</font> 对 <a href="invest/a{$var.borrow_id}.html" target="_blank" title="{$var.name}">{$var.name}</a> 投资了<font style=" color:#cc0000; font-weight:bold; font-family:Arial, Helvetica, sans-serif">￥{$var.account}</font></p>
+        <div style="clear:both"></div>
+	</li> 
+{/loop}
+
+	                		
+                	</ul>
+                   </div>
+                    </div>
+                 
+	    		</div><!--sharp end..-->
+            
+		
+				
+				
+			</div>
+			
+			
+			
+			<div class="ccjk">
+				<div style="height:33px; background:#f0eeef; border-bottom:1px solid #ccc">
+					<div class="kstitle"><b>新手上路</b><a href="/new/index.html">更多</a></div>
+				</div>
+				<div class="kujkcss">
+					<ul>
+					{site site_id="10" } 
+                    {loop module="article" function="GetList" limit="5" site_var="var" var="item" status=1 areaid="$_G.areaid"}
+                    <li><a title="{$item.name}" href="{$item.site_nid}/a{$item.id}.html">{$item.name}</a></li>
+                    {/loop} 
+                    {/site}
+					
+					</ul>
+				</div>
+			
+			
+	
+			
+			</div>
+		
+		
+		
+
+		
+		</div>
+	
+		
+        <div class="linkbox">
+				
+              <p>合作单位：</p>
+                
+	          			        
+              <div class="scrollleft" >
+                          <ul>
+                          {loop module="links" function="GetList" subsite=$_G.areaid var="var"  limit="30" type="1"}
+                        <li><a href="{$var.url}" target="_blank"><img src="/{$var.logoimg}" height="40"></a></li>
+                        </ul>
+                         {/loop}
+  
+                               
+              </div>                      
+
+<!--{literal}
+<script src="/themes/js/imgscroll.js"></script>
+<script>
+$(document).ready(function(){
+	$(".scrollleft").imgscroll({
+		speed: 40,    //图片滚动速度
+		amount: 0,    //图片滚动过渡时间
+		width: 1,     //图片滚动步数
+		dir: "left"   // "left" 或 "up" 向左或向上滚动
+	});
+	
+});
+</script>
+{/literal}-->                      
+                        
+                
+	
+		
+		 </div>
+        <div class="yqljbox">
+               友情链接： 
+                {loop module="links" function="GetList" subsite=$_G.areaid var="var"  limit="8" type="2"}
+                        <a href="{$var.url}" target="_blank">{$var.webname}</a>
+                {/loop}
+       	 </div>
+        
+       
+	
+	
+	
+	</div>
+
+
+{literal}							
+<script>
+function slideTop(obj,slideTimer,showTimer){
+    var box = $(obj);
+    var Timer;
+    box.hover(function(){
+        clearInterval(Timer)
+    },function(){
+        Timer = setInterval(function(){
+            scrollNew(box,showTimer);
+        },slideTimer)
+    }).trigger("mouseleave");
+    function scrollNew(obj,showTimer){
+        var scrollBox = obj.find("ul:first");
+        var liHeight = scrollBox.find("li:first").height();
+        scrollBox.animate({"marginTop":-liHeight+"px"},showTimer,function(){
+            scrollBox.css("marginTop",0).find("li:first").appendTo(scrollBox);
+        })
+    }
+}
+slideTop(".inner-cgdk",3000,1000);
+</script>
+{/literal}
+
+{include file="footer.html"}
+
+	

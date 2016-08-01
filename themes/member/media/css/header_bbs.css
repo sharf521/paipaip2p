@@ -1,0 +1,37 @@
+.navdivbg{ width:100%; background: url("../../images/navbg2.jpg") no-repeat center 0; height:45px;}
+.navdivbg .navdiv{position:relative; width:950px; margin:0 auto; background:#242146; height:45px;}
+.navdivbg .navdiv .navul{ width:950px; height:45px;position:relative;}
+.navdivbg .navdiv .navul li{position:absolute; width:118px; height:45px; float:left; background:url("../../images/navlibg.png") no-repeat; line-height:45px; text-align:center;}
+.navdivbg .navdiv .navul li.hovers{background:url("../../images/hoversli.png") no-repeat;}
+.navdivbg .navdiv .navul li.lasthover{background:url("../../images/lasthover.png") no-repeat;}
+.navdivbg .navdiv .navul li a{color:#fff; font-weight:bold; font-size:14px;}
+.navdivbg .navdiv .navul li a:hover{text-decoration: none;}
+
+.navdivbg .navdiv .navul li.li0{left:0; background:url("../../images/shouye.png") no-repeat; width:126px;}
+.navdivbg .navdiv .navul li.li1{left:126px;}
+.navdivbg .navdiv .navul li.li2{left:244px;}
+.navdivbg .navdiv .navul li.li3{left:362px;}
+.navdivbg .navdiv .navul li.li4{left:480px;}
+.navdivbg .navdiv .navul li.li5{left:598px;}
+.navdivbg .navdiv .navul li.li6{left:716px;}
+.navdivbg .navdiv .navul li.li7{left:834px;background:url("../../images/luntan.png") no-repeat; width:118px;}
+.navdivbg .navdiv .navul .hide{}
+
+.navdivbg .navdiv .navimg{ position:absolute; top:0;}/*Í¸Ã÷Í¼Æ¬ ¸²¸Çµ¼º½Í¼Æ¬*/
+.navdivbg .navdiv .index{position:absolute; width:116px; left:0 ;top:0;height:45px; display:block;}
+.navdivbg .navdiv .yuntan{position:absolute; width:210px; right:0; top:0;height:45px; display:block;}
+
+.navdivbg .navdiv .navtxt{position:relative; width:950px;}
+.navdivbg .navdiv .navtxt ul{position:absolute; width:118px; display:none; background:#4a90d5;opacity:.8;filter:alpha(opacity=80);}
+.navdivbg .navdiv .navtxt ul li{ width:118px; text-align: center; color:#fff; height:24px; line-height:24px;}
+.navdivbg .navdiv .navtxt ul li a{color:#fff;}
+.navdivbg .navdiv .navtxt ul li a:hover{text-decoration: none;}
+
+.navdivbg .navdiv .navtxt ul.ul0{position:absolute; left:4px;}
+.navdivbg .navdiv .navtxt ul.ul1{position:absolute; left:124px;}
+.navdivbg .navdiv .navtxt ul.ul2{position:absolute;left:242px;}
+.navdivbg .navdiv .navtxt ul.ul3{position:absolute; left:360px;}
+.navdivbg .navdiv .navtxt ul.ul4{position:absolute;left:478px;}
+.navdivbg .navdiv .navtxt ul.ul5{position:absolute; left:596px;}
+.navdivbg .navdiv .navtxt ul.ul6{position:absolute;left:714px;}
+.navdivbg .navdiv .navtxt ul.ul7{position:absolute; left:832px;}

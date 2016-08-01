@@ -1,0 +1,100 @@
+
+{include file="header.html"}
+
+	
+	<div class="container">
+		
+		<div class="fw_title">
+			<div class="fw_bg">
+                          
+                <div class="biao-ti">
+                <span>利息计算器</span>
+                
+                </div>
+            </div>
+			
+			{literal}
+			<div class="fw_bz">
+                 <span >
+                 利息计算器,采用银行房贷等通用的"等额本息还款法",即借款者每月以相等的金额偿还贷款本息。
+                 </span>
+                 <a class="close" data-dismiss="alert" style="cursor:pointer">x</a>
+		
+        	</div>
+			<div class="fw_month">
+                 <b>月标：</b>
+          </div>
+			<div class="fw_month">
+				<form action="/lixi/index.html" method="get">借款金额：<input type="text" name="account" size="10"   value="<? echo $_REQUEST['account'];?>" class="fw_incss" /> 年利率：<input type="text" name="lilv"  size="10" class="fw_incss"  value="<? echo isset($_REQUEST['lilv'])?$_REQUEST['lilv']:""; ?>"/> %  借款期限：<input type="text" name="times"  size="10"  value="<? echo isset($_REQUEST['times'])?$_REQUEST['times']:""; ?>" class="fw_incss" />&nbsp;个月 还款方式：<select name="type" style="border:1px solid #ccc"><option value="0" >按月分期还款</option><option value="3" >按月付息到期还本</option><option value="2" >到期全额还款</option><option value="4" <? if ($type==4) echo selected;?> >提前付息到期还本</option></select> &nbsp; <input type="submit" class=" sousbtn" value="开始计算" /></form>
+		
+			</div>
+			
+			<div class="fw_month">
+                 <b>天标：</b>
+            </div>
+			<div class="fw_month">
+                
+				<form action="/lixi/index.html" method="get">借款金额：<input type="text" name="account" size="10" class="fw_incss"  value="<? echo $_REQUEST['account'];?>" /> 年利率：<input type="text" name="lilv" class="fw_incss"  size="10"  value="<? echo isset($_REQUEST['lilv'])?$_REQUEST['lilv']:""; ?>"/> %  借款期限：<input type="text" class="fw_incss" name="time_limit_day"  size="10"  value="<? echo isset($_REQUEST['time_limit_day'])?$_REQUEST['time_limit_day']:""; ?>" />&nbsp;天 还款方式：<select name="type" style="border:1px solid #ccc"><option value="2" >到期全额还款</option></select> &nbsp;<input type="submit" class="sousbtn" value="开始计算" /> <input type="hidden" value="1" name="times"/> 
+				<input type="hidden" value="1" name="isday"/></form>
+		
+			</div>
+		  {/literal}
+		
+		  {literal}
+		  <div style="display:none">
+		  <div class="fw_bz"><span style="float:left; width:700px;">在下面输入框中输入您要查询的手机号码,点击查询按钮即可查询该手机号所在地区。
+</span><a class="close" data-dismiss="alert" style="cursor:pointer">x</a>
+		 </div>
+		  <div class="fw_month"><b>手机号码：</b></div>
+			<div class="fw_month">
+				<form action="/phone/index.html" method="get" onsubmit="return chk()">	手机号码：<input type="text" name="phone"  id="phone" size="20" value="<? echo $_REQUEST['phone'];?>" />   <input type="submit" class="btn-action" value="查 询" /></form>
+		
+			</div>
+		  </div>
+		  <script> 
+function chk()
+{
+var tel = document.all("phone").value;
+ 
+if(/^13\d{9}$/g.test(tel)|| (/^18\d{9}$/g.test(tel)) || (/^15\d{9}$/g.test(tel)))
+        {;
+		      window.open('http://www.baidu.com/s?wd='+tel+'&rsv_bp=0&rsv_spt=3&n=2&inputT=453','_blank');
+			  return false;
+         }
+else
+        {
+           alert("手机号错误");
+		   return false;
+         }
+}
+function chk_ip()
+{
+var ip = document.all("ips").value;
+ window.open('http://www.baidu.com/s?wd='+ip+'&rsv_bp=0&rsv_spt=3&n=2&inputT=453','_blank');
+}
+</script>
+		
+		  {/literal}
+		  
+		{literal}
+		  <div style="display:none">
+		  <div class="fw_bz"><span style="float:left; width:700px;">
+在下面输入框中输入您要查询的IP地址,点击查询按钮即可查询该IP所在地区。
+</span><a class="close" data-dismiss="alert" style="cursor:pointer">x</a>
+		 </div>
+		  <div class="fw_month"><b>IP：</b></div>
+			<div class="fw_month">
+				<form action="" method="get" onsubmit="">IP地址：<input type="text" name="ip" id="ips" size="20" {literal}value="<?echo $_ip;?>"{/literal} />   <input type="submit" class="btn-action" value="查 询" onclick="return chk_ip();" /></form>
+		
+			</div>
+		  </div>
+		{/literal}
+		
+		</div>
+	</div>
+<script src="/themes/js/alert.js"></script>
+
+
+{include file="footer.html"}
+	
+	

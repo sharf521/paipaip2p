@@ -1,0 +1,46 @@
+{include file="header.html"}
+<div class="bannerbox0002">
+             {loop module="scrollpic" function="Getlist" areaid="$_G.areaid" var="var"  limit="1" type_id="9"}
+            <a href="{$var.url}"><img src="/{$var.pic}"  width="1000" ></a>
+            {/loop}
+</div>	
+<div class="container">
+    <div class="service_box">
+        <div class="service_left">
+            <div class="service_title">服务中心</div>
+            <div class="service_ul">
+                {loop module="article" function="GetSitelist" var="var" epage="20"  pid="21"  keywords="request" status=1 }
+                {if $var.nid !="zaixian"}
+                <div onClick="showsubmenu( 1, 12)"><a href="/{$var.nid}/index.html">{$var.name}</a></div>{/if}
+                {/loop}
+            </div>			
+        </div>
+        <div class="service_right">
+            <div class="service_dh">
+                当前位置：&nbsp; <a 
+id="ctl00_content_Navigationlink1_main" href="/" style=" color:#333; text-decoration:none;">首页</a> &gt; <a href="/aboutus/index.html" style=" color:#333; text-decoration:none;">服务中心</a>  &gt; <a href="/{$_G.site_result.nid}/index.html" style=" color:#333; text-decoration:none;">{$_G.site_result.name} </a>
+            </div>
+            
+            <div class="service_dhtitle">{$_G.site_result.name}</div>
+            <div class="service_content">
+                <div class="service_ulcon">
+                    {loop module="user" function="Getlist" limit="all" type_id=3 areaid="$_G.areaid" }	
+                    <div  class="zxkf_li">
+                        <div class="list_tx" style="margin-left:0px; margin-top:0px;">
+                            <img src="{$var.user_id|avatar}" width="100" height="99" />
+                        </div>
+                        <div class="zxkf_info">
+                            
+                            姓名：{$var.realname}<br />
+                            电话：{$var.phone}<br />
+                            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$var.qq}&site=qq&menu=yes">
+                            <img border="0" src="{$tempdir}/img/fs.jpg" alt="点击这里给我发消息" title="点击这里给我发消息"></a>
+                        </div>
+                    </div>
+                    {/loop}			
+                </div>			
+            </div>		
+        </div>	
+    </div>
+</div>
+{include file="footer.html"}

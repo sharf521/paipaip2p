@@ -1,0 +1,49 @@
+{include file="header.html"}
+<link href="{$tempdir}/media/css/modal.css" rel="stylesheet" type="text/css" /> 
+<link href="{$tempdir}/media/css/about.css" rel="stylesheet" type="text/css" /> 
+
+<div class="bannerbox0002">
+             {loop module="scrollpic" function="GetList" areaid="$_G.areaid" var="var"  limit="1" type_id="9"}
+            <a href="{$var.url}"><img src="{$tempdir}/img/fwzxnr.png"  width="1000" ></a>
+            {/loop}
+</div>
+    
+
+<div id="main" class="clearfix">
+<div class="cor_divtop">
+<div id="left" class="left">
+<div class="NavLinkHeader"><span>服务中心</span></div>
+<div class="NavLinkContent">
+{loop module="article" function="GetSiteList" var="var" epage="20"  pid="21"  keywords="request" status=1 }
+		{if $var.nid !="zaixian"}
+        <div id="item5" class="page" onClick="showsubmenu( 1, 12)"><span class="txtspan"><a href="/{$var.nid}/index.html">{$var.name}</a></span></div>
+		<div style="display: none" id="open_item5"></div>{/if}
+{/loop}
+
+
+</div>
+
+<!-- 
+<div style="margin-top: 20px !important" class="displayimg"><a 
+href="/help/index.html"><img border="0px" 
+src="{$tempdir}/media/bg/cs_info.gif" width="184px" height="85px"></a></div>
+ -->
+
+
+<script defer>onInit();</script>
+</div>
+<div id="right" class="right">
+<div 
+style="border-bottom: #cccccc 1px solid; border-left: #cccccc 1px solid; line-height: 28px; background-color: #f1f1f1; width: 752px; height: 28px; color: #696969; border-top: #cccccc 1px solid; border-right: #cccccc 1px solid" 
+id="NavigationLinkdiv">&nbsp; &nbsp;当前位置：&nbsp; <a 
+id="ctl00_content_NavigationLink1_main" href="/" style=" color:#333; text-decoration:none;">首页</a> 
+&gt; <a href="/aboutus/index.html" style=" color:#333; text-decoration:none;">服务中心</a> &gt; <a href="/{$_G.site_result.nid}/index.html" style=" color:#333;  text-decoration:none;">{$_G.site_result.name} </a></div>
+<div style="margin-top: 5px">
+
+<div style="clear: both"></div>
+<div id="myTabContent" class="content">
+			<div class="info" id="lxjs">
+			
+			 {$_G.site_result.content}		
+</div></div></div></div></div></div></div>
+{include file="footer.html"}

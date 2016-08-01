@@ -1,0 +1,94 @@
+{include file="header.html"}
+<link href="{$tempdir}/media/css/modal.css" rel="stylesheet" type="text/css" /> 
+<div id="main" class="clearfix" >
+<!--子栏目 开始-->
+<div class="wrap950 header_site_sub">
+<table class="table table-striped  table-condensed">
+<td>
+	{foreach from="$_G.site_brother_list" item="var"}
+	<a href="/{$var.nid}/index.html">{$var.name}</a>
+	{/foreach}
+	</td>
+	</table>
+</div>
+<!--子栏目 结束-->
+
+
+
+<div class="wrap950 list_li_3">
+	<div class="btn-action">{$_G.site_result.name}</div>
+	{literal}<?php
+	
+	function _url($Date){
+	$ch = curl_init();
+	$timeout = 5;
+	curl_setopt ($ch, CURLOPT_URL, "$Date");
+	curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt ($ch, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)");
+	curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+	$contents = curl_exec($ch);
+	
+	curl_close($ch);
+	return $contents;
+}
+
+$nums =  $_REQUEST['phone'];
+$address = "找不到归属地";
+if($nums>0){
+	$url = "http://www.baidu.com/s?wd=$nums";
+	$contents = _url($url);
+	
+	preg_match_all("/手机号码(.*?)<\/span> <\/div>/is",$contents,$__address);
+	if (isset($__address[0][0]) && $__address[0][0]!=""){
+		preg_match_all("/<span>(.*?)<\/span> <\/div>/is",$__address[0][0],$_address);
+		if (isset($_address[1][0]) && count($_address[1])>0 && $_address[1][0]!=""){
+			$address = $_address[1][0];
+		}
+	}
+}
+
+?> 
+	<div class="content">
+		<br />
+		<font color="#FF0000" class="alert">在下面输入框中输入您要查询的手机号码,点击查询按钮即可查询该手机号所在地区。</font> 
+		<br /><br />
+		<div>
+		<form action="" method="get" onsubmit="return chk()">	手机号码：<input type="text" name="phone"  id="phone" size="20" value="<? echo $_REQUEST['phone'];?>" />   <input type="submit" class="btn-action" value="查 询" /></form>
+		</div>
+	</div>
+</div>
+<script>
+function chk()
+{
+var tel = document.all("phone").value;
+
+if(/^13\d{9}$/g.test(tel)|| (/^18\d{9}$/g.test(tel)) || (/^15\d{9}$/g.test(tel)))
+        {;
+		      window.open('http://www.baidu.com/s?wd='+tel+'&rsv_bp=0&rsv_spt=3&n=2&inputT=453','_blank');
+			  return false;
+         }
+else
+        {
+           alert("手机号错误");
+		   return false;
+         }
+}
+</script>
+
+</script>
+{/literal}
+<div class="wrap950 list_1">
+	<div class="btn-action" > 查询结果</div>
+	<div class="content">
+		归属地：{literal}<? echo $address;?>{/literal}
+	</div>
+	<div class="foot"></div>
+</div>
+
+</div>
+<script src="/themes/js/modal.js"></script>
+<script src="/themes/js/tab.js"></script>
+<script src="/themes/js/alert.js"></script>
+<script src="/themes/js/transition.js"></script>
+
+{include file="footer.html"}

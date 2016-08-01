@@ -1,0 +1,132 @@
+{include file="header.html"}	
+<script>
+var user_id = '{$_G.user_id}';
+{literal}
+function check_form(){
+	if (user_id==""){
+		alert('你还没有登录，请先登录');
+		return true;
+	}
+	 var frm = document.forms['form1'];
+	 var title = frm.elements['title'].value;
+	 var content = frm.elements['content'].value;
+	 var valicode = frm.elements['valicode'].value;
+	 var errorMsg = '';
+	  if (title.length == 0 ) {
+		errorMsg += '标题必须填写' + '\n';
+	  }
+	  if (content.length == 0 ) {
+		errorMsg += '内容必须填写' + '\n';
+	  }
+	  if (valicode.length == 0 ) {
+		errorMsg += '验证码必须填写' + '\n';
+	  }
+	  if (errorMsg.length > 0){
+		alert(errorMsg); return false;
+	  } else{  
+		return true;
+	  }
+}
+
+</script>
+{/literal}	
+	
+	<div class="container">
+	
+		<div class="service_box">
+			<div class="service_left">
+				<div class="service_title">咨询服务中心</div>
+				<div class="service_ul">
+					{loop module="article" function="GetSiteList" var="var" epage="20"  pid="21"  keywords="request" status=1 }
+					<div onClick="showsubmenu( 1, 12)"><a href="/{$var.nid}/index.html">{$var.name}</a></div>
+					{/loop}
+			
+				</div>
+				<script defer>onInit();</script>
+			
+			</div>
+			<div class="service_right">
+				<div class="service_dh">
+					当前位置：&nbsp; <a 
+id="ctl00_content_NavigationLink1_main" href="/" style=" color:#333; text-decoration:none;">首页</a> &gt; <a href="/aboutus/index.html" style=" color:#333; text-decoration:none;">服务中心</a> &gt; <a href="/{$_G.site_result.nid}/index.html" style=" color:#333; text-decoration:none;">{$_G.site_result.name} </a>
+				</div>
+				
+				<div class="service_dhtitle">{$_G.site_result.name}</div>
+				<div class="service_content">
+					<ul class="lineask">
+						<form name="form1" method="post" action="/index.php?user&q=code/liuyan/add&s={$site_id}" onsubmit="return check_form();" enctype="multipart/form-data" >
+						<li>
+							<span>类型：</span> 
+							<select name="type">
+							{loop module="liuyan" function="GetTypeList"}
+							<option value="{$var}">{$var}</option>
+							{/loop}
+							</select>  
+						</li>
+						
+						<li>
+							<span>标题：</span> 
+							<input type="text" name="title"  class="askinput" value="{ $result.title}" size="30" />  
+						</li>
+						<li>
+							<span>姓名：</span> 
+							<input type="text" name="name"  class="askinput" value="{ $result.name}" size="30" />
+						</li>
+						<li>
+							<span>电话：</span> 
+							<input type="text" name="tel"  class="askinput" value="{ $result.tel}" size="30" />
+						</li>
+						
+						<li>
+							<span>内容：</span> 
+							<textarea name="content" class="askinput" style="height:80px;" cols="35" rows="5">{$result.content}</textarea>
+						</li>
+						
+						
+						<li>
+							<span>验证码：</span> 
+							<input name="valicode" type="text" size="11" maxlength="4"  tabindex="3" class="askinput" style="width:80px;"/>&nbsp;<img src="/plugins/index.php?q=imgcode" alt="点击刷新" onClick="this.src='/plugins/index.php?q=imgcode&t=' + Math.random();" align="absmiddle" style="cursor:pointer" />
+						</li>
+						
+						<li>
+							<span></span> 
+							{ if $t == "edit" }<input type="hidden" name="id" value="{ $result.id }" />{/if}
+							<input type="submit" class="line_btncss"  name="submit" value="确认提交" />
+							<input type="reset" class="line_btncss"  name="reset" value="重置表单" />
+							
+						</li>
+			
+					</form>
+					
+					
+					</ul>
+					
+					
+				
+				
+				
+				
+				</div>
+			
+			
+			
+			
+			</div>
+		
+	
+		
+		
+		</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	</div>
+	
+
+	
+	{include file="footer.html"}

@@ -1,0 +1,10 @@
+<?
+
+$code =        "rechargerule";
+$name =        "充值规则管理";
+$description = "后台充值规则管理";
+$version =     "1.0";
+$date =   "2012-11-06";
+$author =      "hycms";
+$type =      "system";
+?>

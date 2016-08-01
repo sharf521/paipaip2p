@@ -1,0 +1,311 @@
+{include file="header.html"}
+<!--子栏目 开始-->
+{literal}
+<?
+$this->magic_vars['_G']['uurl'] = url_format($this->magic_vars['_G']['nowurl'],"order");
+$this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],"epage");
+?>
+{/literal}
+<!--子栏目 结束-->
+
+<!--逾期的借款标-->	
+{if $magic.request.type==late}
+	<div class="container">
+		
+		<div class="list_menu">
+			<div class="list_kk"><a href="#tb" data-toggle="tab">逾期的借款标</a></div>
+		</div>
+
+		
+		<div style=" float:left; width:1000px; padding-bottom:20px;">
+		{list module="borrow" function="GetLateList" var="loop"  late_day="1"}
+		<ul class="list_blist">
+			{foreach from="$loop.list" item="var" }
+			<li>
+				<div class="list_tx"><img src="{$var.user_id|avatar:'middle'|imgurl_format}"/></div>
+				<div class="list_con">
+					<span ><a href="/u/{$var.user_id}" title="{$var.realname}">{$var.realname}</a></span>
+					<span>欠款总额：<b style="color:#FF0000">￥{$var.late_account}</b></span>
+					<span>逾期笔数：<b style="color:#FF0000">{$var.late_num}笔</b></span>
+    				<span> 所在地：{$var.area|area}</span>
+					<span>性别：{if $var.sex==1 }男{else}女{/if}</span>
+					<span>Email：{$var.email}</span>
+					<span>网站代还笔数：{$var.late_webnum|default:0}</span>
+					<span >QQ：{$var.qq}</span>
+					<span>身份证:{$var.card_id }</span>
+					<span>电话：{$var.phone}</span>
+					<span>最长逾期天数:{$var.late_numdays}天</span>		
+				</div>
+			</li>
+			{/foreach}
+		
+		</ul>
+		
+		<div class="pagecount">
+						
+			{$loop.showpage}			
+		</div>		
+		{/list}
+		
+		</div>
+		
+	
+	
+	</div>
+{else}	
+
+	
+
+	<div class="container">
+        
+	<form method="get">
+		<div class="list_xxse">
+			<div class="list_title"><a>详细搜索</a></div>
+
+<div class="demo">
+
+	<div class="sx">
+		<span>发布状态:</span>
+		<a rel="progress" class="sx_child" name="type" href="javascript:;">招标中的借款</a>
+		<a rel="reviews" class="sx_child" name="type" href="javascript:;">复审中的借款</a>
+		<a rel="success" class="sx_child" name="type" href="javascript:;">完成的借款</a>
+        <a href="/invest/index.html?type=late">逾期的借款</a>
+	</div>
+    <div class="sx">
+		<span>借款类型:</span>
+		<a rel="jin" class="sx_child" name="biao_type" href="javascript:;">净值标</a>
+		<a rel="miao" class="sx_child" name="biao_type" href="javascript:;">秒还标</a>
+		<a rel="pledge" class="sx_child" name="biao_type" href="javascript:;">质押标</a>
+        <a rel="fast" class="sx_child" name="biao_type" href="javascript:;">抵押标</a>
+	</div>
+	<div class="sx">
+		<span>借款期限:</span>
+		<a rel="day" class="sx_child" name="limittime" href="javascript:;">小于1个月</a>
+		<a rel="1" class="sx_child" name="limittime" href="javascript:;">1个月</a>
+        <a rel="2" class="sx_child" name="limittime" href="javascript:;">2个月</a>
+		<a rel="3" class="sx_child" name="limittime" href="javascript:;">3个月</a>
+        <a rel="4" class="sx_child" name="limittime" href="javascript:;">4个月</a>
+        <a rel="5" class="sx_child" name="limittime" href="javascript:;">5个月</a>
+        <a rel="6" class="sx_child" name="limittime" href="javascript:;">6个月</a>
+        <a rel="More6" class="sx_child" name="limittime" href="javascript:;">半年以上</a>
+	</div>
+	<div class="sx">
+		<span>还款方式:</span>
+		<a rel="0" class="sx_child" name="style" href="javascript:;">按月分期还款</a>
+		<a rel="3" class="sx_child" name="style" href="javascript:;">按月付息到期还本</a>
+		<a rel="2" class="sx_child" name="style" href="javascript:;">到期全额还款</a>
+        <a rel="4" class="sx_child" name="style" href="javascript:;">提前付息到期还本</a>
+	</div>
+    <div class="sx">
+		<span>金额范围:</span>
+		<a rel="1" class="sx_child" name="money" href="javascript:;">1万以下</a>
+		<a rel="2" class="sx_child" name="money" href="javascript:;">1万-5万</a>
+		<a rel="3" class="sx_child" name="money" href="javascript:;">5万-10万</a>
+        <a rel="4" class="sx_child" name="money" href="javascript:;">10万以上</a>
+	</div>   
+	<div class="sx">
+		<span>奖励:</span>
+		<a rel="2" class="sx_child" name="award" href="javascript:;">无奖励</a>
+		<a rel="1" class="sx_child" name="award" href="javascript:;">有奖励</a>
+	</div>
+    <div class="sx">
+		<span>排序:</span>
+		<a rel="account_down" class="sx_child" name="order" href="javascript:;">金额↑</a>
+		<a rel="account_up" class="sx_child" name="order" href="javascript:;">金额↓</a>
+		<a rel="apr_down" class="sx_child" name="order" href="javascript:;">利率↑</a>
+        <a rel="apr_up" class="sx_child" name="order" href="javascript:;">利率↓</a>
+        <a rel="jindu_down" class="sx_child" name="order" href="javascript:;">进度↑</a>
+        <a rel="jindu_up" class="sx_child" name="order" href="javascript:;">进度↓</a>
+        <a rel="credit_down" class="sx_child" name="order" href="javascript:;">信用↑</a>
+        <a rel="credit_up" class="sx_child" name="order" href="javascript:;">信用↓</a>
+	</div>
+	<div class="zj">
+		<span>己选择:</span>
+		<p class="qcqb">清除全部</p>
+	</div>
+
+</div>
+<script type="text/javascript" src="{$tempdir}/media/shanxuan.js" ></script>
+{literal}
+<script type="text/javascript">
+$('.sx').sx({
+	nuv:".zj",//筛选结果
+	zi:"sx_child",//所有筛选范围内的子类
+	qingchu:'.qcqb',//清除全部
+	over:'on'//选中状态样式名称
+});
+</script>           
+{/literal}
+
+			<div class="list_searbox" style="display:none">
+                关键字：<input type="text" name="keywords"  size="20" value="{$magic.request.keywords|urldecode}" class="gjccss"/>
+				<input type="submit" class="sousbtn" value="搜索" /> 
+			</div>
+
+		</div>
+	</form>
+        <div class="list_menu">
+            <div class="list_kk"><a href="#tb">我要理财</a></div>
+           
+    
+        </div>
+		
+
+		
+		
+		<div style=" float:left; width:1000px;padding-bottom:20px;">
+		       
+        {list module="borrow" function="GetListIndex" var="loop"   site_id="0"  keywords="request" type="request"  use="$magic.request.use" account1="request" account2 = "request" limittime="request" award="request"  epage="request" order="$magic.request.order" areaid="$_G.areaid" province="$_G.province" city="$_G.city"  biao_type="request"  money="request"  style="request"}
+		
+		<ul class="list_blist">
+		{foreach from="$loop.list" item="var" }
+			<li>
+				<div class="list_tx"><img src="{$var.user_id|avatar:'middle'|imgurl_format}" /></div>
+				<div class="list_con">
+					<span style="width:220px;">
+					 	<a href="/invest/a{$var.id}.html" title="{$var.name}" style="font-size:14px; font-weight:bold">{$var.name|truncate:12:"..."}&nbsp;&nbsp;</a>
+						<a href="{$var.biao_type_desc_url}" target="_blank"><img src="{$tpldir}/images/{$var.biao_type}.gif" border="0" rel="tooltip" title="{$var.biao_type_desc}" class="float_left"/></a>
+						{if $var.isday==1}<a href="/get_rule/a259.html" target="_blank" rel="tooltip" title="天标是按天借款标"><img src="{$tpldir}/images/day.jpg"   border="0"  class="float_left"/></a>{/if}
+						{if $var.flag==1}<a href="#"> <img src="{$tpldir}/images/tuijian.gif" align="absmiddle"  border="0"class="float_left"/></a>{/if}
+						{if $var.ishappy==1}<a href="{$_G.system.con_happy_url}" target="_blank"> <img src="{$tpldir}/images/happy.gif" align="absmiddle"  border="0" title="开心模式下流标也有利息" class="float_left"/></a>{/if}
+						{if $var.award==1 || $var.award==2 }
+						<a href=""><img src="{$tpldir}/images/jiangli.gif"  border="0"   rel="tooltip" title="投资该借款标除利息外有额外的奖励" style="float:left; "/></a>{/if}
+                        
+                        {if $var.insurance ==1}
+                                	<a href="/gongju/a291.html"><img src="{$tpldir}/images/baozhang.gif"  border="0"   rel="tooltip" data-original-title="借款人己支付16%的本金保障" class="float_left"/></a>
+                                {elseif $var.insurance==2}
+                               		<a href="/gongju/a291.html"><img src="{$tpldir}/images/baozhang.gif"  border="0"   rel="tooltip" data-original-title="借款人己支付31%的本金保障" class="float_left"/></a>
+                                {/if}
+								
+								
+								{if $var.pwd != ""}<a href=""><img src="{$tpldir}/images/lock.gif"  border="0"   rel="tooltip" title="定向标是投标的时候需要定向密码的借款标" class="float_left"/></a>{/if}
+					
+					</span>
+					<span >借款金额：<b>￥{$var.account}</b></span>
+					<span>投标奖励：<b>
+						{if $var.award==0}
+							无
+						{elseif  $var.award==1}
+							金额({$var.part_account|round:"2"}元)
+						{elseif  $var.award==2}
+							{$var.funds}%
+						{/if}
+					</b></span>
+					{if $var.biao_type!='circulation'}
+					<span style="width:140px;">借款期限：<b>
+						{if $var.isday==1 } 
+						{$var.time_limit_day}天
+						{elseif $var.is_mb==1}
+						 额满即还
+						{else}
+						{$var.time_limit}个月 
+						{/if}
+					</b></span>
+					{else}
+						<span style="width:140px;">借款期限：<b>{$var.time_limit}个月</b></span>
+					{/if}
+					
+					<span style="width:220px;"><div style="float:left">发布者：</div><a href="/u/{$var.user_id}" target="_blank">{$var.username}</a></span>
+					<span>年利率：{$var.apr}%</span>
+					<span><div class="list_jdt">
+                             <div class="list_dd" style="width:{$var.scale|default:0}%">
+                                <div class="list_bno">{$var.scale}%</div>
+                             </div>
+                          </div>
+                    </span>
+					{if $var.biao_type!='circulation'}
+					<span style=" width:140px;">
+						{if $var.isday==1 } 
+						到期全额还款
+						{elseif $var.is_mb==1}
+						系统自动还款
+						{else}
+						{$var.style|linkage:"borrow_style"}
+						{/if}
+					</span>
+					{else}
+						<span style=" width:140px;">{$var.style|linkage:"borrow_style"}</span>
+					{/if}
+					
+					<span style="width:220px;">信用等级：<img src="{$_G.system.con_credit_picurl}{ $var.credit_pic}" title="{$var.credit_jifen}分"  /></span>
+					<span>用途：{$var.use|linkage}</span>
+					{if $var.is_vouch==1}<span><div class="list_jdt"><div style="width:{$var.vouch_scale|default:0}%" class="list_dd"></div></div><div class="list_bno">{$var.vouch_scale}%</div></span>{/if}
+					
+					
+					{if $var.biao_type!='circulation'}
+					<span  id="endtime{$var.id}">剩余时间：{$var.lave_time}</span>
+					{/if}
+					<span style=" width:140px;">籍贯：{$var.user_area|area:"p,c"}</span>
+					<!--<span>籍贯：东北那疙</span>-->
+					{if $var.is_vouch==1}<span>担保奖励：{$var.vouch_award}%</span>{/if}
+					<!--<span style="text-align:center">剩余时间：2小时</span>-->
+						
+				
+				</div>
+				
+				
+				<div class="list_hkbtn">
+					{if $var.status==3}
+						{if $var.repayment_account == $var.repayment_yesaccount  }
+						<a>已还款</a>
+						{else}
+						<a>还款中</a>
+						{/if}
+			 		{elseif $var.status==5}
+					用户取消
+			  		{elseif $var.status==4}
+			  		{else}
+			  			{if $var.biao_type=='circulation'}
+						<a href="/invest/a{$var.id}.html?detail=purchase">
+						立即购买</a>
+						{elseif $var.biao_type=='vouch' || $var.biao_type=='restructuring'}
+														
+							{if $var.account>$var.account_yes}
+								<a href="/invest/a{$var.id}.html?detail=true">
+								立即投标
+								</a>
+							{/if}
+							{if $var.vouch_scale <100}
+							<a href="/invest/a{$var.id}.html?detail=vouch">
+							立即担保
+                        	</a>
+							{/if}
+							{if $var.vouch_scale ==100 && $var.account==$var.account_yes}
+								<a>等待复审</a>
+							{/if}
+							
+							
+						{else}
+							{if $var.account>$var.account_yes}
+							<a href="a{$var.id}.html?detail=true">
+							立即投标
+							</a>
+							{else}
+							<a>等待复审</a>
+							{/if}
+						{/if}
+			  		{/if}
+				
+				</div>
+			
+			
+			</li>	
+		{/foreach}
+		</ul>
+		
+		<div class="pagecount">{$loop.showpage}</div>		
+		{/list}
+		
+		</div>
+		
+	
+	
+	</div>
+{/if}
+
+
+<script src="/themes/js/transition.js"></script>
+<script src="/themes/js/popover.js"></script>
+
+
+{include file="footer.html"}

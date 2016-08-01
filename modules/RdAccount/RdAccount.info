@@ -1,0 +1,10 @@
+<?
+
+$code =        "RdAccount";
+$name =        "webservice";
+$description = "webservice";
+$version =     "1.0";
+$date =   "2012-11-06";
+$author =      "hycms";
+$type =      "system";
+?>

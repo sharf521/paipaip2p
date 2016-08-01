@@ -1,0 +1,128 @@
+{include file='header.html'}
+	
+	
+	
+	<div class="container">
+	
+{if $_G.user_result.vip_status==0}	
+		<div class="service_content" style="width:948px;">
+		
+		
+			 <form action="/index.php?user&q=code/user/applyvip" method="post" onsubmit="{if $_G.user_result.use_money<$_G.con_vip_money}return false;{else}return true;{/if}">
+			 
+					<div class="service_ulcon">
+						{loop module="user" function="GetList" limit="all" type_id="3" areaid="$_G.areaid"}
+						<div  class="zxkf_li">
+							<input style="float:left" type="radio" name="kefu_userid" value="{$var.user_id}" />
+							<div class="list_tx" style="margin-left:0px; margin-top:0px;">
+								<img src="{$var.user_id|avatar}" />	
+							</div>
+							
+							<div class="zxkf_info">
+								
+								姓名：{$var.realname}<br />
+								电话：{$var.phone}<br />
+							 <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$var.qq}&site=qq&menu=yes">
+                             <img border="0" src="{$tempdir}/img/fs.jpg" alt="点击这里给我发消息" title="点击这里给我发消息"></a>
+			
+							</div>
+						</div>
+					   {/loop}
+						
+					</div>
+					
+					
+					<div class="vip_table">
+						<table>
+						<tr>
+							<td width="100"><b>您的状态</b></td>
+							<td>{if $_G.user_result.vip_status==0}普通会员{else}<font color="#FF0000">VIP会员,有效时间：</font>{/if}</td>					
+						</tr>
+						
+						<tr>
+							<td><b>用户名</b></td>
+							<td>{$_G.user_result.username}</td>					
+						</tr>
+						
+						<tr>
+							<td><b>姓 名</b></td>
+							<td>{$_G.user_result.realname}</td>					
+						</tr>
+							 	
+	 	
+						<tr>
+							<td><b>邮 箱</b></td>
+							<td>{$_G.user_result.email}</td>					
+						</tr>
+						
+						<tr>
+							<td><b>温馨提示</b></td>
+							<td><font color="red">申请VIP会员将扣除VIP管理费用:{$_G.con_vip_money}元,您的当前可用余额{$_G.user_result.use_money}元,
+                            {if $_G.user_result.use_money < $_G.con_vip_money}
+                            不够扣除VIP费用，请先
+                            <a href="/index.php?user&q=code/account/recharge_new"><font color="#FF0000">[账号充值]</font></a>
+                            {/if}
+
+                        </font><font color="red"><a href="/get_rule/index.html">VIP权益详情!</a></font></td>					
+						</tr>
+						
+						<tr>
+							<td><b>备注</b></td>
+							<td> <textarea rows="5" cols="80" name="vip_remark"></textarea></td>					
+						</tr>
+						
+						<tr>
+							<td><b>验证码</b></td>
+							<td>
+							 <input name="valicode" type="text"  tabindex="3"  class="vip_inputcss"/>
+						<img src="/plugins/index.php?q=imgcode" alt="点击刷新" onClick="this.src='/plugins/index.php?q=imgcode&t=' + Math.random();" align="absmiddle" style="cursor:pointer;float:left;" />
+							</td>					
+						</tr>
+						
+						<tr>
+							<td></td>
+							<td> 
+							{if $_G.user_result.use_money<$_G.con_vip_money}
+                         <font color="red">您的当前可用余额不足VIP申请费用{$_G.con_vip_money}元，请充值后，再重新申请，谢谢.</font>
+                      		{else}
+							<input type="submit" class="vip_btncss" value="我要申请" />
+                      		{/if}
+							</td>					
+						</tr>
+					</table>
+					</div>
+					
+					
+			</form>		
+					
+		</div>		
+	
+{else}
+
+<div class="service_content" style="width:948px; padding:0">
+
+<ul class="vipulcs">
+		<li>您的状态是：{if $_G.user_result.vip_status==0}<font color="#FF3300">普通会员</font>{elseif $_G.user_result.vip_status==2}<font color="#FF3300">VIP申请中</font>{elseif $_G.user_result.isvip=="-1"}VIP申请中,请耐心等待{else}<font color="#FF0000">VIP会员</font>{/if}</li>
+		{if $_G.user_result.isvip==1}<li>有效时间：{$_G.user_result.vip_time|date_format} 到 {$_G.user_result.vip_time+60*60*24*365|date_format}</li>{/if}
+		<li>用户名：{$_G.user_result.username}</li>
+		<li>姓 名 ：{$_G.user_result.realname}</li>
+		<li>邮 箱 ：{$_G.user_result.email}</li>
+		<li>客 服 ：{$_G.user_cache.kefu_realname}({$_G.user_cache.kefu_username})
+		<li>备 注 ：{$_G.user_result.vip_remark}</li>
+			
+</ul>
+		
+</div>			
+{/if}	
+
+
+
+
+	
+	
+	</div>
+	
+
+	
+	
+{include file='footer.html'}

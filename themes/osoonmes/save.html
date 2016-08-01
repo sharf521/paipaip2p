@@ -1,0 +1,23 @@
+{include file="header.html"}
+<link href="{$tempdir}/media/css/modal.css" rel="stylesheet" type="text/css" />
+<!--子栏目 开始-->
+{literal}
+<?
+$this->magic_vars['_G']['uurl'] = url_format($this->magic_vars['_G']['nowurl'],"order");
+$this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],"epage");
+?>
+{/literal}
+<!--子栏目 结束-->
+
+<!--header-end-->
+<div id="main" class="clearfix">
+	<img src="{$tempdir}/media/bg/save.jpg" style="margin:0 auto;">
+</div>
+<!--main end-->
+
+
+<script src="/themes/js/transition.js"></script>
+<script src="/themes/js/popover.js"></script>
+
+
+{include file="footer.html"}

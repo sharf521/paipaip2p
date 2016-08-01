@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBliC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{$_G.sitetitle}</title>
+<meta name="description" content="{$_G.sitedesc}" />
+<meta name="keywords" content="{$_G.sitekeywords}" />
+<link href="{$tempdir}/css/style.css" rel="stylesheet" />
+<link href="{$tempdir}/css/top.css" rel="stylesheet" />
+<script type="text/javascript" src="/themes/js/jquery.js"></script>
+<script type="text/javascript" src="/themes/js/jquery.cookies.min.js"></script>
+<script type="text/javascript" src="/themes/js/jquery-ui.min.js" ></script>
+<script type="text/javascript" src="{$tempdir}/media/home.js" ></script>
+</head>
+<body>
+<div class="topbox">
+		<div class="topbg">
+			<div class="topcon">
+                <div class="welcomebox">
+                    {if $_G.user_id>0}
+                     当前登录账户：<a href="/?user">{$_G.user_result.username}</a> 
+                     <a href="/?user">[个人中心]</a> 
+                     <a href="/?user&q=action/logout">[退出]</a>
+                     {else}
+                     <a >欢迎来到{$_G.sitename}！</a>
+                     <a href="/index.action?user&q=action/login">会员登录</a>　　
+                     <a href="/index.action?user&q=action/reg">注册会员</a>
+                    {/if}
+				</div> 
+                <div class="d02">
+                     <a href="/aboutus/index.html">服务中心</a>
+                     <a href="/tools/index.html">利息计算器</a>
+                </div>
+			</div>	
+		</div>	
+		<div class="banbox">
+			<div class="logopic">
+			<img src="/{$_G.sitelogo}" alt="" height="58">
+			</div>
+			   {article module="borrow" function="get_available_biao_type" user_id=0 var="biaotype_list" allow_biaotype="$_G.site_biaotype"}
+	           {/article}
+            <div class="nav">
+			<div class="nav-list">
+				<ul>
+				<li {if $_G.site_result.nid=="" || $_G.site_presult.nid=="index" } class="active"{/if} data-toggle="0">                	<a href="/">网站首页</a>
+                </li>
+				<li {if $_G.site_presult.nid=="invest" || $_G.site_result.nid=="invest" || $_G.site_presult.nid=="rhtz"} class="active"  {/if} data-toggle="1">
+                	<a href="/invest/index.html?type=progress">我要理财</a>
+                </li>
+				<li {if ($_G.site_presult.nid=="borrow"  || $_G.site_result.nid=="borrow" ||  $_G.site_result.nid=="gongju") &&  $_G.site_result.nid!="help" } class="active" {/if} data-toggle="2">
+                	<a href="/borrow/index.html">我要借款</a>
+                </li>
+				<li {if $_G.site_presult.nid=="aboutus"  || $_G.site_result.nid=="aboutus" || $_G.site_result.nid=="metibaodao"}  class="active" {/if} data-toggle="6">
+                	<a href="/aboutus/index.html">新手起航</a>
+                </li>
+				<li {if $_G.site_presult.nid=="user"  || $_G.site_result.nid=="user"} class="active" {/if} data-toggle="7">
+                	<a href="/index.action?user">我的账户</a>
+                </li>
+		        <li data-toggle="8">
+                	<a href="/index.php?login_myother&t=m" target="_blank">我的商城</a>
+                 </li>
+				
+				</ul>
+			</div>
+				<div class="navlist" style=" padding-left:10px;padding-right:10px">
+				  <a  href="/metibaodao/index.html" >媒体报道 | </a> 
+				  <a  href="/gonggao/index.html" >最新公告 | </a>
+				  <a  href="/aboutus/index.html" >关于我们 | </a>
+				  <a  href="/feiyong/index.html" >资费说明 | </a>
+				  <a  href="/gongju/index.html" >安全保障 | </a>
+				  <a  href="/managesystem/index.html" >管理体系 | </a>
+                  <a href="/falv/index.html" >政策法规 </a>
+				</div>
+				<div class="navlist hide" style=" padding-left:10px;padding-right:10px">
+				  <a  href="/invest/index.html?type=progress" >招标中的借款标 | </a>
+				  <a  href="/invest/index.html?type=reviews" >复审中的借款标 | </a>
+				  <a  href="/invest/index.html?type=success" >完成的借款标 | </a>
+				  <a  href="/invest/index.html?type=late"  >逾期的借款标</a>
+				  <!--<a  href="/pioneer/index.html" >创业投资 | </a>
+				  <a  href="/loveinvest/index.html" >爱心公益 | </a>
+				  <a  href="/rightinvest/index.html" >债权拍卖 </a>-->
+				</div>
+				<div class="navlist hide" style="margin-left:60px;padding-left:10px;padding-right:10px">
+				  <a  href="/borrow/index.html" >发布贷款</a>
+				  {if in_array("jin", $biaotype_list) }
+				  <a  href="/publish/index.html?type=jin" > | 净值标</a>
+				  {/if}
+                  {if in_array("miao", $biaotype_list) }
+				  <a  href="/publish/index.html?type=miao" > | 秒还标</a> 
+				  {/if}
+                  {if in_array("fast", $biaotype_list) }
+				  <a  href="/publish/index.html?type=fast" > | 抵押标</a>
+				  {/if} 
+				  {if in_array("pledge", $biaotype_list) }
+				  <a  href="/publish/index.html?type=pledge" > | 质押标</a>
+				  {/if} 
+				  {if in_array("circulation", $biaotype_list) }
+				  <a   href="/publish/index.html?type=circulation" > | 流转标</a>
+				  {/if}
+                  {if in_array("credit", $biaotype_list) }
+				  <a  href="/publish/index.html?type=credit" > | 信用标</a>
+				  {/if}   
+				  {if in_array("restructuring", $biaotype_list) }
+				  <a  href="/publish/index.html?type=restructuring" > | 重组标</a>
+				  {/if} 
+				  {if in_array("zhouzhuan", $biaotype_list) }
+				  <a  href="/publish/index.html?type=zhouzhuan" > | 周转标</a>
+				  {/if}
+				  {if in_array("vouch", $biaotype_list) }
+				  <a  href="/publish/index.html?type=vouch" > | 担保标</a>
+				  {/if} 
+				  {if in_array("love", $biaotype_list) }
+				  <a  href="/publish/index.html?type=love" > | 爱心标</a>
+				  {/if}
+				  {if in_array("safety", $biaotype_list) }
+				  <a  href="/publish/index.html?type=safety" > | 保险标 </a>
+				  {/if}
+				</div>
+				<div class="navlist hide" style=" margin-left:200px;padding-left:10px;padding-right:10px">
+				  <a  href="/new/index.html" >新手上路 | </a>
+                  <a  href="/question/index.html">常见问题 | </a>
+                  <a  href="/get_rule/index.html">网站规则 | </a>
+                  <a  href="/linekefu/index.html">在线客服 | </a>
+                  <a  href="/tools/index.html" >工具箱 | </a>
+                  <a  href="/download/index.html">下载中心</a>
+				</div>
+				<div class="navlist hide" style=" margin-left:260px;padding-left:10px;padding-right:10px">
+				  <a  href="/index.action?user" >我的账号 | </a>
+                  <a  href="/index.action?user&q=code/user/reginvite" >邀请好友 | </a>
+                  <a  href="/vip/index.html" >vip申请 | </a>
+                  <a  href="/index.action?user&q=code/account/recharge_new" >账户充值 | </a>
+                  <a  href="/index.action?user&q=code/borrow/repaymentplan" >我要还款  </a>
+				</div>
+				<div class="navlist hide" style=" margin-left:460px;padding-left:10px;padding-right:10px;">
+				  <a  href="/index.php?login_myother&t=m" target="_blank">供销商城 | </a>
+              	  <a  href="/index.php?login_myother&t=f" target="_blank">积分商城</a>
+				</div>
+				<div class="navlist_hide"></div>
+		    </div>
+		</div>			
+</div>	
+{literal}
+ <script>nav(".nav",".nav-list",".navlist");</script>   
+{/literal}

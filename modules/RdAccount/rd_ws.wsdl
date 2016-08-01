@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions name="Rd_WS" targetNamespace="urn:Rd_WS"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="urn:Rd_WS" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+	<types xmlns="http://schemas.xmlsoap.org/wsdl/">
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="urn:Rd_WS">
+			<xsd:complexType name="uiRequest">
+				<xsd:sequence>
+					<xsd:element name="ws_user_id" type="xsd:string"></xsd:element>
+				</xsd:sequence>
+
+			</xsd:complexType>
+
+
+			<xsd:complexType name="transferRequest">
+			<xsd:sequence>
+					<xsd:element name="ws_user_id" type="xsd:string"></xsd:element>
+					<xsd:element name="money" type="xsd:double"></xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</types>
+	
+	<portType name="Rd_WSPort">
+		<operation name="greet">
+			<input message="tns:greetRequest" />
+			<output message="tns:greetResponse" />
+		</operation>
+		<operation name="serverTimestamp">
+			<input message="tns:serverTimestampRequest" />
+			<output message="tns:serverTimestampResponse" />
+		</operation>
+		<operation name="getUserAccountInfo">
+			<input message="tns:getUserAccountInfoRequest" />
+			<output message="tns:getUserAccountInfoResponse" />
+		</operation>
+		<operation name="accountL2M">
+			<input message="tns:accountL2MRequest"></input>
+			<output message="tns:accountL2MResponse"></output>
+		</operation>
+		<operation name="accountM2L">
+			<input message="tns:accountM2LRequest"></input>
+			<output message="tns:accountM2LResponse"></output>
+		</operation>
+		<operation name="awardL2M">
+			<input message="tns:awardL2MRequest"></input>
+			<output message="tns:awardL2MResponse"></output>
+		</operation>
+	</portType>
+	<binding name="Rd_WSBinding" type="tns:Rd_WSPort">
+		<soap:binding style="rpc"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="greet">
+			<soap:operation soapAction="urn:Rd_WS#HelloWorld#greet" />
+			<input>
+				<soap:body use="encoded" namespace="urn:Rd_WS"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="urn:Rd_WS"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		<operation name="serverTimestamp">
+			<soap:operation soapAction="urn:Rd_WS#HelloWorld#serverTimestamp" />
+			<input>
+				<soap:body use="encoded" namespace="urn:Rd_WS"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="urn:Rd_WS"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+
+		<operation name="getUserAccountInfo">
+			<soap:operation soapAction="urn:Rd_WS#HelloWorld#getUserAccountInfo" />
+			<input>
+				<soap:body use="encoded" namespace="urn:Rd_WS"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="urn:Rd_WS"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+
+		<operation name="accountL2M">
+			<soap:operation soapAction="urn:Rd_WS#HelloWorld#accountL2M" />
+			<input>
+				<soap:body use="encoded" namespace="urn:Rd_WS"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="urn:Rd_WS"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		
+		<operation name="accountM2L">
+			<soap:operation soapAction="urn:Rd_WS#HelloWorld#accountM2L" />
+			<input>
+				<soap:body use="encoded" namespace="urn:Rd_WS"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="urn:Rd_WS"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		
+		<operation name="awardL2M">
+			<soap:operation soapAction="urn:Rd_WS#HelloWorld#awardL2M" />
+			<input>
+				<soap:body use="encoded" namespace="urn:Rd_WS"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="encoded" namespace="urn:Rd_WS"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+	</binding>
+	<service name="Rd_WS">
+		<documentation />
+		<port name="Rd_WSPort" binding="tns:Rd_WSBinding">
+			<soap:address location="http://hndai.p2p.com/modules/ws/RdAccountService.php" />
+		</port>
+	</service>
+	<message name="greetRequest">
+		<part name="name" type="xsd:string" />
+	</message>
+	<message name="greetResponse">
+		<part name="greet" type="xsd:string" />
+	</message>
+	<message name="serverTimestampRequest">
+	</message>
+	<message name="serverTimestampResponse">
+		<part name="serverTimestamp" type="xsd:string" />
+	</message>
+	<message name="getUserAccountInfoRequest">
+		<part name="ws_request_data" type="uiRequest" />
+	</message>
+	<message name="getUserAccountInfoResponse">
+		<part name="user_info" type="xsd:string" />
+	</message>
+	
+	<message name="accountL2MRequest">
+		<part name="accountL2MRequest" type="transferRequest"></part>
+	</message>
+	<message name="accountL2MResponse">
+		<part name="accountL2MResponse" type="xsd:string"></part>
+	</message>
+	<message name="accountM2LRequest">
+		<part name="accountM2LRequest" type="transferRequest"></part>
+	</message>
+	<message name="accountM2LResponse">
+		<part name="accountM2LResponse" type="xsd:string"></part>
+	</message>
+	<message name="awardL2MRequest">
+		<part name="awardL2MRequest" type="transferRequest"></part>
+	</message>
+	<message name="awardL2MResponse">
+		<part name="awardL2MResponse" type="xsd:string"></part>
+	</message>
+</definitions>

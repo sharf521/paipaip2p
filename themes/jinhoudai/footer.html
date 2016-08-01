@@ -1,0 +1,120 @@
+	
+	<div class="footer">
+	
+		<div class="footerbox">
+				
+				<ul>
+					<li>
+						<div class="footimg"></div>
+						<div class="footfont">
+							<a href="/new/index.html"><b style="font-size:14px;">交易指南</b></a>
+							<a href="/feiyong/index.html"> 资费说明</a>
+							<a href="/borrow/index.html"> 如何贷款</a>
+							<a href="/new/index.html"> 如何投资</a>	
+						</div>					
+					</li>					
+					<li>
+						<div class="footimg"></div>
+						<div class="footfont">
+							<a href="/question/index.html"><b style="font-size:14px;">帮助中心</b></a>
+							<a href="/question/index.html"> 常见问题</a>
+							<a href="/new/index.html"> 新手上路</a>
+							<a href="/linekefu/index.html"> 在线客服</a>	
+						</div>					
+					</li>					
+					<li>
+						<div class="footimg"></div>
+						<div class="footfont">
+							<a href="/metibaodao/index.html"><b style="font-size:14px;">网站资讯</b></a>
+							<a href="/borrow/index.html"> 特色标种</a>
+							<a href="/job/index.html"> 招贤纳士</a>
+							<a href="/metibaodao/index.html"> 媒体报道</a>	
+						</div>				
+					</li>				
+					<!--<img src="{$tempdir}/images/about.jpg" />-->
+					<li>
+						<div class="footimg"></div>
+						<div class="footfont">
+							<a href="/aboutus/index.html"><b style="font-size:14px;">关于我们</b></a>
+							<a href="/aboutus/a12.html"> 公司证件</a>
+							<a href="/aboutus/a1.html"> 公司简介</a>
+							<a href="/aboutus/index.html"> 办公场地</a>	
+						</div>					
+					</li>					
+					<li>
+						<div class="footimg"><img src="/data/city/{$_G.areaid}.png" width="100"/><span>今后贷微信服务</span></div>		
+					</li>			
+				</ul>			
+				<div class="footline">&nbsp;</div>
+				<div class="footline1">&nbsp;</div>
+
+		
+
+				<div class="footcon">           
+     				<span style=" font-size:14px; text-align:center;">&copy;</span> 2014 今后贷 All rights reserved&nbsp;|&nbsp;{$_G.sitecompany}&nbsp;|&nbsp;<a href="http://www.miitbeian.gov.cn" style="color:#8b9da7" target="_blank">{$_G.siteicp}</a>
+				</div>    
+        <div style="text-align:center;">{$_G.site_remark}</div>
+        <div style="display:none">{$_G.statistics_code}</div>
+    </div>
+</div>
+<link rel=stylesheet type="text/css" href="{$tempdir}/css/common.css">
+<script type="text/javascript">
+<!--
+var sitename = "{$_G.sitename}";
+var qqArr = new Array();
+var nameArr = new Array();
+{loop module="user" function="GetList" limit="20" type_id=3 areaid="$_G.areaid" }
+qqArr.push("{$var.qq}");
+nameArr.push("{$var.realname}");
+{/loop}
+//-->
+</script>
+{literal}
+<!-- liukun add for bug 77 begin -->
+<div id=floatTools class=float0831>
+  <div class=floatL><a style="display: none" id=aFloatTools_Show class=btnOpen 
+title=查看在线客服 
+onclick="javascript:jQuery('#divFloatToolsView').animate({width: 'show', opacity: 'show'}, 'normal',function(){ jQuery('#divFloatToolsView').show();kf_setCookie('RightFloatShown', 0, '', '/', 'www.istudy.com.cn'); });jQuery('#aFloatTools_Show').attr('style','display:none');jQuery('#aFloatTools_Hide').attr('style','display:block');" 
+href="javascript:void(0);">展开</a> <a id=aFloatTools_Hide class=btnCtn 
+title=关闭在线客服 
+onclick="javascript:jQuery('#divFloatToolsView').animate({width: 'hide', opacity: 'hide'}, 'normal',function(){jQuery('#divFloatToolsView').hide();kf_setCookie('RightFloatShown', 1, '', '/', 'www.istudy.com.cn'); });jQuery('#aFloatTools_Show').attr('style','display:block');jQuery('#aFloatTools_Hide').attr('style','display:none');" 
+href="javascript:void(0);">收缩</a> </div>
+  <div id="divFloatToolsView" class="floatR" >
+    <div class=tp></div>
+	<div style="width:119px; background-color:#ffffff; float:left; border-left:5px solid #0099FF;border-right:6px solid #0099FF;">
+	<a href="#" style="float:left; margin-left:6px; display:inline">
+{/literal}
+		<img src="/data/city/{$_G.areaid}.png" width="105" height="105" />
+        {literal}
+	</a>	
+	</div>	
+    <div class=cn style="float:left; width:126px;border-right:4px solid #0099FF;">
+      <ul>
+        <li class=top>
+          <H3 class=titZx>QQ咨询</H3>
+        </li>
+        <li><span class=icoZx style="color:#30b2ed;font-size:14px;font-weight:bold;"><script>document.write(sitename);</script></span> </li>
+        <script>
+        for (i = 0; i < qqArr.length; i++)
+        {
+        	document.write('<li style="text-align:left;"><a target="_blank"  href="http://wpa.qq.com/msgrd?v=3&uin='+qqArr[i]+'&site=qq&menu=yes"><img align="absmiddle" border="0" src="http://wpa.qq.com/pa?p=2:'+qqArr[i]+':45" alt="点击这里给我发消息" title="点击这里给我发消息">&nbsp;&nbsp;'+nameArr[i]+'</a></li>');
+		
+        }
+        </script>
+		<li>{/literal}{$_G.qqgroup_code}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- liukun add for bug 77 end -->
+<script type="text/javascript" src="/themes/js/kefu.js"></script>
+<script type="text/javascript" src="/themes/js/tooltip.js"></script>
+{literal}						
+<script>
+jQuery(function(){
+	jQuery("[rel='tooltip']").tooltip();
+});
+</script>
+{/literal}
+</body>
+</html>

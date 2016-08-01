@@ -1,0 +1,10 @@
+<?
+
+$code =        "biaotype";
+$name =        "标种管理";
+$description = "后台标种管理";
+$version =     "1.0";
+$date =   "2012-11-06";
+$author =      "hycms";
+$type =      "system";
+?>

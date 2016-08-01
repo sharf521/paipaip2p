@@ -1,0 +1,67 @@
+/*菜单*/
+
+.nav {
+	BACKGROUND: url(/themes/th_lightblue/img/bbg.jpg) no-repeat center top; MARGIN: 0px auto; WIDTH: 950px; POSITION: relative; HEIGHT: 60px
+}
+.nav UL {
+	MARGIN: 0px auto; OVERFLOW: hidden; WIDTH: 950px; POSITION: relative; HEIGHT: 45px
+}
+.nav UL LI {  FLOAT: left; WIDTH: 94px; LINE-HEIGHT: 45px; POSITION: relative; HEIGHT: 45px; TEXT-ALIGN: center; font-size:16px; 
+}
+.nav UL LI A {
+	DISPLAY: block; COLOR: #fff
+}
+.nav UL LI A:hover {
+	COLOR: #333;
+	background:#FFcc00
+}
+.nav UL LI.active {
+		COLOR: #333;
+}
+.nav UL LI.active A {
+ 	COLOR: #333;
+}
+.sub_box {
+ LEFT: 0px; WIDTH: 940px; POSITION: absolute; TOP: 36px; HEIGHT: 32px; TEXT-ALIGN: left;
+ background:#f4f4f4; border:1px solid #ccc; padding-left:5px;
+}
+.sub_box P {
+	DISPLAY: none; FONT-SIZE: 12px; LINE-HEIGHT: 32px; POSITION: absolute; margin-left:0px;
+}
+.sub_box P A {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 0px; COLOR: #7d5739; PADDING-TOP: 0px
+}
+.sub_box P A:hover {
+	TEXT-DECORATION: underline
+}
+
+.header{width:100%; position:relative;z-index:2; padding-bottom:8px}
+.header .wrp-toplink{background: url(/themes/member/media/bg/toplink-bg.jpg) repeat-x;}
+.header .toplink{width:950px;margin:0 auto;height:28px;line-height:28px; text-indent:1em;}
+.header .head{width:950px;margin:0 auto;height:84px;}
+.header .head .logo{float:left;padding-top:13px;}
+.header .head .logo a{float:left;}
+.header .head .logo span{float:left;font-size:20px;font-weight:bold;margin-left:10px;line-height: 70px;}
+.header .head .hotnumber{position: absolute;right: 0;top:13px;}
+.header .head .head-box{border:1px solid #ccc; width:339px;height:60px;margin:15px 0 0 20px;}
+.header .nav{ position:relative;width:100%; background:url(/themes/th_lightblue/img/bbg.jpg) repeat-x;}
+.header .nav .nav-list{width:950px;margin:0 auto;height:45px;display:block; }
+.header .nav .nav-list li{height:45px;float:left;display:block; position: relative; width:105px;}
+.header .nav .nav-list li a{color:#fff;font-size:14px; display:block;width:105px; height:45px;line-height:45px; text-align: center; font-weight:bold}
+.header .nav UL LI.active A{ color:#fff;background:url(/themes/th_lightblue/img/hotbg.jpg) no-repeat ;}
+.header .nav .nav-list li a:hover{ color:#fff;background:url(/themes/th_lightblue/img/hotbg.jpg) no-repeat ;}
+.topbanner{ float:right; height:58px; margin-top:10px;}
+
+.nav .navlist{ background:#f4f4f4;line-height:30px;border:1px solid #ccc;border-top:0;width:922px;margin:0 auto; padding-left:20px; color:#666}
+
+.nav .nav-list li .navlist a:hover{background: none;color:#000;}
+.header .nav .nav-list li.hover2 .navlist  a,.header .nav .nav-list li.hover .navlist a{background: none}
+/*头部样式结束*/
+
+
+
+
+
+
+
+

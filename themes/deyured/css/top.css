@@ -1,0 +1,96 @@
+@charset "gb2312";
+/* CSS Document */
+
+/*-----头部------*/
+.topbox{ width:100%; height:180px;}
+.topbg{ width:100%; height:33px; background:url(../img/topbg.jpg) repeat-x; border-bottom:1px solid #ccc}
+.topcon{ width:950px; margin:0 auto; height:33px; line-height:33px;}
+.welcomebox{ float:left; font-size:12px; color:#666}
+.headright{ float:right; font-size:12px; padding-right:20px; color:#666}
+
+/*logo*/
+.banbox{ width:950px; margin:0 auto; margin-top:10px; height:70px;}
+.logopic{ width:149px; height:55px; float:left}
+.topbanner{ width:560px; height:58px; float: left; margin-left:15px; display:inline;}
+.topphone{ height:58px; float:right}
+
+
+/*二级菜单*/
+.secondbg{ width:950px; margin:0 auto; line-height:32px; height:32px; background:#f4f4f4; border:1px solid #ccc }
+.secondtitle{ float:left;  font-size:12px; color:#666;}
+.secondtitle a{  float:left; text-align:center; margin-left:15px; display:inline}
+.secondtitle a.hot{ color:#FF6600; font-weight:bold}
+
+
+/*菜单*/
+
+.nav {
+	 MARGIN: 0px auto; WIDTH: 950px; POSITION: relative; HEIGHT: 70px;
+}
+.nav UL {
+	MARGIN: 0px auto; OVERFLOW: hidden; WIDTH: 950px; POSITION: relative; HEIGHT: 38px
+}
+.nav UL LI {  FLOAT: left; WIDTH: 105px; LINE-HEIGHT: 36px; POSITION: relative; HEIGHT: 36px; TEXT-ALIGN: center; font-size:14px; font-weight:bold ;
+}
+.nav UL LI A {
+	DISPLAY: block; COLOR: #fff; font-size:14px;
+}
+.nav UL LI A:hover {
+	COLOR: #ffffff;
+	background:#a40000 ;
+}
+.nav UL LI.active {
+		background:#a40000 ;
+}
+.nav UL LI.active A {
+ 	COLOR: #ffffff;
+	background:#a40000 ;
+}
+.nav .navlist{ background:#f4f4f4;line-height:30px;border:1px solid #ccc;border-top:0;width:927px;margin:0 auto; padding-left:20px; color:#666}
+.hide{ display: none;}
+
+/*菜单*/
+.menubox{ width:100%; height:38px; background:url(../img/bbg.jpg) repeat-x;}
+
+
+/*底部*/
+.footer{ width:100%;  background:#f4f4f4; margin-top:10px; padding-bottom:10px; border-top:3px solid #cf0920; float:left}
+.yqljbox{ width:950px; color:#666; float:left; padding-top:10px; font-size:12px;}
+.yqljbox a{ color:#666;}
+
+.footerbox{ width:950px; margin:0 auto; font-size:12px; color:#666}
+.footerbox ul{ width:950px; float:left; list-style:none; margin-top:20px}
+.footerbox ul li{ width:100px; float:left; margin-right:68px; display:inline; margin-left:68px;}
+.footimg{ float:left; text-align:center}
+.footimg span{ display:block; line-height:22px}
+.footfont{ float:left; padding-left:7px; line-height:25px;}
+.footfont a{ display:block; color:#666; text-decoration:none}
+.footfont a:hover{ color:#444}
+
+
+/*客户服务*/
+.khfu{ width:950px; margin:0 auto; overflow:hidden; }
+.khfu_list{ margin:0 auto; overflow:hidden; margin-left:95px}
+.khfu_list p{ float:left; margin-top:10px;}
+.xinlang{ background:url(../img/tupian.png) 0px 0px no-repeat; width:99px; height:30px; float:left; margin-left:20px; cursor:pointer; overflow:hidden}
+.xinlang:hover{ background:url(../img/tupian.png) 0px -30px no-repeat; width:99px; height:30px; float:left;margin-left:20px; cursor:pointer; overflow:hidden}
+.weixin{ background:url(../img/tupian.png) -99px 0px no-repeat; width:91px; height:30px; float:left;margin-left:20px; cursor:pointer; overflow:hidden}
+.weixin:hover{ background:url(../img/tupian.png) -99px -30px no-repeat; width:91px; height:30px; float:left;margin-left:20px; cursor:pointer; overflow:hidden}
+.tengxun{ background:url(../img/tupian.png) -190px 0px no-repeat; width:112px; height:30px; float:left;margin-left:20px; cursor:pointer; overflow:hidden}
+.tengxun:hover{ background:url(../img/tupian.png) -190px -30px no-repeat; width:112px; height:30px; float:left;margin-left:20px; cursor:pointer; overflow:hidden}
+
+
+/*横线*/
+.footline{ width:930px; float:left; margin-left:10px; display:inline; height:1px;  margin-top:8px; background:#ccc; font-size:1px;}
+.footline1{ width:930px; float:left; margin-left:10px; font-size:1px; display:inline; height:1px; background:#fff; }
+
+/*信息*/
+.footcon{ width:950px; text-align:center; line-height:20px; color:#777; float:left; margin-top:10px; padding-bottom:10px;}
+
+
+/*微信*/
+.mask{ position: absolute; top: 0px; filter: alpha(opacity=60); background-color: #777; z-index: 1002; left: 0px; opacity:0.5; -moz-opacity:0.5;display: none;}
+.guanbi{ float:right;cursor:pointer;}
+.guanbi a{ font-family:Tahoma; font-size:24px; font-weight:bold; padding-right:15px}
+.divtop{ position: absolute; z-index: 1003; width:320px; height:320px; background-color:#ffffff; display: none; }
+.divtop img{padding-top:20px; padding-left:30px}

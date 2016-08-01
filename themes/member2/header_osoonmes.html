@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk" />
+<title>{$_G.sitetitle}</title>
+<meta name="description" content="{$_G.sitedesc}" />
+<meta name="keywords" content="{$_G.sitekeywords}" />
+<link href="/themes/member/media/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/themes/member/media/css/hndai.css" rel="stylesheet" type="text/css" />
+
+
+<link href="/themes/member/media/css/modal.css" rel="stylesheet" type="text/css" />
+<link href="/themes/member/media/css/about.css" rel="stylesheet" type="text/css" />
+<link href="/themes/member/media/css/footercss.css" rel="stylesheet" type="text/css" />
+<link href="/themes/member/media/css/jquery-ui.css" rel="stylesheet" type="text/css" />
+<link href="/themes/member/media/css/coin-slider-styles.css" rel="stylesheet" type="text/css" />
+<link href="/themes/member/media/css/css.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/themes/member/media/js/jquery.js"></script>
+<script type="text/javascript" src="/themes/member/media/js/jquery.cookies.min.js"></script>
+<script type="text/javascript" src="/themes/member/media/js/footerjs.js"></script>
+<script type="text/javascript" src="/themes/member/media/js/jquery-ui.min.js" ></script>
+<script type="text/javascript" src="/themes/member/media/js/jquery.flashSlider-1.0.js"></script>
+<!--[if IE 6]><script type="text/javascript" src="/themes/member/media/js/iepngfix.js"></script><![endif]-->
+{literal}
+
+<style type="text/css">
+
+/*菜单*/
+
+.nav {
+	BACKGROUND: url(../images/bbg.jpg) no-repeat center top; MARGIN: 0px auto; WIDTH: 950px; POSITION: relative; HEIGHT: 60px
+}
+.nav UL {
+	MARGIN: 0px auto; OVERFLOW: hidden; WIDTH: 950px; POSITION: relative; HEIGHT: 36px
+}
+.nav UL LI {  FLOAT: left; WIDTH: 94px; LINE-HEIGHT: 36px; POSITION: relative; HEIGHT: 36px; TEXT-ALIGN: center; font-size:16px; font-family:"微软雅黑";
+}
+.nav UL LI A {
+	DISPLAY: block; COLOR: #fff
+}
+.nav UL LI A:hover {
+	COLOR: #333;
+	background:#FFcc00
+}
+.nav UL LI.active {
+		COLOR: #333;
+	background:#FFcc00
+}
+.nav UL LI.active A {
+ 	COLOR: #333;
+	background: #FFCC00
+}
+.sub_box {
+ LEFT: 0px; WIDTH: 940px; POSITION: absolute; TOP: 36px; HEIGHT: 32px; TEXT-ALIGN: left;
+ background:#f4f4f4; border:1px solid #ccc; padding-left:5px;
+}
+.sub_box P {
+	DISPLAY: none; FONT-SIZE: 12px; LINE-HEIGHT: 32px; POSITION: absolute; margin-left:0px;
+}
+.sub_box P A {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 0px; COLOR: #7d5739; PADDING-TOP: 0px
+}
+.sub_box P A:hover {
+	TEXT-DECORATION: underline
+}
+
+.header{width:100%; position:relative;z-index:2;}
+.header .wrp-toplink{background: url(/themes/member/media/bg/toplink-bg.jpg) repeat-x;}
+.header .toplink{width:950px;margin:0 auto;height:28px;line-height:28px; text-indent:1em;}
+.header .head{width:950px;margin:0 auto;height:84px;}
+.header .head .logo{float:left;padding-top:13px;}
+.header .head .logo a{float:left;}
+.header .head .logo span{float:left;font-size:20px;font-weight:bold;margin-left:10px;line-height: 70px;}
+.header .head .hotnumber{position: absolute;right: 0;top:13px;}
+.header .head .head-box{border:1px solid #ccc; width:339px;height:60px;margin:15px 0 0 20px;}
+.header .nav{ position:relative;width:100%; background:url(/themes/member/images/menubg.jpg) repeat-x;}
+.header .nav .nav-list{width:950px;margin:0 auto;height:36px;display:block; }
+.header .nav .nav-list li{height:36px;float:left;display:block; position: relative; width:94px;}
+.header .nav .nav-list li a{color:#fff;font-size:16px; display:block;width:94px;margin:0 5px; height:36px;line-height:36px; text-align: center;}
+.header .nav UL LI.active A{ color:#333}
+.header .nav .nav-list li a:hover{background:#fc0; color:#333}
+.topbanner{ float:right; height:58px; margin-top:10px;}
+
+.nav .navlist{ background:#f4f4f4;line-height:30px;border:1px solid #ccc;border-top:0;width:922px;margin:0 auto; padding-left:20px; color:#666}
+
+.nav .nav-list li .navlist a:hover{background: none;color:#000;}
+.header .nav .nav-list li.hover2 .navlist  a,.header .nav .nav-list li.hover .navlist a{background: none}
+/*头部样式结束*/
+
+
+</style>
+
+{/literal}
+
+</head>
+
+<body>
+
+<div class="header clearfix">
+  <div class="wrp-toplink">
+		<div class="toplink">     
+				{if $_G.user_id>0}
+				  
+				 当前登录账户：<a href="/?user">{$_G.user_result.username}</a> <a href="/?user">[个人中心]</a> <a href="/?user&q=action/logout">[退出]</a>
+				 {else}
+				    <span class="title">欢迎来到{$_G.sitename}！</span>
+					<span><a href="/index.action?user&q=action/login">登录</a></span>　|　<span><a href="/index.action?user&q=action/reg">注册</a></span>
+				{/if}
+				
+		</div> 
+    </div>
+        <div class="head clearfix">
+        	<div class="logo"><a href="/"><img src="/{$_G.sitelogo}" alt="" height="58" ></a></div>
+            <div class="topbanner">
+     				{loop module="scrollpic" function="GetList" areaid="$_G.areaid" var="var"  limit="1" type_id="4"}
+	                <a href="{$var.url}"><img src="/{$var.pic}" alt="" height="58" ></a>
+	                {/loop}
+     		</div>	
+            
+        </div>
+      {article module="borrow" function="get_available_biao_type" user_id=0 var="biaotype_list" allow_biaotype="$_G.site_biaotype"}
+	{/article}
+	
+		<div class="menubox">
+        <div class="nav">
+        	<div class="nav-list">
+				<ul>
+				<li {if $_G.site_result.nid=="" || $_G.site_presult.nid=="index" } class="active" {else} class="sub_nav1" {/if} data-toggle="0"><a href="/"> 首页</a></li>
+				<li {if $_G.site_presult.nid=="invest" || $_G.site_result.nid=="invest" || $_G.site_presult.nid=="rhtz"} class="active"  {/if} data-toggle="1"><a href="/invest/index.html" class="max">我要理财</a></li>
+				<li  {if ($_G.site_presult.nid=="borrow"  || $_G.site_result.nid=="borrow" ||  $_G.site_result.nid=="gongju") &&  $_G.site_result.nid!="help" } class="active" {/if} data-toggle="2"><a href="/borrow/index.html" class="max">我要借款</a></li>
+				<li {if $_G.site_presult.nid=="pioneer"  || $_G.site_result.nid=="pioneer"} class="active" {/if} data-toggle="3"><a href="/pioneer/index.html">创业投资</a></li>
+				<li {if $_G.site_presult.nid=="loveinvest"  || $_G.site_result.nid=="loveinvest"} class="active" {/if} data-toggle="4"><a href="/loveinvest/index.html">爱心公益</a></li>
+				<li {if $_G.site_presult.nid=="rightinvest"  || $_G.site_result.nid=="rightinvest"} class="active" {/if} data-toggle="5"><a href="/rightinvest/index.html">债权拍卖</a></li>
+				<li {if $_G.site_presult.nid=="aboutus"  || $_G.site_result.nid=="aboutus" || $_G.site_result.nid=="metibaodao"}  class="active" {/if} data-toggle="6"><a href="/aboutus/index.html">服务中心</a></li>
+				<li  {if $_G.site_presult.nid=="user"  || $_G.site_result.nid=="user"} class="active" {/if} data-toggle="7"><a href="/index.action?user">我的账号</a></li>
+			
+		        <li data-toggle="8"><a href="/index.php?login_myother&t=m" target="_blank">我的商城</a></li>
+		
+				
+				<div style="clear:both"></div>
+				</ul>
+			</div>
+				<DIV class="navlist">
+				<a  href="/metibaodao/index.html" >媒体报道 | </a> 
+				<a  href="/gonggao/index.html" >最新公告 | </a>
+				<a  href="/aboutus/index.html" >关于我们 | </a>
+				<a  href="/feiyong/index.html" >资费说明 | </a>
+				<a  href="/gongju/index.html" >安全保障 | </a>
+				<a  href="/managesystem/index.html" >管理体系 | </a>
+                <a  href="/cooperation/index.html" >合作共赢 | </a>
+                <a href="/falv/index.html" >政策法规  </a>
+				</DIV>
+				<div class="navlist hide">
+				<a  href="/new/index.html">如何投标 | </a>
+				<a  href="/invest/index.html" >招标中的借款标 | </a>
+				<a  href="/invest/index.html?type=reviews" >复审中的借款标 | </a>
+				<a  href="/invest/index.html?type=success" >完成的借款标 | </a>
+				<a  href="/invest/index.html?type=late" >逾期的借款标  </a>
+				</div>
+				<div class="navlist hide">
+				 <a class="longa" href="/borrow/index.html" >如何发布贷款 | </a>
+				 {if in_array("credit", $biaotype_list) }
+				  <a class="longa" href="/publish/index.html?type=credit" >发布信用标 | </a>
+				  {/if} 
+				  {if in_array("fast", $biaotype_list) }
+				  <a class="longa" href="/publish/index.html?type=fast" >发布抵押标 | </a>
+				  {/if} 
+				  {if in_array("pledge", $biaotype_list) }
+				  <a class="longa" href="/publish/index.html?type=pledge" >发布质押标 | </a>
+				  {/if} 
+				  {if in_array("circulation", $biaotype_list) }
+				  <a class="longa"  href="/publish/index.html?type=circulation" >发布流转标 | </a>
+				  {/if}   
+				  {if in_array("restructuring", $biaotype_list) }
+				  <a class="longa" href="/publish/index.html?type=restructuring" >发布重组标 | </a>
+				  {/if} 
+				  {if in_array("miao", $biaotype_list) }
+				  <a class="longa" href="/publish/index.html?type=miao" >发布秒还标 | </a>
+				  {/if} 
+				  {if in_array("zhouzhuan", $biaotype_list) }
+				  <a class="longa"  href="/publish/index.html?type=zhouzhuan" >发布周转标 | </a>
+				  {/if} 
+				  {if in_array("jin", $biaotype_list) }
+				  <a class="longa"  href="/publish/index.html?type=jin" >发布净值标 | </a>
+				  {/if} 
+				  {if in_array("vouch", $biaotype_list) }
+				  <a  href="/publish/index.html?type=vouch" >发布担保标 | </a>
+				  {/if} 
+				  {if in_array("love", $biaotype_list) }
+				  <a  href="/publish/index.html?type=love" >发布爱心标 </a>
+				  {/if}                   
+				</div>
+				<div class="navlist hide"></div>
+				<div class="navlist hide"></div>
+				<div class="navlist hide"></div>
+				<div class="navlist hide" >
+				<a style="padding-left:530px;"  href="/new/index.html">新手上路 | </a>
+                <a  href="/question/index.html">常见问题 | </a>
+                <a  href="/get_rule/index.html">网站规则 | </a>
+                <a  href="/linekefu/index.html">在线客服 | </a>
+                <a  href="/tools/index.html" >工具箱 | </a>
+                <a  href="/download/index.html" >下载中心</a>
+				</div>
+				<div class="navlist hide">
+				<a style="padding-left:550px;"  href="/index.action?user" >我的账号 | </a>
+                <a  href="/index.action?user&q=code/user/reginvite" >邀请好友 | </a>
+                <a  href="/vip/index.html" >vip申请 | </a>
+                <a href="/index.action?user&q=code/account/recharge_new" >账户充值 | </a>
+                <a  href="/index.action?user&q=code/borrow/repaymentplan" >我要还款</a>
+				</div>
+				<div class="navlist hide">
+
+				<a style="padding-left:720px;"   href="/index.php?login_myother&t=m" target="_blank">供销商城 | </a>
+              	<a  href="/index.php?login_myother&t=f" target="_blank">积分商城</a>
+
+				</div>
+				<div class="navlist hide"></div>
+				
+		  </DIV>
+		  </DIV>
+			
+
+	
+	
+</div>
+		
+		
+  {literal}
+       <script>
+        function nav(obj,childUl,childBox){
+            var box = $(obj);
+            var oLi = $("li",childUl);
+            var oDiv = $(childBox);
+    		function showTab(){
+    			oLi.each(function(i){
+    				if($(oLi[i]).hasClass("active"))
+    					{    						
+    						oDiv.addClass("hide");
+                			$(oDiv[i]).removeClass("hide");
+    					}
+    				})
+    			}
+    		showTab();
+            oLi.mouseenter(function(){
+                var index = oLi.index(this);
+                $(oLi[index]).addClass("hover2").siblings().removeClass("hover2");
+                oDiv.addClass("hide");
+                $(oDiv[index]).removeClass("hide");
+            })
+    		box.mouseleave(function(){
+    			oLi.removeClass("hover2");
+    			showTab()
+    			})
+        }
+        nav(".nav",".nav-list",".navlist");
+        </script>   
+	{/literal}      
+        
+
+
+
+    
+<script type="text/javascript" src="/themes/member/media/js/head_nav.js"></script>
+<script type="text/javascript" src="/themes/member/media/js/base.js"></script>
+<script src="/plugins/timepicker/WdatePicker.js" type="text/javascript"></script>
+<!--header-end-->

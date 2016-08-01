@@ -1,0 +1,831 @@
+{include file='header.html'}
+
+	
+{if $_G.user_id==""}
+<script>
+	alert("你还没有登录，请先登录");
+	location.href='/index.php?user&q=action/login';
+</script>
+
+{/if}
+{if !$biao_type}
+<script>
+	alert('请确定您所发标的种类!');
+	location.href='/borrow/index.html';
+</script>
+{/if}	
+	
+<div class="container">
+
+{if $magic.request.type=="" && $magic.request.article_id==""}
+ 
+
+{else}
+{article module="borrow" function="getBiaoAuditInfo" var="auditresult" user_id="0" biao_type="$biao_type"}
+{/article}			
+{article module="borrow" function="get_biao_type_info" user_id=0 var="biaotype_info" biao_type="$biao_type"}
+{/article}
+{article module="borrow" function="GetUserLog" user_id=0 var="acc"}
+{/article}	
+
+{article module="borrow" function="GetOnes" article_id="request" user_id="0" }
+
+<!--子栏目 开始-->
+		{if $auditresult.result!==true }
+		<div class="fb_alert fade in">
+		<span style="width:700px; float:left">尊敬的用户，您好！你还没有通过申请借款所需要的必要认证！</span><a href="{$biaotype_info.type_desc_url}" >查看发标相关说明</a>
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+		</div>
+		{/if}
+		{if $biao_type=="vouch"}
+		<div class="fb_alert fade in">
+		<span style="width:700px; float:left">您正在借的是担保标，担保标将先由有担保额度的用户进行担保，等担保完成后再进行投标。</span>
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+		</div>
+		<div class="fb_alert fade in">
+		<span style="width:700px; float:left">发标金额不能大于您目前的可用担保额度{$acc.borrow_vouch_use}元。</span>
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+		</div>
+		{/if}
+		{if $biao_type=="zhouzhuan"}
+		<div class="fb_alert fade in">
+		<span style="width:700px; float:left">您正在借的是站内周转标。需要使用信用额度，借款不可以提现。</span>
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+		</div>
+		<div class="fb_alert fade in">
+		<span style="width:700px; float:left">发标金额不能大于您目前的可用信用额度{$acc.credit_use}元。</span>
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+		</div>
+		{/if}
+		{if $biao_type=="jin"}
+		<div class="fb_alert fade in">
+		<span style="width:700px; float:left">您正在借的是净值标。借款不可以提现。</span>
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+		</div>
+		<div class="fb_alert fade in">
+		<span style="width:700px; float:left">您的最大净值发标额度是{$acc.jinAmount}元。</span>
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+		</div>
+		{/if}
+		{if $biao_type=="restructuring"}
+		<div class="fb_alert fade in">
+		<span style="width:800px; float:left">您正在借的是债务重组标。需要指定系统工作人员为指定担保人。
+		提交申请后你的账户将会被限制提现、投标、担保等功能，直到所有债务还完为止。</span>
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+		</div>	
+		<div class="fb_alert fade in">
+		<span style="width:700px; float:left">发标金额不能大于您目前的可用债务重组额度{$acc.restructuring_use}元。</span>
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+		</div>
+		{/if}
+		{if $biao_type=="circulation"}
+		<div class="fb_alert fade in">
+        {if $magic.request.st =='1'}
+       		<span style="width:700px; float:left">您正在借的是抵押流转标。</span>
+        {elseif $magic.request.st =='2'}
+        	<span style="width:700px; float:left">您正在借的是质押流转标。</span>
+        {else}
+        	<span style="width:700px; float:left">您正在借的是经典流转标。</span>
+        {/if} 
+		<a class="close" data-dismiss="alert" href="#">&times;</a>   
+        </div>
+		{/if}
+		{if $biao_type=="credit"}
+		<div class="fb_alert fade in">
+		<span style="width:700px; float:left">您正在借的是信用标，需要使用信用额度。</span>
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+		</div>
+		<div class="fb_alert fade in">
+		<span style="width:700px; float:left">发标金额不能大于您目前的可用信用额度{$acc.credit_use}元。</span>
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+		</div>
+		{/if}
+		{if $biao_type=="miao"}
+		<div class="fb_alert fade in">
+		<span style="width:700px; float:left">您正在借的是秒还标，借款成功后，系统立即扣除一个月的利息，并自动进行还款操作。</span>
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+		</div>
+		{/if}
+		{if $biao_type=="fast"}
+		<div class="fb_alert fade in">
+		<span style="width:700px; float:left">您正在借的是抵押标。</span>
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+		</div>
+		{/if}
+		{if $biao_type=="love"}
+		<div class="fb_alert fade in">
+		<span style="width:700px; float:left">您正在借的是爱心标。</span>
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+		</div>
+		{/if}
+		{if $biao_type=="pledge"}
+		<div class="fb_alert fade in">
+		<span style="width:700px; float:left">您正在借的是质押标。</span>
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+		</div>
+		{/if}
+<!--子栏目 结束-->
+		
+		
+<form name="form1" method="post" id="form1" action="/index.php?user&q=code/borrow/{if $var.user_id==""}add{else}update{/if}"  enctype="multipart/form-data"  >		
+		
+		
+		
+		<div class="fb_fontbg">
+		<a  onclick="setTab('tab',1,4)" id="tab1" style="cursor:pointer" class="hot">借款信息</a>
+		{if !$miaobiao}<a  onclick="setTab('tab',3,4)" id="tab3" style="cursor:pointer" class="">投标奖励</a>{/if}
+		{if $vouchbiao || $restructuringbiao}<a  onclick="setTab('tab',4,4)" id="tab4" style="cursor:pointer" class="">担保奖励</a>{/if}
+		<a  onclick="setTab('tab',2,4)" id="tab2" style="cursor:pointer" class="">信息公开设置</a>
+		{if $biao_type}
+			<input type="hidden" name="biao_type"  value="{$biao_type}" />
+		{/if}
+		{if $zhouzhuanbiao || $jinbiao || $restructuringbiao}
+			<input type="hidden" name="is_nocash"  value="1" />
+		{/if}
+		{if $zhouzhuanbiao}
+			<input type="hidden" name="is_zhouzhuan"  value="1" />
+		{/if}
+		{if $circulationbiao}
+			<input type="hidden" name="is_circulation"  value="1" />
+		{/if}
+		{if $lovebiao}
+			<input type="hidden" name="is_love"  value="1" />
+		{/if}
+		{if $pledgebiao}
+			<input type="hidden" name="is_pledge"  value="1" />
+		{/if}
+		{if $miaobiao}
+			<input type="hidden" name="ismb"  value="1" />
+		{/if}
+		{if $fastbiao}
+			<input type="hidden" name="isfast"  value="1" />
+		{/if}
+		{if $restructuringbiao}
+			<input name="is_restructuring" type="hidden" value="1" />
+			<input name="is_vouch" type="hidden" value="1" />
+		{/if}
+		{if $vouchbiao}
+			<input name="is_vouch" type="hidden" value="1" />
+		{/if}
+		{if $jinbiao}
+			<input type="hidden" name="isjin" value="1" />
+		{/if}
+		</div>	
+		
+		
+		<!--借款信息-->
+		<div class="fb_infobox fade in" style="display:block" id="con_tab_1">
+			<div class="fb_one">
+				<div class="fb_leftb">
+					<div class="fb_part">借贷总金额：</div>
+					<span id="infojdmoney" data-content="借款金额应在{$biaotype_info.min_amount}元至{$biaotype_info.max_amount}元之间。交易币种均为人民币。借款成功后, 按借款基数和相关费率收取借款管理费,管理费用不计息，不退还，在借款金额中直接扣除。 更详尽的信息请查看帮助网站 收费规则"><input type="text" name="account"   id="account" value="{$var.account}" onkeyup="value=value.replace(/[^0-9]/g,'')" /></span> 
+					<input type="hidden" name="areaid"  value="{$_G.areaid}"  />
+				</div>
+				
+				<div class="fb_leftb">
+					<div class="fb_part">年利率：</div>
+					<input  type="text" name="apr" id="infonlv" data-content="填写您提供给投资者的年利率,所填写的利率是您还款的年利率。利率为{$biaotype_info.min_interest_rate*100}%到{$biaotype_info.max_interest_rate*100}%，且只保留小数后最后两位。" value="{$var.apr}" onkeyup="value=value.replace(/[^0-9.]/g,'')"/>&nbsp;% 
+				</div>	
+			
+			</div>
+			
+			
+			<div class="fb_one">
+				<div class="fb_leftb">
+					<div class="fb_part">借款用途：</div>
+             
+					<div style="float:left" id="infojkxx" data-content="说明借款成功后的具体用途">
+					{linkages nid="borrow_use"  value="$var.use" name="use"  } </div>
+               
+				</div>
+				
+				<div class="fb_leftb">
+					<div class="fb_part">借款期限：</div>
+				{if $miaobiao}
+					<div style="float:left" id="infomb" data-content="需要借多少时间。">
+							{linkages nid="borrow_time_limit" value="$var.time_limit" name="time_limit" type="value" disabled="disabled"}
+					</div>
+				{else}
+					<div style="float:left" id="infotl" data-content="需要借多少时间。">
+					<span id="time_limit">
+					{linkages nid="borrow_time_limit" value="$var.time_limit" name="time_limit" type="value" } 
+					</span></div>
+					<span id="time_limit_day" style="display:none;">
+								<select name="time_limit_day" id="time_limit_day" ><option value="1">1天</option><option value="2">2天</option><option value="3">3天</option><option value="4">4天</option><option value="5">5天</option><option value="6">6天</option><option value="7">7天</option><option value="8">8天</option><option value="9">9天</option><option value="10">10天</option><option value="11">11天</option><option value="12">12天</option><option value="13">13天</option><option value="14">14天</option><option value="15">15天</option><option value="16">16天</option><option value="17">17天</option><option value="18">18天</option><option value="19">19天</option><option value="20">20天</option><option value="21">21天</option><option value="22">22天</option><option value="23">23天</option><option value="24">24天</option><option value="25">25天</option></select>
+					</span>
+					{if $biaotype_info.day_model == 1}
+					<a href="#">按天</a>
+					 <input type="checkbox" name="changetoDay"   value="1"  id="changetoDay" onclick="">  
+					{/if}
+				{/if}
+					
+					
+					
+				</div>	
+			
+			</div>
+			
+		{if $circulationbiao }
+		<input type="hidden" name="st" value="{$magic.request.st}" />	
+			{if $_G.st =='0'}<!--固定流转-->	
+			<div class="fb_one">
+				<div class="fb_leftb">
+					<div class="fb_part">认购档期：</div>
+					<input name="increase_month_num" id="" data-content="" type="text" value="{ $var.increase_month_num}1" size="6" />个月
+				</div>
+				
+				<div class="fb_leftb">
+					<div class="fb_part">每月增加年利率：</div>
+					 <input name="increase_apr" type="text" id="" data-content="" value="{ $var.increase_apr}0.5" class="fb_moneyinput"/>%	
+				</div>	
+			</div>
+			{/if}
+			<div class="fb_one">
+			{if $_G.st =='0'}
+				<div class="fb_leftb">
+					<div class="fb_part">最低认购期限：</div>
+					<input name="begin_month_num" id="" data-content="" type="text" value="{ $var.begin_month_num}1" size="6" />个月
+				</div>
+			{/if}
+				<div class="fb_leftb">
+					<div class="fb_part">每份价格：</div>
+					<input name="unit_price" type="text" id="" data-content="" value="{ $var.unit_price}100" />元	
+				</div>	
+			</div>
+			
+			<div class="fb_one">
+				<div class="fb_leftb">
+					<div class="fb_part">最小认购份数：</div>
+					<input name="min_unit_num" id="" data-content="" type="text" value="{ $var.min_unit_num}1" size="6" />份
+				</div>
+				<div class="fb_leftb">
+					<div class="fb_part">最大认购份数：</div>
+					<input name="max_unit_num" type="text" id="" data-content="" value="{ $var.max_unit_num}99999999" />份
+				</div>	
+			</div>
+			
+			<div class="fb_one">
+				<div class="fb_leftb">
+					<div class="fb_part">还款方式：</div>
+					<select name="style" id="style" style="border:1px solid #ccc; overflow:hidden">
+					{if $biaotype_info.repay_month == 1}
+					<option value="0">按月分期还款</option>
+					{/if}
+					{if $biaotype_info.repay_monthinterest == 1}
+					<option value="3">按月付息到期还本</option>
+					{/if}
+					{if $biaotype_info.repay_total == 1}
+					<option value="2">到期全额还款</option>
+					{/if}
+					{if $biaotype_info.repay_monthearly == 1}
+					<option value="4">提前付息到期还本</option>
+					{/if}
+					</select>
+				</div>
+			</div>
+			
+		{/if}	
+			
+			<div class="fb_one" id="borrow_day" style="display:none;">
+				<div class="fb_leftb">
+					<div class="fb_part">是否天标：</div>
+					<input type="hidden" name="isday" id="isday" value="0" />是
+				</div>
+				
+				<div class="fb_leftb">
+					<div class="fb_part" style="width:370px; color:#FF0000">借款成功后，系统将按照每月30天来计算借款利息。<a href="/gonggao/a244.html" target="_blank">天标系统说明</a></div>
+				</div>	
+			</div>
+			
+		{if $biaotype_info.password_model}	
+			
+			<div class="fb_one">
+				<div class="fb_leftb">
+					<div class="fb_part">是否定向标：</div>
+					<span id="infoisDXB" data-content="定向标可邀请特定的用户或朋友来投标，设置好密码后，告诉对方此标的密码即可." ><input type="checkbox" name="isDXB" id="isDXB" value="1" onclick="checkDXB()">  </span>
+				</div>
+				
+				<div class="fb_leftb">
+					<div class="fb_part">定向标密码：</div>
+					<span id="infopwd" data-content='定向标密码可以是数字或文字。如"恭喜发财","生日快乐"等等 ' >
+					<input disabled="disabled"  type="text" name="pwd" id="pwd"></span>
+				</div>	
+			
+			</div>
+		{/if}	
+		{if $biaotype_info.happy_model}		
+			<div class="fb_one">
+				<div class="fb_leftb">
+					<div class="fb_part">是否开心模式：</div>
+				<select name="ishappy" style="border:1px solid #ccc"><option value="0">否</option><option value="1">是</option></select>
+				</div>
+				
+				<div class="fb_leftb">
+					<div class="fb_part" style="width:370px; color:#FF0000">当选择开心模式后，流标时，已投标客户会获得相应天数的利息.</div>
+				</div>	
+			
+			</div>
+		{/if}	
+			
+			<div class="fb_one">
+				<div class="fb_leftb">
+					<div class="fb_part">是否置顶：</div>
+				<select name="isontop" style="border:1px solid #ccc"><option value="0">否</option><option value="1">是</option></select>
+				</div>
+				
+				<div class="fb_leftb">
+					<div class="fb_part" style="width:280px; color:#FF0000">置顶可以在投标列表中优先显示，但需要收费。</div>
+				</div>	
+			
+			</div>	
+			
+			
+			<div class="fb_one">
+				<div class="fb_leftb">
+					<div class="fb_part">是否加急审核：</div>
+				<select name="isurgent" style="border:1px solid #ccc"><option value="0">否</option><option value="1">是</option></select>
+				</div>
+				
+				<div class="fb_leftb">
+					<div class="fb_part" style="width:270px; color:#FF0000">选择加急审核后，资料认证收费标准会加倍。</div>
+				</div>	
+			
+			</div>		
+			
+{if !$circulationbiao }			
+			<div class="fb_one">
+				<div class="fb_leftb">
+					<div class="fb_part">最低投标金额：</div>
+					<div style="float:left" id="infolow" data-content="允许投资者对一个借款标的投标总额的限制">
+					{linkages nid="borrow_lowest_account" value="$var.lowest_account" name="lowest_account" type="value" }</div>
+				</div>
+				
+				<div class="fb_leftb">
+					<div class="fb_part">最多投标金额：</div>
+					<div style="float:left" id="infomax" data-content="允许投资者对一个借款标的投标总额的限制">{linkages nid="borrow_most_account" value="$var.most_account" name="most_account" type="value" }</div>
+				</div>	
+			
+			</div>		
+		
+			
+			<div class="fb_one">
+				<div class="fb_leftb" >
+					<div class="fb_part">有效时间：</div>
+					<div style="float:left" id="infoyxtime" data-content="设置此次借款融资的天数。融资进度达到100%后直接进行网站的复审">{linkages nid="borrow_valid_time" value="$var.valid_time" name="valid_time" type="value" }</div>
+				</div>
+				
+				<div class="fb_leftb " >
+					<div class="fb_part">还款方式：</div>
+					<select name="style" id="style" style="overflow:hidden" >
+					{if $biaotype_info.repay_month == 1}
+					<option value="0">按月分期还款</option>
+					{/if}
+					{if $biaotype_info.repay_monthinterest == 1}
+					<option value="3">按月付息到期还本</option>
+					{/if}
+					{if $biaotype_info.repay_total == 1}
+					<option value="2">到期全额还款</option>
+					{/if}
+					{if $biaotype_info.repay_monthearly == 1}
+					<option value="4">提前付息到期还本</option>
+					{/if}				
+					</select>
+			</div>	
+			</div>		
+		
+		
+		
+	{/if}	
+    
+{if !$circulationbiao }	
+    <div class="fb_one" style="width:600px;">
+        <div class="fb_leftb">
+            <div class="fb_part">投资者本金保障：</div>
+            <div style="float:left" id="infoinsurance" data-content="为投资者缴纳该标的本金保障，缴纳金额为借款金额的16%或31%">
+            <select name="insurance">
+            	<option value="0">无</option>
+            	<option value="1">16%</option>
+                <option value="2">31%</option>
+            </select>
+           </div>
+        </div>
+    </div>	
+{/if}	    
+    
+    
+</div>	
+	
+	
+	
+{if $miaobiao }
+
+{else}	
+		<!---投标奖励----->
+		<div class="fb_infobox" style="display:none" id="con_tab_3">
+			<div class="fb_one">
+				<div class="fb_leftb">
+				
+				<span id="infowjiang" data-content="如果您设置了奖励金额，将会冻结您账户中相应的账户余额。如果要设置奖励，请确保您的账户有足够 的账户余额。"><input type="radio" name="award" id="award" value="0" {if $var.award==0 || $var.award==""} checked="checked"{/if} onclick="change_j(0)" style="float:left; line-height:20px;"> &nbsp;不设置奖励&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					
+					
+				</div>
+				
+			</div>
+
+			<div class="fb_one">
+				<div class="fb_leftb">
+				<input type="radio" name="award" id="award" value="2" {if $var.award==2 } checked="checked"{/if} onclick="change_j(2)" style="float:left; line-height:20px; vertical-align:middle"/>
+				<span id="infoyjiang2" style="float: left" data-content="范围：0.1%~6% ，这里设置本次标的要奖励给所有投标用户的奖励比例。"> &nbsp;按投标金额比例奖励：</span>
+					<input type="text" id="funds" name="funds" value="{$var.funds}" style=" width:50px" class="fb_moneyinput"/>&nbsp;%  
+					
+				</div>
+				
+			</div>
+			{if !$circulationbiao}
+			<div class="fb_one">
+				<div class="fb_leftb">
+				<input type="radio" name="award" id="award" value="1" {if $var.award==1 } checked="checked"{/if} onclick="change_j(1)" style="float:left; line-height:20px; vertical-align:middle"/>
+				<span style="float:left" id="infoyjiang1" data-content="不能低于5元,不能高于总标的金额的2%，且请保留到“元”为单位。这里设置本次标的要奖励给所有投标用户的总金额。">&nbsp;按固定金额分摊奖励：</span>
+					<input type="text" id="part_account" name="part_account" value="{$var.part_account}" style=" width:50px" class="fb_moneyinput"/>&nbsp;元
+					
+				</div>
+				
+			</div>
+			{/if}
+			
+			
+		</div>	
+		
+{/if}	
+
+
+{if $vouchbiao || $restructuringbiao}
+	<div class="fb_infobox" style="display:none" id="con_tab_4">
+		  <div class="fb_one">
+				<div class="fb_leftb">
+					<div class="fb_part">担保费率：</div>
+						<input name="vouch_award" id="infodbbl" data-content="担保奖励按照所要借款的百分比给担保人，比如借100，奖励是3%，担保人借出50，则奖励50*3%=1.5" type="text" value="{ $var.vouch_award}" style=" width:50px" class="fb_moneyinput"/>%
+				</div>
+				
+				<div class="fb_leftb">
+					<div class="fb_part">指定担保人：</div>
+					<input name="vouch_user" type="text" id="infodbb2" data-content="指定多个担保人请用|隔开，为空表示所有人都可以担保" value="{ $var.vouch_user}" style=" width:50px" class="fb_moneyinput"/>
+				</div>	
+			
+			</div>	
+	</div>	
+{/if}	
+		
+		<!---信息公开设置----->
+		
+		<div class="fb_infobox" id="con_tab_2" style="display:none">
+			<div class="fb_one">
+				<div class="fb_leftb">
+					<div class="fb_part" style="width:150px;">
+					<span id="infoss1" data-content="如果您勾上此选项，将会实时公开您账户的：账户总额、可用余额、冻结总额。">公开我的账户资金情况&nbsp;<input type="checkbox" name="open_account" value="1" checked="checked" disabled="disabled"/></span>
+					</div>
+				</div>
+				
+				<div class="fb_leftb">
+					<div class="fb_part" style="width:150px;">
+					<span id="infoss1" data-content="如果您勾上此选项，将会实时公开您账户的：借款总额、已还款总额、未还款总额、迟还总额、逾期总额。">公开我的借款资金情况&nbsp;<input type="checkbox" name="open_borrow" value="1" checked="checked" disabled="disabled"/></span>
+					</div>
+				</div>	
+			
+			</div>
+			
+			
+			<div class="fb_one">
+				<div class="fb_leftb">
+					<div class="fb_part" style="width:150px;">
+					<span id="infoss1" data-content="如果您勾上此选项，将会实时公开您账户的：投标总额、已收回总额、待收回总额。">公开我的投标资金情况&nbsp;<input type="checkbox" name="open_tender" value="1" {if $var.open_tender==1 } checked="checked"{/if}/></span>
+					</div>
+				</div>
+				
+				<div class="fb_leftb">
+					<div class="fb_part" style="width:150px;">
+					<span id="infoss1" data-content="如果您勾上此选项，将会实时公开您账户的：最低信用额度、最高信用额度。">公开我的信用额度情况 &nbsp;<input type="checkbox" name="open_credit" value="1" checked="checked" disabled="disabled"/></span>	
+					</div>
+				</div>	
+			
+			</div>
+			
+		</div>	
+		
+		
+		
+		
+		
+		
+		
+	<ul class="list-tab">
+		<li><a class="hot">投标的详细说明</a></li>
+	</ul>	
+		
+	<div class="wrap950">
+		<div class="content">
+			<div class="module_border">
+				<div class="w">标题：</div>
+				<div style="padding-top:6px;">
+					<input type="text" name="name" value="{$var.name}" size="50" id="infotitle" data-content="填写借款的标题，写好一点能借的几率也大一点" style="border:1px solid #ccc; height:23px;" /> 
+				</div>
+			</div>
+			<script charset="utf-8" src="/plugins/editor/kindeditor/kindeditor-min.js"></script>
+			<script charset="utf-8" src="/plugins/editor/kindeditor/lang/zh_CN.js"></script>
+			<div class="module_border">
+				<div class="w">信息：</div>
+				<div >
+					<textarea name="content" id="content" style="width:700px;height:200px;visibility:hidden;" >
+					{if $var.content!=""}{$var.content}{else}<P>借款详情： </P>
+					<P>站内关联用户名：</P>
+					<P>还款保障：</P>
+					{/if}</textarea>
+					
+				</div>
+			</div>
+			<div class="module_border">
+					<div class="w">验证码：</div>
+					<div style="padding-top:6px; width:300px; float:left">
+					<input name="valicode" type="text" size="11" style=" float:left; border:1px solid #ccc; height:23px;"  maxlength="4"  tabindex="3" value="" />  
+					<img style="cursor:pointer; float:left; height:23px; " src="/plugins/index.php?q=imgcode" alt="点击刷新" onClick="this.src='/plugins/index.php?q=imgcode&t=' + Math.random();"   />
+					<input type="hidden" value="{$var.id}" name="id" />
+					{if $auditresult.result===true }
+					<input type="submit" value="确认提交" class="fb_btncss" />
+					{/if}
+					</div>
+			</div>
+			
+			
+			
+		</div>
+	
+	
+</div>
+		
+		
+		
+			
+
+		
+	
+	
+</form>	
+	
+{/article}	
+	
+{/if}	
+</div>
+	
+<script type="text/javascript">
+
+	var biaotype_min_amount = {$biaotype_info.min_amount};
+	var biaotype_max_amount = {$biaotype_info.max_amount};
+	var biaotype_min_interest_rate = {$biaotype_info.min_interest_rate} * 100;
+	var biaotype_max_interest_rate = {$biaotype_info.max_interest_rate} * 100;
+								
+{article module="borrow" function="GetUserLog" user_id=0 var="acc"}
+
+	var total_zi = ({$acc.total|default:0}-{$acc.no_use_money|default:0}-{$acc.wait_payment|default:0}-{$acc.borrowvouch_amount_useReal|default:0})*0.95;
+        var jinMoney = {$acc.jinAmount|default:0};
+       //var total_zi = ({$acc.total|default:0}-{$acc.no_use_money|default:0}-{$acc.wait_payment|default:0})*0.95;
+
+	var video_status = {$_G.user_result.video_status|default:0};
+	var scene_status = {$_G.user_result.scene_status|default:0};
+	var phone_status = {$_G.user_result.phone_status|default:0};
+        var vip_status = {$_G.user_result.vip_status|default:0};
+	var crmoney = {$acc.credit|default:0};
+	var cr = {$_G.user_result.credit|default:0};
+	var real_s = {$_G.user_result.real_status|default:0};
+	var danbao_money = {$acc.borrow_vouch|default:0};
+	var sxf = {$_G.system.con_borrow_fee*100};
+	{if $magic.request.type=="vouch" || $var.is_vouch==1 || $vouchbiao}
+	var danbao = 1;
+	var max_account = {$acc.borrow_vouch_use};
+	{else}
+	var danbao = 0;
+	var max_account = {$acc.credit_use};
+	{/if}
+{/article}
+
+var max_fax ={$_G.system.con_max_fee|default:20};
+var max_apr ={$_G.system.con_borrow_apr|default:22.18};
+
+{if $fastbiao} var maxdai = 1000000000; var max_account=1000000000; var fastbiao = 1;{else} var maxdai=5000; var fastbiao = 0;{/if}
+
+{if $miaobiao} var miaobiao_is = 1;{else} var miaobiao_is = 0;{/if}
+
+{if $jinbiao} var jinbiao = 1;{else} var jinbiao = 0;{/if}
+
+{literal}
+ 
+ 
+			var editor;
+			KindEditor.ready(function(K) {
+				editor = K.create('textarea[name="content"]', {
+					resizeType : 1,
+					allowPreviewEmoticons : false,
+					allowImageUpload : true,
+					items : [
+						'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+						'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+						'insertunorderedlist', '|', 'emoticons', 'image', 'link']
+				});
+			});
+	 
+								
+			jQuery('#changetoDay').click(function(){
+                var isday=jQuery('#isday').val();
+                if(isday==0){
+                    jQuery('#isday').val('1');
+                     
+                    jQuery('#time_limit_day').show();
+                    jQuery('#time_limit').hide();
+                    jQuery('#style').val(2);
+                }else{
+                    jQuery('#isday').val('0');
+                     
+                    jQuery('#time_limit_day').hide();
+                    jQuery('#time_limit').show();
+    
+                    
+                }    
+                jQuery('#borrow_day').toggle('slow');								
+			});            
+            
+            jQuery('#style').change(function(){
+            	 var isday=jQuery('#isday').val();
+               	if(isday==1){
+                	jQuery('#style').val(2);
+                    alert('天标还款方式只能是到期全额还款！');
+                }
+            });
+ 
+
+
+
+
+function checkDXB(){
+    var frm = document.forms['form1'];
+    if(frm.elements['isDXB'].checked){
+        frm.elements['pwd'].disabled=false;
+    }else{
+        frm.elements['pwd'].disabled=true;
+        frm.elements['pwd'].value="";
+    }
+}
+
+function check_form(){
+   
+	 var frm = document.forms['form1'];
+	 var account = frm.elements['account'].value;
+	 var title = frm.elements['name'].value;
+	 var style = frm.elements['style'].value;
+	 var content = frm.elements['content'].value;
+	 var time_limit = frm.elements['time_limit'].value;
+	 var award = get_award_value();
+	 var part_account = frm.elements['part_account'].value;
+	 var funds = frm.elements['funds'].value;
+	 var apr = frm.elements['apr'].value;
+	 var valicode = frm.elements['valicode'].value;
+	 var most_account = frm.elements['most_account'].value;
+	 var use = frm.elements['most_account'].value;
+	 var lowest_account = frm.elements['lowest_account'].value;
+	
+	 var errorMsg = '';
+	  if (account.length == 0 ) {
+		errorMsg += '- 总金额不能为空' + '\n';
+	  }
+	  
+	  
+	  
+	  if (apr.length == 0 ) {
+		errorMsg += '- 利率不能为空' + '\n';
+	  }
+	  alert(apr);
+	  if(apr < biaotype_min_interest_rate){
+		  errorMsg += '利率低于最小利率' + biaotype_min_interest_rate + '%\n';
+	  }	
+	  
+	  if(apr > biaotype_max_interest_rate){
+		  errorMsg += '利率大于最小利率' + biaotype_max_interest_rate + '%\n';
+	  }	
+		
+	  
+	  if (award==1 && (part_account=="" || part_account<5 || part_account>account*0.02)) {
+		errorMsg += '- 固定金额分摊奖励不能低于5元,不能高于总标的金额的2%' + '\n';
+	  }
+	  if (award==2 && (funds =="" || funds<0.1 || funds>6)) {
+		errorMsg += '- 投标金额比例奖励0.1%~6% ' + '\n';
+	  }
+	  if (most_account!=0 && parseInt(most_account)<parseInt(lowest_account)){
+		  errorMsg += '- 投标最大金额不能小于最小金额' + '\n';
+	  }
+	  if (title.length == 0 ) {
+		errorMsg += '- 标题不能为空' + '\n';
+	  }
+	  if (content.length == 0 ) {
+		errorMsg += '- 内容不能为空' + '\n';
+	  }
+	  if (valicode.length == 0 ) {
+		errorMsg += '- 验证码不能为空' + '\n';
+	  }
+
+	
+	var awa = "";
+	for(var i=0;i<frm.award.length;i++){   
+	   if(frm.award[i].checked){
+		 awa =  frm.award[i].value;
+		}
+	} 
+
+
+	if(awa==1){
+		if (part_account==""){
+			errorMsg += '- 固定分摊比例奖励不能为空 ' + '\n';
+		}
+	}
+	if(awa==2){
+		if (funds==""){
+			errorMsg += '- 投标金额比例奖励不能为空 ' + '\n';
+		}
+	}
+	
+	  if (errorMsg.length > 0){
+		alert(errorMsg); return false;
+	  } else{  
+		return true;
+	  }
+
+}
+function get_award_value()
+{
+    var form1 = document.forms['form1'];
+    
+    for (i=0; i<form1.award.length; i++)    {
+        if (form1.award[i].checked)
+        {
+           return form1.award[i].value;
+        }
+    }
+}
+function change_j(type){
+	var frm = document.forms['form1'];
+	if (type==0){
+                jQuery("#part_account").attr("disabled",true); 
+		jQuery("#funds").attr("disabled",true); 
+                jQuery("#is_false").attr("disabled",true); 
+                
+                //frm.elements['part_account'].disabled = "disabled";
+		//frm.elements['funds'].disabled = "disabled";
+		//frm.elements['is_false'].disabled = "disabled";
+	}else if (type==1){
+                jQuery("#part_account").attr("disabled",false); 
+		jQuery("#funds").attr("disabled",true); 
+                jQuery("#is_false").attr("disabled",false); 
+                
+		//frm.elements['part_account'].disabled = "";
+		//frm.elements['funds'].disabled = "disabled";
+		//frm.elements['is_false'].disabled = "";
+	}else if (type==2){
+            
+                jQuery("#part_account").attr("disabled",true); 
+		jQuery("#funds").attr("disabled",false); 
+                jQuery("#is_false").attr("disabled",false); 
+                
+		//frm.elements['part_account'].disabled = "disabled";
+		//frm.elements['funds'].disabled = "";
+		//frm.elements['is_false'].disabled = "";
+	}
+}	
+
+ 
+</script>
+
+{/literal}
+
+
+
+<script src="/themes/js/tooltip.js"></script>
+<script src="/themes/js/popover.js"></script>
+<script src="/themes/js/alert.js"></script>
+
+
+
+
+
+{literal}
+<script language="javascript">
+function setTab(name,cursel,n){ 
+for(i=1;i<=n;i++){ 
+var menu=document.getElementById(name+i); 
+var con=document.getElementById("con_"+name+"_"+i); 
+menu.className=i==cursel?"hot":""; 
+con.style.display=i==cursel?"block":"none"; 
+} 
+}
+
+</script>
+{/literal}	
+	
+	
+{include file="footer.html"}

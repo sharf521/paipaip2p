@@ -1,0 +1,36 @@
+{include file="header.html"}
+<link href="{$tempdir}/media/css/modal.css" rel="stylesheet" type="text/css" /> 
+<link href="{$tempdir}/media/css/about.css" rel="stylesheet" type="text/css" /> 
+<div id="main" class="clearfix">
+<div class="cor_divtop">
+<div id="left" class="left">
+<div class="NavLinkHeader"><span>创业投资</span></div>
+<div class="NavLinkContent">
+{loop module="article" function="GetSiteList" var="var" epage="20"  pid="76"  keywords="request" status=1 }
+					<div id="item1" class="page" onClick="showsubmenu( 1, 8)"><span class="txtspan"><a href="/{$var.nid}/index.html">{$var.name}</a></span></div>
+					<div style="display: none" id="open_item1"></div>
+{/loop}
+
+</div>
+<div class="navlinkline"></div>
+
+
+<script defer>onInit();</script>
+</div>
+<div id="right" class="right">
+
+<div >
+<div id="MainBanner">
+<div style="border-bottom:2px solid #c51e0b;" class="box_name">
+				<a href="#" class="btn-action" style="text-decoration:none;color:#fff;"  >{$_G.site_result.name} </a>
+		</div>
+<div style="clear: both"></div>
+<div id="myTabContent" class="content">
+			<div class="info" id="lxjs">		
+				<!--内容开始-->
+				{$_G.site_result.content}
+				<!--内容结束-->			
+			
+</div></div></div></div></div></div>
+
+{include file="footer.html"}

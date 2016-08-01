@@ -1,0 +1,278 @@
+{include file="header.html"}
+<div id="kinMaxShow">
+    {loop module="scrollpic" function="Getlist" areaid="$_G.areaid" var="var"  limit="all" type_id="1"}
+        <div>
+        {if $var.url!=""}<a href="{$var.url}"><img src="{$var.pic}" alt=""></a>{else} <img src="{$var.pic}" alt="">{/if}
+        <p class="title">{$var.summary}</p>
+        </div>
+    {/loop}
+</div>
+{literal}
+<script language="javascript" src="/themes/js/jquery.kinMaxShow-1.1.src.js"></script>        
+<script type="text/javascript">
+$(function(){
+    $("#kinMaxShow").kinMaxShow({
+    //设置焦点图高度(单位:像素) 必须设置 否则使用默认值 500    
+        height:400,
+        intervalTime:3,					
+    //设置焦点图 按钮效果
+        button:{
+        //设置焦点图切换方式为mouseover 鼠标经过按钮切换图片, 默认为 click， 可选 click[鼠标点击切换]或mouseover[鼠标滑过切换]        
+            switchEvent:'click',
+        //设置显示 索引数字  true 显示， 默认为 false 不显示            
+            showIndex:true,
+            //按钮常规下 样式设置 ，css写法，类似jQuery的 $('xxx').css({key:value,……})中css写法。            
+            //【友情提示：可以设置透明度哦 不用区分浏览器 统一为 opacity，CSS3属性也支持哦 如：设置按钮圆角、投影等，只不过IE8及以下不支持】            
+            normal:{width:'18px',height:'18px',lineheight:'18px',right:'500px',bottom:'5px',fontSize:'12px',opacity:0.8,background:"#666666",border:"1px solid #999999",color:"#CCCCCC",marginRight:'6px'},
+            //当前焦点图按钮样式 设置，写法同上            
+            focus:{background:"#dda531",border:"1px solid #dda531",color:"#ffffff"}
+            }			
+    });
+});
+</script>
+{/literal}	
+
+<div class="xin-main">
+	<div class="banner-xia">
+         <div class="zuo">
+               <div>
+                     <img src="{$tpldir}/img/img/xin-qian_22.png" />
+                     <h1 class="h01">收益稳健</h1>
+                     <h1 class="h02">年化净收益12%-15%，最高42倍活期存款收益</h1>
+               </div>
+               <div class="d002">
+                     <img src="{$tpldir}/img/img/xin-qian_24.png" />
+                     <h1 class="h01">灵活投资</h1>
+                     <h1 class="h02">多种投资标型，不同期限，不同还款方式</h1>
+               </div>
+               <div>
+                     <img src="{$tpldir}/img/img/xin-qian_26.png" />
+                     <h1 class="h01">本金保障</h1>
+                     <h1 class="h02">风险保证金保驾护航，风控审核保障收益</h1>
+               </div>
+         </div>
+         <div class="you">
+                {article module="borrow" function="ProfitTotal" var="var"}
+                <h1 class="h001">为投资人赚取的收益：</h1>
+                <h1>￥{$var.num_format}</h1>
+                {/article}
+                {article module="borrow" function="StatisticsTotal" var="var"}
+                <h1 class="h001">投资已在信乾金融完成：</h1>
+                <h1>￥{$var.num_format}</h1>
+                {/article}
+         </div>
+   </div>
+   <div class="zhi-tou">
+        <div class="zhitou-l01">
+         <span class="s01">直投列表</span>
+         <a class="s02" href="invest/index.html">查看更多  》</a>
+        </div>
+        <table class="zhi-tou-liebiao" width="998"  vspace="0"  cellpadding="0" cellspacing="0">
+        <tr  class="l02" style=" text-align:center;">
+             <th>借款项目</th>
+             <th>借款金额</th>
+             <th>年利率</th>
+             <th>借款期限</th>
+             <th>完成进度</th>
+             <th>投标状态</th>
+             
+                                   
+        </tr>{loop module="borrow" function="GetlistIndex"  var="var"  site_id="0"  keywords="request" type="tendering"  use="request" account1="request" account2 = "request" limittime="request" award="request" province="request" city="request" epage="request" order="$magic.request.order"   areaid="$_G.areaid" province="$_G.province" city="$_G.city" limit="4" }
+        
+        <tr>
+          <td class="biao-001"><!-- 标种 -->
+              <a href="{$var.biao_type_desc_url}" target="_blank"><img src="{$tpldir}/images/{$var.biao_type}.gif" border="0" rel="tooltip" class="float_left" data-original-title="{$var.biao_type_desc}"/></a>
+              {if $var.isday==1}<a href="/get_rule/a259.html" target="_blank" rel="tooltip" data-original-title="天标是按天借款标"><img src="{$tpldir}/images/day.jpg"   border="0" class="float_left"/></a>{/if}
+              {if $var.flag==1} <img src="{$tpldir}/images/tuijian.gif" align="absmiddle"  border="0"/>{/if}
+              {if $var.ishappy==1}<a href="{$_G.system.con_happy_url}" target="_blank"> <img src="{$tpldir}/images/happy.gif" align="absmiddle"  border="0" data-original-title="开心模式下流标也有利息" class="float_left"/></a>{/if}
+              {if $var.award==1 || $var.award==2 }<a href=""><img src="{$tpldir}/images/jiangli.gif"  border="0"   rel="tooltip" data-original-title="投资该借款标除利息外有额外的奖励" class="float_left"/></a>{/if}        					
+              {if $var.insurance ==1}<a href="/gongju/a291.html" target="_blank"><img src="{$tpldir}/images/baozhang.gif"  border="0"   rel="tooltip" data-original-title="借款人己支付16%的本金保障" class="float_left"/></a>
+              {elseif $var.insurance==2}<a href="/gongju/a291.html" target="_blank"><img src="{$tpldir}/images/baozhang.gif"  border="0"   rel="tooltip" data-original-title="借款人己支付31%的本金保障" class="float_left"/></a>{/if}
+              {if $var.pwd != ""}<a href=""><img src="{$tpldir}/images/lock.gif"  border="0"   rel="tooltip" data-original-title="定向标是投标的时候需要定向密码的借款标" class="float_left" /></a>{/if}
+          <span class="s01"><a href="/invest/a{$var.id}.html">{$var.name}</a></span>
+          </td>
+          <td class="biao-001">￥<strong style="color:#9b0b0b">{$var.account_format}</strong></td>
+          <td class="biao-002">{$var.apr}%</td>
+          <td class="biao-002">
+              {if $var.isday==1 } 
+              <strong>{$var.time_limit_day}</strong>天
+              {else}
+              <strong>{$var.time_limit}</strong>个月 
+              {/if}
+          </td>
+          <td class="biao-002">
+          <div class="ui-progressbar-mid ui-progressbar-mid-{$var.scaleint}"><em>{$var.scale}%</em></div>
+          </td>
+          <td class="biao-002">
+              <div class="jie-guo">
+              {if $var.status==3}
+              {if $var.repayment_account == $var.repayment_yesaccount  }
+              <a href="/invest/a{$var.id}.html">已还款</a>
+              {else}
+              <a href="/invest/a{$var.id}.html">还款中</a>{/if}
+              {elseif $var.status==5}
+              用户取消
+              {elseif $var.status==4}
+              复审未通过
+              {else}
+              {if $var.biao_type=='circulation'}
+              <a href="/invest/a{$var.id}.html">立即购买</a>
+              {elseif $var.biao_type=='vouch' || $var.biao_type=='restructuring'}
+              {if $var.vouch_scale <100}
+              <a href="/invest/a{$var.id}.html">立即投标</a>
+              {else}
+              {if $var.account>$var.account_yes}
+              <a href="/invest/a{$var.id}.html">立即投标</a>
+              {else}
+              <a href="/invest/a{$var.id}.html">等待复审</a>
+              {/if}
+              {/if}
+              {else}
+              {if $var.account>$var.account_yes}
+              <a href="/invest/a{$var.id}.html">立即投标</a>
+              {else}
+              <a href="/invest/a{$var.id}.html">等待复审</a>
+              {/if}
+              {/if}
+              {/if}
+              </div>
+          </td>
+        </tr>
+        {/loop}
+      </table>
+	</div>
+	<div class="gong-si">
+         <div class="zuo">
+               <div class="biao_ti">
+                   <li class="checktt">网站公告</li>
+                   <li>公司动态</li>
+                   <li>网站规则</li> 
+                   <li class="A04"><a href="/gonggao/index.html">查看更多  》</a></li>
+               </div>
+               <div class="dynamic">
+               {list module="article" function="GetList" var="loop" epage="5"  site_id="22"  keywords="request" status=1 areaid="$_G.areaid"}
+                   {foreach from="$loop.list" item="var" key="key"}
+                   {if $key==0}
+                   <div class="zhong-jian">
+                        <div class="tu001">
+                            {if $var.litpic != ""}
+                            <a href="/gonggao/a{$var.id}.html"><img src="{$var.litpic}" /></a>
+                            {else}
+                            <a href="/gonggao/a{$var.id}.html"><img src="{$tpldir}/img/img/nopicture.png" /></a>
+                            {/if}
+                        </div>
+                        <div class="jie-shao">
+                            <a class="a001" href="/gonggao/a{$var.id}.html">{$var.name}</a>
+                            <a class="a002" href="/gonggao/a{$var.id}.html">{$var.summary}</a>
+                        </div>
+                   </div>
+                   <ul>
+                   {else}
+                       <li><a href="/gonggao/a{$var.id}.html">{$var.name}</a><span>{$var.publish}</span></li>
+                   {/if}
+                   {/foreach}
+                   </ul>
+               {/list}
+               </div>
+               <div class="dynamic hide">
+               {list module="article" function="GetList" var="loop" epage="5"  site_id="72"  keywords="request" status=1 areaid="$_G.areaid"}
+                   {foreach from="$loop.list" item="var" key="key"}
+                   {if $key==0}
+                   <div class="zhong-jian">
+                        <div class="tu001">
+                            {if $var.litpic != ""}
+                            <a href="/aboutus/a{$var.id}.html"><img src="{$var.litpic}" /></a>
+                            {else}
+                            <a href="/aboutus/a{$var.id}.html"><img src="{$tpldir}/img/img/nopicture.png" /></a>
+                            {/if}
+                        </div>
+                        <div class="jie-shao">
+                            <a class="a001" href="/aboutus/a{$var.id}.html">{$var.name}</a>
+                            <a class="a002" href="/aboutus/a{$var.id}.html">{$var.summary}</a>
+                        </div>
+                   </div>
+                   <ul>
+                   {else}
+                       <li><a href="/aboutus/a{$var.id}.html">{$var.name}</a><span>{$var.publish}</span></li>
+                   {/if}
+                   {/foreach}
+                   </ul>
+               {/list}
+               </div>
+               <div class="dynamic hide">
+               {list module="article" function="GetList" var="loop" epage="5"  site_id="71"  keywords="request" status=1 areaid="$_G.areaid"}
+                   {foreach from="$loop.list" item="var" key="key"}
+                   {if $key==0}
+                   <div class="zhong-jian">
+                        <div class="tu001">
+                            {if $var.litpic != ""}
+                            <a href="/get_rule/a{$var.id}.html"><img src="{$var.litpic}" /></a>
+                            {else}
+                            <a href="/get_rule/a{$var.id}.html"><img src="{$tpldir}/img/img/nopicture.png" /></a>
+                        {/if}
+                        </div>
+                        <div class="jie-shao">
+                            <a class="a001" href="/get_rule/a{$var.id}.html">{$var.name}</a>
+                            <a class="a002" href="/get_rule/a{$var.id}.html">{$var.summary}</a>
+                        </div>
+                   </div>
+                   <ul>
+                   {else}
+                       <li><a href="/get_rule/a{$var.id}.html">{$var.name}</a><span>{$var.publish}</span></li>
+                   {/if}
+                   {/foreach}
+                   </ul>
+               {/list}
+               </div>
+        </div>
+        {literal}
+        <script language="javascript">biao_ti();</script>   
+        {/literal}
+        <div class="you">
+               <div class="biao-ti">
+                     <span>新手专区</span>
+                     <a href="new/index.html">查看更多  》</a>
+               </div>
+               <p>
+                  <span>新客专享，</span><a>50</a><span>元起投，工作日</span>
+                  <a>10:00、13:30、16:00</a><span>更新，周末随机
+新手标每位用户投资金额无限制，用户首次投资成功之后7天内均可在新手区投资，</span>
+                  <a>7天后不能参与新手标投标</a>
+               </p>
+               <a class="a01" href="new/index.html"><img  src="{$tpldir}/img/img/li_07.png"/></a>
+        </div>    
+	</div>
+	<div class="mei-ti">
+          <div class="biao-ti">
+                <span>媒体报道</span>
+                <a href="metibaodao/index.html">查看更多  》</a>
+          </div>
+          <div class="xia">
+          {list module="article" function="GetList" var="loop" epage="4"  site_id="73"  keywords="request" status=1 areaid="$_G.areaid"}
+              {foreach from="$loop.list" item="var"}
+                  <div class="li">
+                      <div class="tu01">
+                      {if $var.litpic != ""}
+                      <a href="metibaodao/a{$var.id}.html"><img src="{$var.litpic}" /></a>
+                      {else}
+                      <a href="metibaodao/a{$var.id}.html"><img src="{$tpldir}/img/img/picture.png" /></a>
+                      {/if}
+                      </div>
+                      <p><a href="metibaodao/a{$var.id}.html">{$var.summary}</a></p>
+                  </div>
+              {/foreach}
+           {/list}
+          </div>
+    </div>
+</div>
+<div class="hezuo-huobanbox">
+    <div class="hezuo-huoban">
+          <h1>合作伙伴</h1>
+          <div class="qi-ye">
+          {loop module="links" function="Getlist" subsite=$_G.areaid var="var"  limit="30" type="1"}
+          <a href="{$var.url}" target="_blank"><img src="/{$var.logoimg}" height="40"></a>
+          {/loop}
+          </div>
+    </div>
+</div>
+{include file="footer.html"}

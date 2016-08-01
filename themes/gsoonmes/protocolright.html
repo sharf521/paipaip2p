@@ -1,0 +1,18 @@
+ {include file="header.html"}
+{if $_G.user_id==""}
+	<script>alert("你还没有登录，请先登录再查看");location.href='/index.php?user';</script>
+{/if}
+
+{article module="borrow" function="getpactrightdate" serial_id="$magic.request.serial_id" var="pact"}
+     {if $pact.checkStatus < 1 }
+    	<div style="text-align:center; padding:50px; height:500px; font-size:16px">对不起，您不是该债权的所属人，无权查看该协议书，谢谢!</div>
+     {else}
+     	{$pact.string}
+     {/if}	
+{/article}
+
+
+
+
+
+{include file="footer.html"}

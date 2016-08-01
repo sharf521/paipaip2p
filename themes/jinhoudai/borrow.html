@@ -1,0 +1,311 @@
+{include file="header.html"}
+	
+	
+	
+<div class="container">
+
+    
+{article module="borrow" function="get_available_biao_type" user_id=0 var="biaotype_list" allow_biaotype="$_G.site_biaotype"}
+{/article}
+{article module="borrow" function="get_biao_type_url_list" user_id=0 var="biao_type_url_list" }
+{/article}
+    
+<div class="maincontent">
+    <ul class="titlebox" style=" font-weight:bold">
+        
+        <li class="title"style=" font-family:'微软雅黑'">我要借款——发布借款</li>
+        <li class="title1"></li>
+    </ul>
+    <ul class="kind">
+        <span>产品选择：</span>
+        {if in_array("jin", $biaotype_list) }        <li class="checktt"><a>净值标</a></li>{/if}
+        {if in_array("credit", $biaotype_list) }     <li ><a>信用标</a></li>{/if}
+        {if in_array("zhouzhuan", $biaotype_list) }  <li ><a>周转标</a></li>{/if}
+        {if in_array("love", $biaotype_list) }       <li ><a>爱心标</a></li>{/if}
+        {if in_array("miao", $biaotype_list) }       <li ><a>秒还标</a></li>{/if}
+        {if in_array("pledge", $biaotype_list) }     <li ><a>质押标</a></li>{/if}
+        {if in_array("fast", $biaotype_list) }       <li ><a>抵押标</a></li>{/if}
+        {if in_array("circulation", $biaotype_list) }<li ><a>流转标</a></li>{/if}
+        {if in_array("safety", $biaotype_list) }     <li ><a>保险标</a></li>{/if}
+    </ul>
+    {if in_array("jin", $biaotype_list) }
+    <div class="introduction">
+          <p>　　净值借款标显示标记"净"，允许发布的最大金额为净资产，净资产负数、 0 、 500 元以下金额不能发标。他是黄牛标的初始形态，净值借款标的借款管理费为：每个月0.5%。<br />　　如果客户净资产大于借款金额，网站允许发布净值借款标用于临时周转。可以循环借款，但用户提现将受到限制。他是一种相对安全系数很高的借款标，因此利率方面可能比较低，适合资金黄牛，用户可以借助此标放大自己的投资杠杆。<br />　　净值借款标未补偿本金前借款人还款，本息按正常标准还款，另外逾期每天按千分之八收取罚息，投标人和网站各收取千分之四。净值借款标补偿本金后借款人还款，本息按正常标准还款，另外逾期每天按千分之八收取罚息，本金利息及罚息全部为网站收取。净值借款标逾期后第30天由网站风险金先行补偿本金还款。</p>
+          <li><a class="jin" href="/publish/index.html?type=jin">立即发标</a></li>
+    </div>{/if}
+    {if in_array("credit", $biaotype_list) }
+    <div class="introduction hide">
+          <p>　　信用借款标显示"信"字标记，是一种免抵押、免担保、纯信用，最高授信为10万的小额个人信用贷款标，主要面向公务员、医生或教师等机关企事业单位的在编人员。<br />　　如借款人到期还款出现困难，逾期第30天由网站风险金补偿本金还款，债权转让为网站所有。<br />　　信用借款标未补偿本金前借款人还款，本息按正常标准还款，另外逾期每天按千分之八收取罚息，投标人和网站各收取千分之四。<br />　　信用借款标补偿本金后借款人还款，本息按正常标准还款，另外逾期每天按千分之八收取罚息，本金利息及罚息全部为网站收取。信用借款标逾期30后天由网站风险金先行补偿本金还款。</p>
+          <li><a class="credit" href="/publish/index.html?type=credit">立即发标</a></li>
+    </div>{/if}
+    {if in_array("zhouzhuan", $biaotype_list) }
+    <div class="introduction hide">
+          <p>　　非提现标是信用标的一种，是网站根据借款人账户信用额度，在额度内发布借款标但借款不能提现，主要面向需要站内周转资金的网站用户。<br />　　如借款人到期还款出现困难，逾期第30天由网站风险金补偿本金还款，债权转让为网站所有。<br />　　信用借款标未补偿本金前借款人还款，本息按正常标准还款，另外逾期每天按千分之八收取罚息，投标人和网站各收取千分之四。<br />　　信用借款标补偿本金后借款人还款，本息按正常标准还款，另外逾期每天按千分之八收取罚息，本金利息及罚息全部为网站收取。信用借款标逾期30后天由网站风险金先行补偿本金还款。</p>
+          <li><a class="zhouzhuan" href="/publish/index.html?type=zhouzhuan">立即发标</a></li>
+    </div>{/if}
+    {if in_array("love", $biaotype_list) }
+    <div class="introduction hide">
+          <p>　　合作的公益平台发标，发标后显示"爱"标记；投资人不以盈利为主要目的进行投标，帮助弱势群体。<br />　　爱心公益标最大借款金额为5000元，借款年利率最大为3%，借款人管理费1%/年或/次，投资人利息管理费无，网站不保障所有投资人（包括VIP） 本金。<br />　　爱心公益标不可参加债权转让，不参加净值额度，不能债务重组。</p>
+          <li><a class="love" href="/publish/index.html?type=love">立即发标</a></li>
+    </div>{/if}
+    {if in_array("miao", $biaotype_list) }
+    <div class="introduction hide">
+          <p>　　秒还标显示标记"秒"，借款者发布秒还标，利息将被冻结，投标满后，系统自动审核通过。考虑到秒还标，全部是系统自动处理，请网站会员谨慎发布秒还标。</p>
+          <li><a class="miao" href="/publish/index.html?type=miao">立即发标</a></li>
+    </div>{/if}
+    {if in_array("pledge", $biaotype_list) }
+    <div class="introduction hide">
+          <p>　　质押标显示标记"质"，是网站经过线下严格核查借款人资产负债，借款人与网站线下签署质押担保协议，借款人以其移交由网站所保管的财产作为对债权的担保，借款人发布质押标，确保风险控制在合理范围内<br />　　如借款人出现逾期后第3天，由网站垫付本息还款，债权转让为网站所有。质押标逾期后3天之内，网站未垫付本息前借款人还款，本息按正常标准还款，另外逾期每天按千分之八收取罚息，投标人和网站各千分之四。<br />　　质押标逾期后第3天，网站垫付本息后借款人还款，本息按正常标准还款，另外逾期每天按千分之八收取罚息，本金利息及罚息全部归网站所有。</p>
+          <li><a class="pledge" href="/publish/index.html?type=pledge">立即发标</a></li>
+    </div>{/if}
+    {if in_array("fast", $biaotype_list) }
+    <div class="introduction hide">
+          <p>　　抵押标显示标记"快"，是网站经过线下严格核查借款人资产负债，借款人与网站线下签署抵押担保协议，借款人以其抵押财产作为对债权的担保，借款人发布抵押标，确保风险控制在合理范围内。<br />　　如借款人出现逾期后第3天，由网站垫付本息还款，债权转让为网站所有。抵押标逾期后3天之内，网站未垫付本息前借款人还款，本息按正常标准还款，另外逾期每天按千分之八收取罚息，投标人和网站各千分之四。<br />　　抵押标逾期后第3天，网站垫付本息后借款人还款，本息按正常标准还款，另外每天按千分之八收取罚息，本金利息及罚息全部归网站所有。</p>
+          <li><a class="fast" href="/publish/index.html?type=fast">立即发标</a></li>
+    </div>{/if}
+    {if in_array("circulation", $biaotype_list) }
+    <div class="introduction hide">
+          <p>　　发标人以线下债权为担保发布流转担保贷，按份出售，投资人认购债权后即时生效，无需满标，投资人拥有所购买债权的一切权利，发标人到期回购后，可重新发售债权，再次流转。<br />　　流转担保贷不存在逾期，网站对借款人进行担保，到期后网站对投资人进行本息垫付；<br />　　
+        1、项目借款金额最小为100万； <br />　　
+        2、认购份额最小为100元/份，认购期限3个月起，并有相应的认购档期，认购档期由发布者确定； <br />　　
+        3、认购的期限不同，利率不同，通常认购期限越长，利率会越高； <br />　　
+        4、认购到期后投资者可以随时回购（回款）； <br />　　
+        5、投资者在认购流转贷时，可以选择是否自动续购； <br />　　
+        6、流转贷的一个月=30天； <br />　　
+        7、流转贷认购1个月以上，可提前回购；提前回购时，计算的利率为起始利率的50%，认购时间每30天计算为1个月，不满30天不予计算。 <br />　　
+        8、流转贷不收取利息管理费。</p>
+          <li><a class="circulation" href="/publish/index.html?st=1&type=circulation">立即发标</a></li>
+    </div>{/if}
+    {if in_array("safety", $biaotype_list) }
+    <div class="introduction hide">
+          <p>　　发布保险标。</p>
+          <li><a class="safety" href="/publish/index.html?type=safety">立即发标</a></li>
+    </div>{/if}
+{literal}
+<script language="javascript">kind();</script>
+{/literal}
+
+    <ul class="titlebox" style=" margin:10px 0; font-weight:bold;">
+        
+        <li class="title" style=" font-family:'微软雅黑'">我要借款——申请步骤</li>
+        <li class="title1"></li>
+    </ul>
+    <div class="steps">
+        <ul>
+            <li>
+                <span>1</span><br />
+                <a href="/?user&q=action/reg">注册会员</a>
+            </li>
+        </ul>
+        <img src="{$tpldir}/img/jiantou_10.png" />
+        <ul>
+            <li>
+                <span>2</span><br />
+                <a href="/index.php?user&q=code/userinfo">填写资料</a>
+            </li>
+        </ul>
+        <img src="{$tpldir}/img/jiantou_10.png" />
+        <ul>
+            <li>
+                <span>3</span><br />
+                <a href="/index.php?user&q=code/user/realname">实名认证</a>
+            </li>
+        </ul>
+        <img src="{$tpldir}/img/jiantou_10.png" />
+        <ul>
+            <li class="four">
+                <span>4</span><br />
+                <a href="/vip/index.html">VIP认证</a>
+            </li>
+        </ul>
+        <img src="{$tpldir}/img/jiantou_10.png" />
+        <ul>
+            <li>
+                <span>5</span><br />
+                <a href="/index.php?user&q=code/attestation/one">上传资料</a>
+            </li>
+        </ul>
+        <img src="{$tpldir}/img/jiantou_10.png" />
+        <ul>
+            <li>
+                <span>6</span><br />
+                <a href="/index.php?user&q=code/user/video_status">视频认证</a>
+            </li>
+        </ul>
+        <img src="{$tpldir}/img/jiantou_10.png" />
+        <ul>
+            <li>
+                <span>7</span><br />
+                <a href="/index.php?user&q=code/borrow/limitapp">申请额度</a>
+            </li>
+        </ul>
+        <img src="{$tpldir}/img/jiantou_10.png" />
+        <ul>
+            <li>
+                <span>8</span><br />
+                <a href="/borrow/index.html">发布借款</a>
+            </li>
+        </ul>
+    </div>
+</div> 
+    <!--<div class="borr_title">>>您需要完成以下步骤才能成功借款</div>
+    <ul class="borr_stepbox">
+        <li class="checkit">1)注册会员</li>
+        <li >=>2)填写资料</li>
+        <li>=>3)实名认证</li>
+        <li>=>4)VIP认证</li>
+        <li >=>5)上传资料</li>
+        <li>=>6)视频认证</li>
+        <li>=>7)申请额度</li>
+        <li >=>8)发布借款</li>
+
+    </ul>
+    
+    <div class="jkbdivbox">
+    
+        <div>
+            <b >注册操作步骤</b><br />
+            1、进入网站首页，点击右上角“注册”按钮。<br />
+            2、此时您已进入注册页面，根据提示信息，填写您的用户名、密码、注册邮箱、真实姓名，点击 "立即注册”即可完成。<br />
+            3、注册成功后，系统会发送一封账户激活邮件到您的注册邮箱，进入注册邮箱，点击激活链接，激活账户。<br />
+            <b >注册时，一直没有收到确认电子邮件怎么办？</b><br />
+            1、请先到您的垃圾邮件文件夹里面寻找确认邮件<br />
+        2、个别邮箱会误屏蔽网站确认邮件。如果你也碰到类似问题，请尝试使用由另一个邮件服务商提供的邮箱重新收取确认邮件。强烈建议你使用gmail免费邮箱、网易163免费邮箱、126免费邮箱，QQ邮箱。可随时联系网站客服人员。 
+    
+        </div>	
+    
+        <div class="jkbadiv">
+            <a href="/?user&q=action/reg">免费注册用户</a>
+    
+        </div>	
+    
+    </div>
+
+    <div class="jkbdivbox hide">
+    
+        <div>		
+
+            <b >填写资料操作步骤</b><br />
+            1、登录系统成功后，进入我的账户<br />
+2、在基本设置那里填写个人资料，个人资料包括：房产资料、单位资料、私营业主、财务状况、联系方式、配偶资料、教育背景等<br />
+3、资料完善的好处：资料上传的越详细完整，获得的信用积分相应也会增加			
+    
+        </div>
+        
+        <div class="jkbadiv">
+            <a href="/index.php?user&q=code/userinfo">填写资料</a>
+    
+        </div>	
+    
+    </div>
+    
+    <div class="jkbdivbox hide">		
+        <div>		
+
+            <b >实名认证操作步骤</b><br />
+            1、登录系统成功后，进入我的账户<br />
+            2、在认证中心菜单下面，进入实名认证<br />
+            3、填写姓名，身份证号码，出生年月，户籍所在地，同时上传身份证正反面<br />
+            4、注：实名认证一旦通过后将不能再修改真实姓名，请谨慎操作
+
+        </div>
+        <div class="jkbadiv">
+            <a href="/index.php?user&q=code/user/realname">实名认证</a>
+    
+        </div>
+        
+    </div>
+        
+    <div class="jkbdivbox hide">		
+        <div>		
+
+            <b >关于VIP的权利和义务</b><br />
+                为了网站的稳定运营，方便更多用户参与网络借款中介平台，投资者成为VIP会员不需要提交资料。<br />
+　　1.用户先在网站上注册账户，并向其账户充值340元，提交VIP申请；等审核通过后，网站自动扣除VIP费用。<br />
+　　2.借入者成为VIP后，一年以内可在信用额度内多次借款，并享有客服跟踪服务。<br />
+　　3.借出者申请VIP时需提交身份证及联系电话，提现银行账号户名与身份证一致。<br />
+　　4.借出者成为VIP后，借出本金享有网站合作商的全额担保，最大限度降低投资风险。<br />
+　　5.VIP用户同时享有借入和借出权利，网站将根据个人资料及信用积分审核信用借款额度，并根据还款情况及借出资金总额作出调整。
+        </div>
+
+        <div class="jkbadiv">
+            <a href="/vip/index.html">VIP认证</a>
+    
+        </div>	
+    
+    </div>
+
+    <div class="jkbdivbox hide">
+    
+        <div>		
+
+            <b >上传资料操作步骤</b><br />
+            
+        1、登录系统成功后，进入我的账户<br />
+        2、在认证中心菜单下面，进入资料上传页面，资料类别主要有：居住证(暂住证)、住房公积金、社保、行驶证、驾驶证等等
+        <br />3、资料上传的好处：资料上传的越详细完整，获得的信用积分相应也会增加
+        </div>
+
+        <div class="jkbadiv">
+            <a href="/index.php?user&q=code/attestation/one">上传资料</a>
+    
+        </div>
+        
+    </div>
+    <div class="jkbdivbox hide">	
+        <div>		
+
+            <b >视频认证操作步骤</b><br />
+        
+        1、登录系统成功后，进入我的账户<br />
+2、在认证中心菜单下面，进入视频认证页面，点击申请视频认证，然后联系客户，进行安排视频认证，客服在于您视频完毕后会进行认证通过操作<br />
+3、视频认证能增加您的信用积分
+
+        </div>
+
+        <div class="jkbadiv">
+            <a href="/index.php?user&q=code/user/video_status">视频认证</a>
+    
+        </div>		
+    
+    </div>
+                
+    <div class="jkbdivbox hide">		
+        <div>		
+            <b >申请操作步骤</b><br />
+        
+            1、登录系统成功后，进入我的账户<br />
+2、在个人账户主页面上，点击”额度申请“，进入额度申请页面，提交自己需要申请的信用借款额度，交由审核部门审核，审核人员会根据您的自身信用状况给予一定的信用借款额度
+
+        </div>
+
+        <div class="jkbadiv">
+            <a href="/index.php?user&q=code/borrow/limitapp">申请额度</a>
+    
+        </div>		
+    
+    </div>
+    <div class="jkbdivbox hide">		
+        <div>		
+            <b >发布借款标步骤</b><br />
+    
+目前系统的借款标种有：秒还标，信用标，抵押标，净值标，质押标，用户可根据自身情况选择发布不同类型借款标。 
+
+        </div>
+
+        <div class="jkbadiv">
+            <a href="/borrow/index.html">发布借款标</a>
+    
+        </div>
+    
+    </div>-->
+    
+{literal}
+<script language="javascript">borr_stepbox();</script>
+{/literal}
+
+
+</div>
+
+
+{include file="footer.html"}

@@ -1,0 +1,281 @@
+{include file='header.html'}	
+	
+	
+<!--子栏目 开始-->
+{literal}
+<?
+$this->magic_vars['_G']['uurl'] = url_format($this->magic_vars['_G']['nowurl'],"order");
+$this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],"epage");
+?>
+{/literal}
+<!--子栏目 结束-->
+
+
+{if $magic.request.type==late}
+
+
+<div class="container">
+		
+		<div class="list_menu">
+			<div class="list_kk"><a href="#tb" data-toggle="tab">逾期的借款标</a></div>
+		</div>
+
+		
+		<div style=" float:left; width:950px; border:1px solid #ccc; padding-bottom:20px;">
+		{list module="borrow" function="GetLateList" var="loop"  late_day="1"}
+		<ul class="list_blist">
+			{foreach from="$loop.list" item="var" }
+			<li>
+				<div class="list_tx"><img src="{$var.user_id|avatar:'middle'|imgurl_format}"/></div>
+				<div class="list_con">
+					<span><a href="/u/{$var.user_id}" title="{$var.realname}">{$var.realname}</a></span>
+					<span>欠款总额：<b style="color:#FF0000">￥{$var.late_account}</b></span>
+					<span>逾期笔数：<b style="color:#FF0000">{$var.late_num}笔</b></span>
+    				<span> 所在地：{$var.area|area}</span>
+					<span>性别：{if $var.sex==1 }男{else}女{/if}</span>
+					<span>Email：{$var.email}</span>
+					<span>网站代还笔数：{$var.late_webnum|default:0}</span>
+					<span >QQ：{$var.qq}</span>
+					<span>身份证:{$var.card_id }</span>
+					<span>电话：{$var.phone}</span>
+					<span>最长逾期天数:{$var.late_numdays}天</span>		
+				</div>
+			</li>
+			{/foreach}
+		
+		</ul>
+		
+		<div class="pagecount">
+						
+			{$loop.showpage}			
+		</div>		
+		{/list}
+		
+		</div>
+		
+	
+	
+</div>
+
+
+
+{else}
+
+	<div class="container">
+		
+		
+		<div class="love_banner">
+		{loop module="scrollpic" function="GetList" areaid="$_G.areaid" var="var"  limit="1" type_id="10"}
+	    <a href="{$var.url}"><img src="/{$var.pic}" alt="" height="200" width="950"></a>
+	    {/loop}
+		</div>
+		<div class="love_title">{$_G.sitename}爱心公益平台简介</div>
+		<div  class="love_jj">
+		{article module="dynacontent" function="GetOneBytype" var="dynac" areaid="$_G.areaid" type_id="1"}
+        {$dynac.content}
+		{/article}   
+		</div>
+	
+	
+	
+	<form action="" method="get">
+		<div class="list_xxse">
+			<div class="list_title">详细搜索</div>
+			<ul class="list_searbox">
+				<li>借款目的：
+					{linkages name="use" nid="borrow_use" value="$magic.request.use" default="没有限制"}  
+				</li>	
+				
+				<li>期限：
+					{linkages name="limittime" nid="borrow_time_limit" type="value" value="$magic.request.limittime" default="没有限制"} 
+				</li>	
+				
+				<li><span style="line-height:10px">关键字：</span>
+				<input type="text" name="keywords" class="gjccss" value="{$magic.request.keywords|urldecode}" />
+				</li>	
+				
+				<li>
+				<input type="submit" class="sousbtn" id="search_btn" value="搜索" /> <input type="hidden" name="type" value="{$magic.request.type}">
+				</li>
+
+			</ul>
+		</div>
+	</form>
+		
+		<div class="list_menu">
+			<div class="list_kk">所有</div>
+			<div class="list_sx"><!--<input type="checkbox" name="yes" class="list_chcss" />只显示有奖励--></div>
+	
+		</div>
+		
+		<div class="list_desc">排序：
+			<span>
+				{if $magic.request.order=='account_up'}<a href="{$_G.uurl}&order=account_down&type={$magic.request.type}&keywords={$magic.request.keywords}"><font color="#FF0000">金额↑</font></a>
+				{elseif $magic.request.order=='account_down'}<a href="{$_G.uurl}&order=account_up&type={$magic.request.type}&keywords={$magic.request.keywords}"><font color="#FF0000">金额↓</font></a>
+				{else}<a href="{$_G.uurl}&order=account_up&type={$magic.request.type}&keywords={$magic.request.keywords}">金额</a>{/if}
+			</span> 
+			<span>
+				{if $magic.request.order=='apr_up'}<a href="{$_G.uurl}&order=apr_down&type={$magic.request.type}&keywords={$magic.request.keywords}"><font color="#FF0000">利率↑</font></a>
+				{elseif $magic.request.order=='apr_down'}<a href="{$_G.uurl}&order=apr_up&type={$magic.request.type}&keywords={$magic.request.keywords}"><font color="#FF0000">利率↓</font></a>
+				{else}<a href="{$_G.uurl}&order=apr_up&type={$magic.request.type}&keywords={$magic.request.keywords}">利率</a>{/if}
+			</span> 
+			<span>
+				{if $magic.request.order=='jindu_up'}<a href="{$_G.uurl}&order=jindu_down&type={$magic.request.type}&keywords={$magic.request.keywords}"><font color="#FF0000">进度↑</font></a>
+				{elseif $magic.request.order=='jindu_down'}<a href="{$_G.uurl}&order=jindu_up&type={$magic.request.type}&keywords={$magic.request.keywords}"><font color="#FF0000">进度↓</font></a>
+				{else}<a href="{$_G.uurl}&order=jindu_up&type={$magic.request.type}&keywords={$magic.request.keywords}">进度</a>{/if}
+			</span> 
+			<span>
+				{if $magic.request.order=='credit_up'}<a href="{$_G.uurl}&order=credit_down&type={$magic.request.type}&keywords={$magic.request.keywords}"><font color="#FF0000">信用↑</font></a>
+				{elseif $magic.request.order=='credit_down'}<a href="{$_G.uurl}&order=credit_up&type={$magic.request.type}&keywords={$magic.request.keywords}"><font color="#FF0000">信用↓</font></a>
+				{else}<a href="{$_G.uurl}&order=credit_up&type={$magic.request.type}&keywords={$magic.request.keywords}">信用</a>{/if}
+			</span>  
+		 
+		 </div>
+		
+		
+		<div style=" float:left; width:950px; border:1px solid #ccc; padding-bottom:20px;">
+		
+		{list module="borrow" function="GetListIndex" var="loop"   site_id="0"  keywords="request" type="request"  use="request" account1="request" account2 = "request" limittime="request" award="request" province="request" city="request" epage="request" order="$magic.request.order" areaid="$_G.areaid" province="$_G.province" city="$_G.city"   biao_type="love" }
+		
+		<ul class="list_blist">
+			{foreach from="$loop.list" item="var" }
+			<li>
+				<div class="list_tx"><img src="{$var.user_id|avatar:'middle'|imgurl_format}" /></div>
+				<div class="list_con">
+					<span>
+					 	<a href="/invest/a{$var.id}.html">{$var.name|truncate:12:"..."}&nbsp;&nbsp;</a>
+						<a href="{$var.biao_type_desc_url}" target="_blank"><img src="{$tpldir}/images/{$var.biao_type}.gif" border="0" rel="tooltip" title="{$var.biao_type_desc}" class="float_left"/></a>
+						{if $var.isday==1}<a href="#" target="_blank" rel="tooltip" title="天标是按天借款标"><img src="{$tpldir}/images/day.jpg"   border="0"  class="float_left"/></a>{/if}
+						{if $var.flag==1} <img src="{$tpldir}/images/tuijian.gif" align="absmiddle"  border="0"class="float_left"/>{/if}
+						{if $var.ishappy==1}<a href="{$_G.system.con_happy_url}" target="_blank"> <img src="{$tpldir}/images/happy.gif" align="absmiddle"  border="0" title="开心模式下流标也有利息" class="float_left"/></a>{/if}
+						{if $var.award==1 || $var.award==2 }<img src="{$tpldir}/images/jiangli.gif"  border="0"   rel="tooltip" title="投资该借款标除利息外有额外的奖励" style="float:left; "/>{/if}
+						{if $var.pwd != ""}<img src="{$tpldir}/images/lock.gif"  border="0"   rel="tooltip" title="定向标是投标的时候需要定向密码的借款标" class="float_left"/>{/if}
+					
+					</span>
+					<span>借款金额：<b>￥{$var.account}元</b></span>
+					<span>投标奖励：<b>
+						{if $var.award==0}
+							无
+						{elseif  $var.award==1}
+							金额({$var.part_account|round:"2"}元)
+						{elseif  $var.award==2}
+							{$var.funds}%
+						{/if}
+					</b></span>
+					{if $var.biao_type!='circulation'}
+					<span style="text-align:center">借款期限：<b>
+						{if $var.isday==1 } 
+						{$var.time_limit_day}天
+						{elseif $var.is_mb==1}
+						 额满即还
+						{else}
+						{$var.time_limit}个月 
+						{/if}
+					</b></span>
+					{else}
+						<span style="text-align:center">借款期限：<b>{$var.time_limit}个月</b></span>
+					{/if}
+					
+					<span><div style="float:left">发布者：</div><a href="/u/{$var.user_id}" target="_blank">{$var.username}</a></span>
+					<span>年利率：{$var.apr}%</span>
+					<span><div class="list_jdt"><div style="width:{$var.scale|default:0}%" class="list_dd"></div></div><div class="list_bno">{$var.scale}%</div></span>
+					{if $var.biao_type!='circulation'}
+					<span style="text-align:center">
+						{if $var.isday==1 } 
+						到期全额还款
+						{elseif $var.is_mb==1}
+						系统自动还款
+						{else}
+						{$var.style|linkage:"borrow_style"}
+						{/if}
+					</span>
+					{else}
+						<span style="text-align:center">{$var.style|linkage:"borrow_style"}</span>
+					{/if}
+					
+					<span>信用等级：<img src="{$_G.system.con_credit_picurl}{ $var.credit_pic}" title="{$var.credit_jifen}分"  /></span>
+					<span>用途：{$var.use|linkage}</span>
+					{if $var.is_vouch==1}<span><div class="list_jdt"><div style="width:{$var.vouch_scale|default:0}%" class="list_dd"></div></div><div class="list_bno">{$var.vouch_scale}%</div></span>{/if}
+					
+					
+					{if $var.biao_type!='circulation'}
+					<span style="text-align:center" id="endtime{$var.id}">剩余时间：{$var.lave_time}</span>
+					{/if}
+					<span>籍贯：{$var.user_area|area:"p,c"}</span>
+					<!--<span>籍贯：东北那疙</span>-->
+					{if $var.is_vouch==1}<span>担保奖励：{$var.vouch_award}%</span>{/if}
+					<!--<span style="text-align:center">剩余时间：2小时</span>-->
+						
+				
+				</div>
+				
+				
+				<div class="list_hkbtn">
+					{if $var.status==3}
+						{if $var.repayment_account == $var.repayment_yesaccount}
+						<img src="{$tempdir}/images/tender_achieve.jpg" />
+						{else}
+						<img src="{$tempdir}/images/loan_repayment.jpg" />
+						{/if}
+			 		{elseif $var.status==5}
+					用户取消
+			  		{elseif $var.status==4}
+			  		{else}
+			  			{if $var.biao_type=='circulation'}
+						<a href="/invest/a{$var.id}.html?detail=purchase">
+						<img src="{$tempdir}/images/purchase.jpg" /></a>
+						{elseif $var.biao_type=='vouch' || $var.biao_type=='restructuring'}
+														
+							{if $var.account>$var.account_yes}
+								<a href="/invest/a{$var.id}.html?detail=true">
+								<img src="{$tempdir}/images/tender.jpg" />
+								</a>
+							{/if}
+							{if $var.vouch_scale <100}
+							<a href="/invest/a{$var.id}.html?detail=vouch">
+							<img src="{$tempdir}/images/onvouch.jpg" />
+                        	</a>
+							{/if}
+							{if $var.vouch_scale ==100 && $var.account==$var.account_yes}
+								<img src="{$tempdir}/images/tender_wait.jpg" />
+							{/if}
+							
+							
+						{else}
+							{if $var.account>$var.account_yes}
+							<a href="a{$var.id}.html?detail=true">
+							<img src="{$tempdir}/images/tender.jpg" />
+							</a>
+							{else}
+							<img src="{$tempdir}/images/tender_wait.jpg" />
+							{/if}
+						{/if}
+			  		{/if}
+				
+				</div>
+			
+			
+			</li>	
+		{/foreach}
+		
+		</ul>
+		
+		<div class="pagecount">
+			{$loop.showpage}
+		</div>		
+		{/list}
+		
+		</div>
+	</div>
+{/if}	
+
+<script type="text/javascript">
+{literal}
+jQuery(function(){
+	jQuery("[rel='tooltip']").tooltip();
+});
+{/literal}
+</script>
+
+	
+	{include file='footer.html'}

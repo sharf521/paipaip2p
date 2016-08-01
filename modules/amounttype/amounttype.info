@@ -1,0 +1,10 @@
+<?
+
+$code =        "amounttype";
+$name =        "额度类型管理";
+$description = "后台额度类型管理";
+$version =     "1.0";
+$date =   "2012-11-06";
+$author =      "hycms";
+$type =      "system";
+?>

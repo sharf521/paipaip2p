@@ -1,0 +1,9 @@
+<?
+		$code = "dynacontent";
+		$name = "动态内容管理";
+		$description = "动态内容管理";
+		$version = "1.0";
+		$author = "erongdu";
+		$date = "2013-06-20";
+		$type = "dynacontent";
+		?>

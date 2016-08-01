@@ -1,0 +1,266 @@
+{include file="header.html"}
+	
+	
+	
+	<div class="container">
+	
+		
+{article module="borrow" function="get_available_biao_type" user_id=0 var="biaotype_list" allow_biaotype="$_G.site_biaotype"}
+{/article}
+{article module="borrow" function="get_biao_type_url_list" user_id=0 var="biao_type_url_list" }
+{/article}
+		<div class="borr_fabox">
+			<ul class="borr_faul">
+				{if in_array("credit", $biaotype_list) }
+				<li class="xinlogo">
+					
+					<span>网站给予的信用额度内发布借款
+					<a href="{$biao_type_url_list.credit.type_desc_url}">详细介绍>></a></span>
+					<a href="/publish/index.html?type=credit" class="btn-action" >
+					发布信用标</a>
+				</li>
+				{/if}
+				
+				{if in_array("zhouzhuan", $biaotype_list) }
+				<li class="zhuanlogo">
+					<span>网站给予的信用额度内发布借款
+					<a href="{$biao_type_url_list.zhouzhuan.type_desc_url}">详细介绍>></a></span>
+					<a href="/publish/index.html?type=zhouzhuan" class="btn-action" >
+					发布站内周转标</a>
+				</li>
+				{/if}
+				
+				{if in_array("restructuring", $biaotype_list) }
+				<li class="chonglogo">
+					<span>网站给予的重组额度内发布借款
+					<a href="{$biao_type_url_list.restructuring.type_desc_url}">详细介绍>></a></span>
+					<a href="/publish/index.html?type=restructuring" class="btn-action" >发布债务重组标</a>
+				</li>
+				{/if}
+				
+				{if in_array("vouch", $biaotype_list) }
+				<li class="danlogo">
+					<span>网站给予的担保额度内发布借款
+					<a href="{$biao_type_url_list.vouch.type_desc_url}">详细介绍>></a></span>
+					<a href="/publish/index.html?type=vouch" class="btn-action">发布担保标</a>
+				</li>
+				{/if}
+				
+				{if in_array("jin", $biaotype_list) }
+				<li class="jinglogo">
+					<span>会员用网站留存的净值金额发布借款
+					<a href="{$biao_type_url_list.jin.type_desc_url}">详细介绍>></a></span>
+					<a href="/publish/index.html?type=jin" class="btn-action" >发布净值标</a>
+				</li>
+				{/if}
+				
+				{if in_array("miao", $biaotype_list) }
+				<li class="mmlogo">
+					<span> 借款成功系统自动还款娱乐反馈标
+					<a href="{$biao_type_url_list.miao.type_desc_url}">详细介绍>></a></span>
+					<a href="/publish/index.html?type=miao" class="btn-action" >发布秒还标</a>
+				</li>
+				{/if}
+				
+				{if in_array("fast", $biaotype_list) }
+				<li class="diyalogo">
+					<span>小微企业现场审核抵押发布借款
+					<a href="{$biao_type_url_list.fast.type_desc_url}">详细介绍>></a></span>
+					<a href="/publish/index.html?type=fast" class="btn-action" >发布抵押标</a>
+				</li>
+				{/if}
+				{if in_array("pledge", $biaotype_list) }
+				<li class="zhiyalogo">
+					<span>小微企业现场审核质押发布借款
+					<a href="{$biao_type_url_list.pledge.type_desc_url}">详细介绍>></a></span>
+					<a href="/publish/index.html?type=pledge" class="btn-action" >发布质押标</a>
+				</li>
+				{/if}
+				
+				{if in_array("circulation", $biaotype_list) }
+				<li class="liuzhlogo">
+					<span> 债权流转担保贷<a href="{$biao_type_url_list.circulation.type_desc_url}">详细介绍>></a><br />
+				    <a style="color:#0099FF" href="/publish/index.html?st=2&type=circulation">发布质押流转&nbsp;</a>
+					</span>
+					<a href="/publish/index.html?st=1&type=circulation" class="btn-action" >流转担保贷</a>
+				</li>
+				{/if}
+				
+				{if in_array("love", $biaotype_list) }
+				<li class="lovelogo">
+					<span>爱心慈善借款发布借款<br />
+					<a href="{$biao_type_url_list.love.type_desc_url}">详细介绍>></a></span>
+					<a href="/publish/index.html?type=love" class="btn-action" >发布爱心标</a>
+				</li>
+				{/if}
+	
+			
+			</ul>
+		
+
+		</div>
+		
+		
+		
+		
+		<div class="borr_title">>>您需要完成以下步骤才能成功借款</div>
+		<ul class="borr_stepbox">
+			<li class="checkit">1)注册会员</li>
+			<li >=>2)填写资料</li>
+			<li>=>3)实名认证</li>
+			<li>=>4)VIP认证</li>
+			<li >=>5)上传资料</li>
+			<li>=>6)视频认证</li>
+			<li>=>7)申请额度</li>
+			<li >=>8)发布借款</li>
+	
+		</ul>
+		
+		<div class="jkbdivbox">
+		
+			<div>
+				<b style=" color:#3335ce">注册操作步骤</b><br />
+				1、进入网站首页，点击右上角“注册”按钮。<br />
+				2、此时您已进入注册页面，根据提示信息，填写您的用户名、密码、注册邮箱、真实姓名，点击 "立即注册”即可完成。<br />
+				3、注册成功后，系统会发送一封账户激活邮件到您的注册邮箱，进入注册邮箱，点击激活链接，激活账户。<br />
+				<b style=" color:#3335ce">注册时，一直没有收到确认电子邮件怎么办？</b><br />
+				1、请先到您的垃圾邮件文件夹里面寻找确认邮件<br />
+			2、个别邮箱会误屏蔽网站确认邮件。如果你也碰到类似问题，请尝试使用由另一个邮件服务商提供的邮箱重新收取确认邮件。强烈建议你使用gmail免费邮箱、网易163免费邮箱、126免费邮箱，QQ邮箱。可随时联系网站客服人员。 
+		
+			</div>	
+		
+			<div class="jkbadiv">
+                <a href="/?user&q=action/reg">免费注册用户</a>
+		
+			</div>	
+		
+		</div>
+
+		<div class="jkbdivbox hide">
+		
+			<div>		
+
+				<b style=" color:#3335ce">填写资料操作步骤</b><br />
+				1、登录系统成功后，进入我的账户<br />
+2、在基本设置那里填写个人资料，个人资料包括：房产资料、单位资料、私营业主、财务状况、联系方式、配偶资料、教育背景等<br />
+3、资料完善的好处：资料上传的越详细完整，获得的信用积分相应也会增加			
+		
+			</div>
+			
+			<div class="jkbadiv">
+				<a href="/index.php?user&q=code/userinfo">填写资料</a>
+		
+			</div>	
+		
+		</div>
+		
+		<div class="jkbdivbox hide">		
+			<div>		
+
+				<b style=" color:#3335ce">实名认证操作步骤</b><br />
+				1、登录系统成功后，进入我的账户<br />
+				2、在认证中心菜单下面，进入实名认证<br />
+				3、填写姓名，身份证号码，出生年月，户籍所在地，同时上传身份证正反面<br />
+				4、注：实名认证一旦通过后将不能再修改真实姓名，请谨慎操作
+
+			</div>
+			<div class="jkbadiv">
+				<a href="/index.php?user&q=code/user/realname">实名认证</a>
+		
+			</div>
+			
+		</div>
+			
+		<div class="jkbdivbox hide">		
+			<div>		
+
+				<b style=" color:#3335ce">关于VIP的权利和义务</b><br />
+					为了网站的稳定运营，方便更多用户参与网络借款中介平台，投资者成为VIP会员不需要提交资料。<br />
+　　1.用户先在网站上注册账户，并向其账户充值340元，提交VIP申请；等审核通过后，网站自动扣除VIP费用。<br />
+　　2.借入者成为VIP后，一年以内可在信用额度内多次借款，并享有客服跟踪服务。<br />
+　　3.借出者申请VIP时需提交身份证及联系电话，提现银行账号户名与身份证一致。<br />
+　　4.借出者成为VIP后，借出本金享有网站合作商的全额担保，最大限度降低投资风险。<br />
+　　5.VIP用户同时享有借入和借出权利，网站将根据个人资料及信用积分审核信用借款额度，并根据还款情况及借出资金总额作出调整。
+			</div>
+
+			<div class="jkbadiv">
+				<a href="/vip/index.html">VIP认证</a>
+		
+			</div>	
+		
+		</div>
+
+		<div class="jkbdivbox hide">
+		
+			<div>		
+
+				<b style=" color:#3335ce">上传资料操作步骤</b><br />
+				
+			1、登录系统成功后，进入我的账户<br />
+			2、在认证中心菜单下面，进入资料上传页面，资料类别主要有：居住证(暂住证)、住房公积金、社保、行驶证、驾驶证等等
+			<br />3、资料上传的好处：资料上传的越详细完整，获得的信用积分相应也会增加
+			</div>
+
+			<div class="jkbadiv">
+				<a href="/index.php?user&q=code/attestation/one">上传资料</a>
+		
+			</div>
+			
+		</div>
+		<div class="jkbdivbox hide">	
+			<div>		
+
+				<b style=" color:#3335ce">视频认证操作步骤</b><br />
+			
+			1、登录系统成功后，进入我的账户<br />
+2、在认证中心菜单下面，进入视频认证页面，点击申请视频认证，然后联系客户，进行安排视频认证，客服在于您视频完毕后会进行认证通过操作<br />
+3、视频认证能增加您的信用积分
+
+			</div>
+
+			<div class="jkbadiv">
+				<a href="/index.php?user&q=code/user/video_status">视频认证</a>
+		
+			</div>		
+		
+		</div>
+					
+		<div class="jkbdivbox hide">		
+			<div>		
+				<b style=" color:#3335ce">申请操作步骤</b><br />
+			
+				1、登录系统成功后，进入我的账户<br />
+2、在个人账户主页面上，点击”额度申请“，进入额度申请页面，提交自己需要申请的信用借款额度，交由审核部门审核，审核人员会根据您的自身信用状况给予一定的信用借款额度
+
+			</div>
+
+			<div class="jkbadiv">
+				<a href="/index.php?user&q=code/borrow/limitapp">申请额度</a>
+		
+			</div>		
+		
+		</div>
+		<div class="jkbdivbox hide">		
+			<div>		
+				<b style=" color:#3335ce">发布借款标步骤</b><br />
+		
+目前系统的借款标种有：秒还标，信用标，抵押标，净值标，质押标，用户可根据自身情况选择发布不同类型借款标。 
+
+			</div>
+
+			<div class="jkbadiv">
+				<a href="/borrow/index.html">发布借款标</a>
+		
+			</div>
+		
+		</div>
+		
+{literal}
+<script language="javascript">borr_stepbox();</script>
+{/literal}
+	
+	
+	</div>
+
+
+{include file="footer.html"}

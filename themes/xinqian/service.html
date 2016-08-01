@@ -1,0 +1,44 @@
+{include file="header.html"}
+<div class="bannerbox0002">
+         {loop module="scrollpic" function="Getlist" areaid="$_G.areaid" var="var"  limit="1" type_id="9"}
+        <a href="{$var.url}"><img src="/{$var.pic}"  width="1000" ></a>
+        {/loop}
+</div>
+<div class="container">
+    <div class="service_box">
+        <div class="service_left">
+            <div class="service_title">服务中心</div>
+            <div class="service_ul">
+            {loop module="article" function="GetSitelist" var="var" epage="20"  pid="21"  keywords="request" status=1 }
+                {if $var.nid !="zaixian"}
+                <div onClick="showsubmenu( 1, 12)"><a href="/{$var.nid}/index.html">{$var.name}</a></div>{/if}
+            {/loop}
+            </div>
+        </div>
+        <div class="service_right">
+            <div class="service_dh">
+               <a>当前位置：</a>
+               <a id="ctl00_content_Navigationlink1_main" href="/">首页></a> 
+               <a href="/aboutus/index.html">服务中心></a>
+               <a href="/{$_G.site_result.nid}/index.html" >              {$_G.site_result.name} 
+               </a>
+            </div>
+            <div class="service_content">
+        {list module="article" function="Getlist" var="loop" e"page"="20"  site_id="0"  keywords="request" status=1 areaid="$_G.areaid"}
+                <ul class="service_ulcon">
+                    {foreach from="$loop.list" item="var"}
+                    <li>
+                    <a href="a{$var.id}.html" style="color:#666; text-decoration:none;">{$var.name|truncate:45}</a>
+                    </li>
+                    {/foreach}
+                </ul>
+                <div class="pagecount">
+                    {$loop.showpage}	
+                </div>		
+         {/list}	
+                <div class="benzhan-cankan">本页面内容仅供参考，以网站的公告与具体规定为准。</div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="footer.html"}

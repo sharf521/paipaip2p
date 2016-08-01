@@ -1,0 +1,27 @@
+ {include file="header.html"}
+{if $_G.user_id==""}
+	<script>alert("你还没有登录，请先登录再查看");location.href='/index.php?user';</script>
+{/if}
+{article module="borrow" function="GetOne" id="$magic.request.borrow_id"}
+{if $var.status!=3}
+<script>alert("您的操作有误");location.href='/index.php?user';</script>
+{/if}
+{if $var.user_id!=$_G.user_id}
+	{article module="borrow" function="CheckBorrowTender" id="$magic.request.borrow_id" user_id="$_G.user_id"}
+
+    {if $var.checkStatus < 1 }
+    <script>alert("对不起，您不是该借款标的投资人，无权查看借款协议书，谢谢!");location.href='/invest/a{$magic.request.borrow_id}.html';</script>
+    {/if}
+	{/article}
+{/if}
+{article module="borrow" function="getpactdate" borrow_id="$magic.request.borrow_id" var="pact"}
+	{$pact.string}
+{/article}
+
+
+{/article}
+
+
+
+
+{include file="footer.html"}

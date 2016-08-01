@@ -1,0 +1,9 @@
+<?
+		$code = "blacklist";
+		$name = "黑名单";
+		$description = "黑名单管理";
+		$version = "1.0";
+		$author = "rd";
+		$date = "2013-03-11";
+		$type = "blacklist";
+		?>

@@ -1,0 +1,9 @@
+<?
+		$code = "subsite";
+		$name = "分站点模块";
+		$description = "分站点配置";
+		$version = "1.0";
+		$author = "hycms";
+		$date = "2010-04-04";
+		$type = "subsite";
+		?>

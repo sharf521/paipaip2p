@@ -1,0 +1,32 @@
+/*容器*/
+slider ul, #slider li
+{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+/*数字导航样式*/
+#flashnvanum
+{
+    /*bottom: 10px;
+    position: absolute;
+    right: 0px;
+    width: 60px;*/
+}
+#flashnvanum span
+{
+    background:#666;   
+    cursor: pointer;
+    float: left;
+    height: 6px;
+	line-height:6px;
+   border:1px solid #fff;
+    margin: 1px;
+    width: 35px;
+   
+}
+#flashnvanum span.on
+{
+    background: #ff6600;  
+   
+}
